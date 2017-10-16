@@ -10,3 +10,7 @@ def index():
 def home():
     return render_template('home.html')
 
+@app.route('/view/<imgid>')
+def view(imgid):
+    return render_template('view.html', img=imgid)
+
