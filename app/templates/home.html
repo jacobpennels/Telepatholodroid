@@ -5,11 +5,23 @@
 {% block body %}
     <div data-role="page">
         <div data-role="header" data-position="fixed">
-            <a href="#leftpanel" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
-            <p style="color:#FFFFFF">Telepatholodroid</p>
+            <h1>Telepatholodroid</h1>
+            <ul data-role="nd2tabs" data-swipe="true" class="nd2Tabs">
+                <li data-tab="activity" data-tab-active="true">Activity</li>
+                <li data-tab="slides">Slides</li>
+                <li data-tab="account">Account</li>
+            </ul>
         </div>
         <div role="main" class="ui-content">
-            <p>This is the home page</p>
+            <div data-role="nd2tab" data-tab="activity" class="nd2Tabs-content-tab nd2Tab-active">
+                <p>This is the activity page</p>
+            </div>
+            <div data-role="nd2tab" data-tab="slides" class="nd2Tabs-content-tab">
+                <p>This is the slides page</p>
+            </div>
+            <div data-role="nd2tab" data-tab="account" class="nd2Tabs-content-tab">
+                <p>This is the account tab</p>
+            </div>
         </div>
     </div>
 
