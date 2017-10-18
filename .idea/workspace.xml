@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="88584f91-11ee-4451-aecc-5b4c8c893e17" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/fonts/Material-Design-Iconic-Font.eot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/fonts/Material-Design-Iconic-Font.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/fonts/Material-Design-Iconic-Font.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/img/examples/card_bg_1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/img/examples/card_bg_2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/img/examples/card_bg_3.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/img/examples/card_thumb_1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/img/examples/card_thumb_2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/img/examples/card_thumb_3.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/bower.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/flexboxgrid.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/material-design-iconic-font.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.color.amber.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.color.blue-grey.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.color.blue.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.color.brown.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.color.cyan.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.color.deep-orange.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.color.deep-purple.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.color.green.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.color.grey.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.color.indigo.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.color.light-blue.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.color.light-green.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.color.lime.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.color.orange.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.color.pink.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.color.purple.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.color.red.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.color.teal.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.color.yellow.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/elements/autocomplete.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/elements/buttons.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/elements/collapsible_accordions.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/elements/dialog_popups.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/elements/forms.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/elements/grid.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/elements/header_footer.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/elements/listviews.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/elements/panels.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/elements/tables.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/elements/text.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/extended/bottomsheet.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/extended/cards.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/extended/charts.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/extended/icons.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/extended/search.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/extended/tabs.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/extended/toasts.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/fragments/adsense/sample.banner.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/fragments/adsense/textlinks.banner.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/fragments/bottom.sheet.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/fragments/dialog.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/fragments/panel.left.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/pages/blog.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/pages/blogpost.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/pages/chat.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/pages/dashboard.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/pages/gallery.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/pages/mail_inbox.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/pages/products_services.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/pages/profile.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/pages/team.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/fonts/Material-Design-Iconic-Font.svg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/info/colors_and_styles.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/info/credits.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/js/nativedroid2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/nd2settings.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/vendor/chartist/chartist.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/vendor/chartist/style.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/vendor/jquerymobile/jquery.mobile.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/vendor/waves/waves.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/vendor/waves/waves.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/vendor/waves/waves.min.js.map" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/vendor/wow/animate.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/vendor/wow/wow.min.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/static/javascript/nativeDroid2" afterPath="" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Telepatholodroid$ThreadingTest.coverage" NAME="ThreadingTest Coverage Results" MODIFIED="1507828085104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Telepatholodroid$test.coverage" NAME="test Coverage Results" MODIFIED="1507827356917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Telepatholodroid$skeleton.coverage" NAME="skeleton Coverage Results" MODIFIED="1508354313456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="skeleton.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/skeleton.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="10" column="39" lean-forward="false" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#33#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/templates/layout.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/home.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="14" lean-forward="false" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/ThreadingTest.py" />
+        <option value="$PROJECT_DIR$/app/__init__.py" />
+        <option value="$PROJECT_DIR$/app/views.py" />
+        <option value="$PROJECT_DIR$/app/templates/index.html" />
+        <option value="$PROJECT_DIR$/app/static/css/style.css.html" />
+        <option value="$PROJECT_DIR$/app/static/css/style.css" />
+        <option value="$PROJECT_DIR$/app/templates/home.html" />
+        <option value="$PROJECT_DIR$/app/templates/layout.html" />
+        <option value="$PROJECT_DIR$/skeleton.py" />
+        <option value="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.css" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="260" />
+    <option name="y" value="20" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Telepatholodroid" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Telepatholodroid" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/Programs/Python/Python36/python.exe" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.templateLanguages.PyTemplateLanguageModulesConfigurable" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.skeleton">
+    <configuration name="ThreadingTest" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Telepatholodroid" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ThreadingTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="skeleton" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Telepatholodroid" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/skeleton.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Telepatholodroid" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Jacob\Documents\Year 3 Project\Telepatholodroid\Telepatholodroid\skeleton.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <list size="3">
+      <item index="0" class="java.lang.String" itemvalue="Python.test" />
+      <item index="1" class="java.lang.String" itemvalue="Python.ThreadingTest" />
+      <item index="2" class="java.lang.String" itemvalue="Python.skeleton" />
+    </list>
+    <recent_temporary>
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Python.skeleton" />
+        <item index="1" class="java.lang.String" itemvalue="Python.ThreadingTest" />
+        <item index="2" class="java.lang.String" itemvalue="Python.test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="88584f91-11ee-4451-aecc-5b4c8c893e17" name="Default" comment="" />
+      <created>1507286317810</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1507286317810</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Repository Tested and Flask test file created">
+      <created>1507286780903</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1507286780903</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Test file updated so server can be accessed by devices on LAN">
+      <created>1507828181367</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1507828181367</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Begun working on a wireframe of the app, including adding JQuery Mobile elements">
+      <created>1507894653448</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1507894653448</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added NativeDroid2 files and begun working on UI">
+      <created>1508322913090</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1508322913090</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added NativeDroid2 files">
+      <created>1508353408535</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1508353408535</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.128125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18133616" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08483563" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18133616" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Repository Tested and Flask test file created" />
+    <MESSAGE value="Test file updated so server can be accessed by devices on LAN" />
+    <MESSAGE value="Begun working on a wireframe of the app, including adding JQuery Mobile elements" />
+    <MESSAGE value="Added NativeDroid2 files and begun working on UI" />
+    <MESSAGE value="Added NativeDroid2 files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added NativeDroid2 files" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/skeleton.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="10" column="39" lean-forward="false" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="93" lean-forward="false" selection-start-line="20" selection-start-column="93" selection-end-line="20" selection-end-column="93" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="14" lean-forward="true" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="59" lean-forward="false" selection-start-line="3" selection-start-column="59" selection-end-line="3" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="10" column="39" lean-forward="false" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="64" lean-forward="false" selection-start-line="12" selection-start-column="64" selection-end-line="12" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThreadingTest.py" />
+    <entry file="file://$PROJECT_DIR$/app/static/css/style.css.html" />
+    <entry file="file://$PROJECT_DIR$/app/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="10" column="39" lean-forward="false" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="64" lean-forward="false" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="14" lean-forward="false" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="48" lean-forward="true" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
