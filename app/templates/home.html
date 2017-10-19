@@ -3,9 +3,10 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-    <div data-role="page">
+    <div data-role="page" data-url="{{ url_for('home') }}">
         <div data-role="header" data-position="fixed">
             <h1>Telepatholodroid</h1>
+
             <ul data-role="nd2tabs" data-swipe="true" class="nd2Tabs">
                 <li data-tab="activity" data-tab-active="true">Activity</li>
                 <li data-tab="slides">Slides</li>

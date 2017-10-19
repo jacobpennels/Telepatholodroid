@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, redirect, url_for
 from app import app
 from flask import request
 
@@ -13,4 +13,6 @@ def home():
 @app.route('/view/<imgid>')
 def view(imgid):
     return render_template('view.html', img=imgid)
+
+
 
