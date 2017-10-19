@@ -2,15 +2,27 @@
 {% block title %}Welcome{% endblock %}
 {% block body %}
     <div data-role="page" id="splash">
-
         <div role="main" class="ui-content">
-            <p>Welcome to Telepatholodroid!</p>
-            <p>You can login <a href="#login">here</a></p>
+            <div class=""
+            <h1>Telepatholodroid</h1>
+
+            <h2>Login</h2>
+
+            <form method="post" action="{{ url_for('login') }}">
+                <input type="text" name="username" id="name" value="" data-clear-btn="true" placeholder="Username">
+                <input type="password" name="pword" id="pword" value="" data-clear-btn="true" placeholder="Password">
+                <input type="submit" value="Submit">
+            </form>
+
+            <p>New user? You can register <a href="#registration">here</a></p>
+
         </div>
 
     </div>
-    <div data-role="page" id="login">
+    <div data-role="page" id="registration">
         <div role="main" class="ui-content">
+            <h1>Telepatholodroid</h1>
+            <h2>Registration</h2>
             <p>Thanks for logging in!</p>
             <a href="{{ url_for('home') }}" data-transition="pop">Continue to home!</a>
         </div>
