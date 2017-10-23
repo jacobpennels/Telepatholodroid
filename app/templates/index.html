@@ -2,29 +2,77 @@
 {% block title %}Welcome{% endblock %}
 {% block body %}
     <div data-role="page" id="splash">
+        <div data-role="header">
+             <h1>Telepatholodroid</h1>
+        </div>
         <div role="main" class="ui-content">
-            <div class=""
-            <h1>Telepatholodroid</h1>
 
             <h2>Login</h2>
 
             <form method="post" action="{{ url_for('login') }}">
-                <input type="text" name="username" id="name" value="" data-clear-btn="true" placeholder="Username">
+                <input type="email" name="email" id="email" value="" data-clear-btn="true" placeholder="Email">
                 <input type="password" name="pword" id="pword" value="" data-clear-btn="true" placeholder="Password">
-                <input type="submit" value="Submit">
+                <input type="submit" value="Login">
             </form>
-
             <p>New user? You can register <a href="#registration">here</a></p>
 
         </div>
-
     </div>
+
     <div data-role="page" id="registration">
-        <div role="main" class="ui-content">
+        <div data-role="header" data-position="fixed">
             <h1>Telepatholodroid</h1>
+        </div>
+        <div role="main" class="ui-content">
+
             <h2>Registration</h2>
-            <p>Thanks for logging in!</p>
-            <a href="{{ url_for('home') }}" data-transition="pop">Continue to home!</a>
+            <p>Fields marked with <span class="star">*</span> are required</p>
+
+            <form method="post" action="{{ url_for('register') }}" id="form1">
+                <h4>Personal details</h4>
+                <label for="u_title">Title <span class="star">*</span></label>
+                <select name="u_title" id="u_title" data-native-menu="false">
+                    <option value="dr">Dr</option>
+                    <option value="mr">Mr</option>
+                    <option value="mrs">Mrs</option>
+                    <option value="ms">Ms</option>
+                    <option value="miss">Miss</option>
+                </select>
+                <label for="fname">Firstname <span class="star">*</span></label>
+                <input type="text" name="fname" id="fname" value="" data-clear-btn="true" placeholder="...">
+                <label for="lname">Lastname <span class="star">*</span></label>
+                <input type="text" name="lname" id="lname" value="" data-clear-btn="true" placeholder="...">
+                <label for="institute">Institute <span class="star">*</span></label>
+                <input type="text" name="institute" id="institute" value="" data-clear-btn="true" placeholder="...">
+                <label for="country">Country</label>
+                <select name="country" id="country" data-native-menu="false">
+                    {% include 'countries.html' %}
+                </select>
+
+                <h4>Contact Info</h4>
+                <label for="email1">Email <span class="star">*</span></label>
+                <input type="email" name="email1" id="email1" value="" data-clear-btn="true" placeholder="...">
+                <label for="email2">Confirm Email <span class="star">*</span></label>
+                <input type="email" name="email2" id="email2" value="" data-clear-btn="true" placeholder="...">
+
+                <h4>Password</h4>
+                <p>Your password should be at least 8 letters along, containing a mix of letters and numbers/symbols</p>
+                <label for="pword1">Enter password</label>
+                <input type="password" name="pword1" id="pword1" data-clear-btn="true" placeholder="...">
+                <label for="pword2">Confirm password</label>
+                <input type="password" name="pword2" id="pword2" data-clear-btn="true" placeholder="...">
+
+                <input type="submit" value="Register">
+            </form>
         </div>
     </div>
+
+    <script>
+    $(document).ready(function() {
+        console.log("Document ready");
+        $('#form1').find('input').each(function() {
+            console.log($(this).attr('id'));
+        });
+    });
+    </script>
 {% endblock %}

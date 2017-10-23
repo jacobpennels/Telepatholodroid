@@ -1,5 +1,6 @@
 from flask import render_template, redirect, url_for
 from app import app
+import os
 from flask import request
 
 @app.route('/')
@@ -10,9 +11,11 @@ def index():
 def home():
     return render_template('home.html')
 
-@app.route('/view/<imgid>')
-def view(imgid):
-    return render_template('view.html', img=imgid)
+@app.route('/viewimg/<int:imgid>')
+def viewimg(imgid=None):
+    return render_template('viewimg.html', imgid=imgid)
+
+
 
 
 

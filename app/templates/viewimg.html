@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block title %}Image View{% endblock %}
+
+{% block body %}
+    <div data-role="page" data-url="{{ url_for('viewimg', imgid=imgid) }}">
+         <p>You are viewing the image {{ imgid }}</p>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+<div data-role="panel" id="bottomsheetopt" class="ui-bottom-sheet ui-bottom-sheet-list" data-animate="false" data-position="bottom" data-display="overlay">
+    <div class="row center-lg">
+        <div class="col-xs-auto">
+            <ul data-role="listview" data-icon="false">
+                    <li>
+                        <a href="#">
+                            <img src="{{ url_for('static', filename='image/thumb1.jpg') }}" class="ui-thumbnail ui-thumbnail-circular">
+                            <h2>Slide 1</h2>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+        <div class="col-xs-6">
+            <a href="{{ url_for('viewimg', imgid='1') }}" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button waves-effect waves-button"><i class="zmdi zmdi-assignment zmd-2x"></i><strong>View image</strong></a>
+        </div>
+        <div class="col-xs-6">
+            <a href="#viewimg" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button waves-effect waves-button"><i class="zmdi zmdi-assignment zmd-2x"></i><strong>View image</strong></a>
+        </div>
+    </div>
+</div>
