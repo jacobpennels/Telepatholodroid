@@ -1,20 +1,39 @@
-<div data-role="panel" id="bottomsheetopt" class="ui-bottom-sheet ui-bottom-sheet-list" data-animate="false" data-position="bottom" data-display="overlay">
-    <div class="row center-lg">
-        <div class="col-xs-auto">
+<div data-role="panel" id="bottomsheetopt{{ id }}" class="ui-bottom-sheet ui-bottom-sheet-list" data-animate="false" data-position="bottom" data-display="overlay">
+    <div class="row center-lg middle-lg">
+        <div class="col-xs-4">
             <ul data-role="listview" data-icon="false">
                     <li>
                         <a href="#">
                             <img src="{{ url_for('static', filename='image/thumb1.jpg') }}" class="ui-thumbnail ui-thumbnail-circular">
-                            <h2>Slide 1</h2>
+                            <h2>{{ name }}</h2>
                         </a>
                     </li>
             </ul>
         </div>
+        <div class="col-xs-8">
+            <a href="{{ url_for('viewimg', imgid='1') }}" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button waves-effect waves-button" style="text-align: center"><i class="zmdi zmdi-assignment zmdi-eye"></i><strong>View image</strong></a>
+        </div>
+    </div>
+    <div class="row center-lg">
+        <div class="col-xs-3">
+            <p>Uploader: Dr Bob Smith</p>
+        </div>
+        <div class="col-xs-3">
+            <p>Date uploaded: 24/10/17</p>
+        </div>
+        <div class="col-xs-3">
+            <p>Annotations: 15</p>
+        </div>
+        <div class="col-xs-3">
+            <p>Last updated: 25/10/17</p>
+        </div>
+    </div>
+    <div class="row center-xs">
         <div class="col-xs-6">
-            <a href="{{ url_for('viewimg', imgid='1') }}" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button waves-effect waves-button"><i class="zmdi zmdi-assignment zmd-2x"></i><strong>View image</strong></a>
+            <a href="#viewimg" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button waves-effect waves-button" style="text-align: center" data-ajax="false"><i class="zmdi zmdi-assignment zmdi-settings"></i><strong>Image settings</strong></a>
         </div>
         <div class="col-xs-6">
-            <a href="#viewimg" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button waves-effect waves-button"><i class="zmdi zmdi-assignment zmd-2x"></i><strong>View image</strong></a>
+            <a href="#delete" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button waves-effect waves-button" style="text-align: center; background-color: #F44336"><i class="zmdi zmdi-assignment zmdi-close-circle"></i><strong>Delete image</strong></a>
         </div>
     </div>
 </div>

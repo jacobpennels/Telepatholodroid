@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
 
     <!-- Whole bunch of JQuery imports -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='javascript/nativeDroid2/vendor/waves/waves.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='javascript/nativeDroid2/vendor/wow/animate.css') }}">
@@ -20,9 +18,12 @@
 {% block body %}
 {% endblock %}
 
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script src="{{ url_for('static', filename='javascript/nativeDroid2/js/nativedroid2.js') }}"></script>
 <script src="{{ url_for('static', filename='vendor/waves/waves.min.js') }}"></script>
 <script src="{{ url_for('static', filename='vendor/wow/wow.min.js') }}"></script>
 <script src="{{ url_for('static', filename='javascript/nativeDroid2/nd2settings.js') }}"></script>
+{% block script_section %}{% endblock %}
 </body>
 </html>

@@ -9,7 +9,7 @@
 
             <h2>Login</h2>
 
-            <form method="post" action="{{ url_for('login') }}">
+            <form method="post" action="{{ url_for('login') }}" data-ajax="false">
                 <input type="email" name="email" id="email" value="" data-clear-btn="true" placeholder="Email">
                 <input type="password" name="pword" id="pword" value="" data-clear-btn="true" placeholder="Password">
                 <input type="submit" value="Login">
@@ -28,7 +28,7 @@
             <h2>Registration</h2>
             <p>Fields marked with <span class="star">*</span> are required</p>
 
-            <form method="post" action="{{ url_for('register') }}" id="form1">
+            <form method="post" action="{{ url_for('register') }}" id="form1" data-ajax="false">
                 <h4>Personal details</h4>
                 <label for="u_title">Title <span class="star">*</span></label>
                 <select name="u_title" id="u_title" data-native-menu="false">

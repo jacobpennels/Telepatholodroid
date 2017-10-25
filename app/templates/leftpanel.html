@@ -1,4 +1,31 @@
 <!-- panel left -->
 <div data-role="panel" id="leftpanel" data-display="overlay" data-position-fixed="true">
-    <p>This is a left panel n stuff</p>
+    <div class='nd2-sidepanel-profile wow fadeInDown'>
+        <img class='profile-background' src="{{ url_for('static', filename='image/profile_background.jpg') }}" />
+        <div class="row">
+            <div class='col-xs-4 center-xs'>
+                <div class='box'>
+                    <img class="profile-thumbnail" src="{{ url_for('static', filename='image/profile_pic.jpg') }}" />
+                </div>
+            </div>
+            <div class='col-xs-8'>
+                <div class='box profile-text'>
+                    <strong>Dr Bob Smith</strong>
+                    <span class='subline'>NHS Worthing Hospital</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul data-role="listview" data-icon="false">
+        <li>
+            <a href="{{ url_for('home') }}" data-ajax="false">Slides</a>
+        </li>
+        <li>
+            <a href="{{ url_for('account_settings') }}" data-ajax="false">Account Settings</a>
+        </li>
+        <li data-role="list-divider"></li>
+        <li>
+            <a href="{{ url_for('logout') }}" data-ajax="false">Logout</a>
+        </li>
+    </ul>
 </div>

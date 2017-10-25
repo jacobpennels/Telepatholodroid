@@ -1,0 +1,153 @@
+{% extends "layout.html" %}
+
+{% block title %}Account Settings{% endblock %}
+
+{% block body %}
+    <div data-role="page" data-url="{{ url_for('account_settings') }}">
+        {% include "leftpanel.html" %}
+        <div id="page_header_1" data-role="header" data-position="fixed">
+            <a href="#leftpanel" data-wow-delay="0.8s" data-role="button" role="button" style="visibility:visible;animation-delay:0.8s;animation-name:fadeIn;"><i class="zmdi zmdi-menu"></i></a>
+            <h1>Telepatholodroid</h1>
+            <h3>Account Settings</h3>
+        </div>
+        <div role="main" class="ui-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Personal Details</h3>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <p>Name:</p>
+                        </div>
+                        <div class="col-xs-8">
+                            <p>Dr Bob Smith</p>
+                        </div>
+                        <div class="col-xs-2">
+                            <a href="#" data-role="button" role="button" id="name_btn">Edit<i class="zmdi zmdi-edit"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <form method="post" id="name_form" style="display: none">
+                                <label for="name_text">Enter new name</label>
+                                <input type="text" name="name_text" id="name_text" data-clear-btn="true">
+                                <input type="submit" value="Change">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <p>Institute:</p>
+                        </div>
+                        <div class="col-xs-8">
+                            <p>NHS Worthing Hospital</p>
+                        </div>
+                        <div class="col-xs-2">
+                            <a href="#" data-role="button" role="button" id="institute_btn">Edit<i class="zmdi zmdi-edit"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <form method="post" id="institute_form" style="display: none">
+                                <label for="institute_text">Enter new institute title</label>
+                                <input type="text" name="institute_text" id="institute_text" data-clear-btn="true">
+                                <input type="submit" value="Change">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <p>Country:</p>
+                        </div>
+                        <div class="col-xs-8">
+                            <p>UK</p>
+                        </div>
+                        <div class="col-xs-2">
+                            <a href="#" data-role="button" role="button" id="country_btn">Edit<i class="zmdi zmdi-edit"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <form method="post" id="country_form" style="display: none">
+                                <label for="country_text">Enter new country</label>
+                                <select name="country_text" id="country_text" data-native-menu="false">
+                                    {% include 'countries.html' %}
+                                </select>
+                                <input type="submit" value="Change">
+                            </form>
+                        </div>
+                    </div>
+                    <h3>Contact Information</h3>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <p>Email:</p>
+                        </div>
+                        <div class="col-xs-8">
+                            <p>bobsmith@dr.com</p>
+                        </div>
+                        <div class="col-xs-2">
+                            <a href="#" data-role="button" role="button" id="email_btn">Edit<i class="zmdi zmdi-edit"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <form method="post" id="email_form" style="display: none">
+                                <label for="email_text">Enter new email</label>
+                                <input type="email" name="email_text" id="email_text" data-clear-btn="true">
+                                <input type="submit" value="Change">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h3>Change password</h3>
+                    <form method="post" id="password_form">
+                        <label for="current_pword">Enter your current password</label>
+                        <input type="password" name="current_pword" id="current_pword" data-clear-btn="true">
+                        <label for="new_pword_1">Enter your new password</label>
+                        <input type="password" name="new_pword_1" id="new_pword_1" data-clear-btn="true">
+                        <label for="new_pword_2">Re-enter your new password</label>
+                        <input type="password" name="new_pword_2" id="new_pword_2" data-clear-btn="true">
+                        <input type="submit" value="Change">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script_section %}
+    <script>
+        $(document).ready(function () {
+            $('#name_btn').on('tap', function () {
+                $('#name_form').slideToggle();
+            })
+            $('#name_form').on('submit', function (e) {
+                e.preventDefault();
+                $('#name_form').slideUp();
+            })
+            $('#institute_btn').on('tap', function () {
+                $('#institute_form').slideToggle();
+            })
+            $('#institute_form').on('submit', function (e) {
+                e.preventDefault();
+                $('#institute_form').slideUp();
+            })
+            $('#country_btn').on('tap', function () {
+                $('#country_form').slideToggle();
+            })
+            $('#country_form').on('submit', function (e) {
+                e.preventDefault();
+                $('#country_form').slideUp();
+            })
+            $('#email_btn').on('tap', function () {
+                $('#email_form').slideToggle();
+            })
+            $('#email_form').on('submit', function (e) {
+                e.preventDefault();
+                $('#email_form').slideUp();
+            })
+            $('#password_form').on('submit', function (e) {
+                e.preventDefault();
+            })
+        })
+    </script>
+{% endblock %}

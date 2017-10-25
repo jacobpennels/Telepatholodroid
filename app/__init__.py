@@ -21,3 +21,7 @@ def register():
         return redirect(url_for('home'))
     else:
         return redirect(url_for('index'))
+
+@app.route('/logout')
+def logout():
+    return redirect(url_for('index'))
