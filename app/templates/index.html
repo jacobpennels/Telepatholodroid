@@ -8,14 +8,21 @@
         <div role="main" class="ui-content">
 
             <h2>Login</h2>
-
+            <!-- Non wtforms form
             <form method="post" action="{{ url_for('login') }}" data-ajax="false">
                 <input type="email" name="email" id="email" value="" data-clear-btn="true" placeholder="Email">
                 <input type="password" name="pword" id="pword" value="" data-clear-btn="true" placeholder="Password">
                 <input type="submit" value="Login">
             </form>
+            -->
+            <!-- WTForms -->
+            <form method="post" action="{{ url_for('login') }}" data-ajax="false">
+                {{ loginform.csrf_token }}
+                {{ loginform.email }}
+                {{ loginform.password }}
+                <input type="submit" value="Login">
+            </form>
             <p>New user? You can register <a href="#registration">here</a></p>
-
         </div>
     </div>
 
@@ -29,50 +36,105 @@
             <p>Fields marked with <span class="star">*</span> are required</p>
 
             <form method="post" action="{{ url_for('register') }}" id="form1" data-ajax="false">
+                {{ regform.csrf_token }}
                 <h4>Personal details</h4>
-                <label for="u_title">Title <span class="star">*</span></label>
-                <select name="u_title" id="u_title" data-native-menu="false">
-                    <option value="dr">Dr</option>
-                    <option value="mr">Mr</option>
-                    <option value="mrs">Mrs</option>
-                    <option value="ms">Ms</option>
-                    <option value="miss">Miss</option>
-                </select>
-                <label for="fname">Firstname <span class="star">*</span></label>
-                <input type="text" name="fname" id="fname" value="" data-clear-btn="true" placeholder="...">
-                <label for="lname">Lastname <span class="star">*</span></label>
-                <input type="text" name="lname" id="lname" value="" data-clear-btn="true" placeholder="...">
-                <label for="institute">Institute <span class="star">*</span></label>
-                <input type="text" name="institute" id="institute" value="" data-clear-btn="true" placeholder="...">
-                <label for="country">Country</label>
-                <select name="country" id="country" data-native-menu="false">
-                    {% include 'countries.html' %}
-                </select>
+                {{ regform.title.label }}
+                {{ regform.title }}
+                {{ regform.fname.label }}
+                {{ regform.fname }}
+                {{ regform.lname.label }}
+                {{ regform.lname }}
+                {{ regform.institute.label }}
+                {{ regform.institute }}
+                {{ regform.country.label }}
+                {{ regform.country }}
 
                 <h4>Contact Info</h4>
-                <label for="email1">Email <span class="star">*</span></label>
-                <input type="email" name="email1" id="email1" value="" data-clear-btn="true" placeholder="...">
-                <label for="email2">Confirm Email <span class="star">*</span></label>
-                <input type="email" name="email2" id="email2" value="" data-clear-btn="true" placeholder="...">
+                <p id="e_reminder" style="color:red; display: none">Emails should match!</p>
+                {{ regform.email1.label }}
+                {{ regform.email1 }}
+                {{ regform.email2.label }}
+                {{ regform.email2 }}
 
                 <h4>Password</h4>
-                <p>Your password should be at least 8 letters along, containing a mix of letters and numbers/symbols</p>
-                <label for="pword1">Enter password</label>
-                <input type="password" name="pword1" id="pword1" data-clear-btn="true" placeholder="...">
-                <label for="pword2">Confirm password</label>
-                <input type="password" name="pword2" id="pword2" data-clear-btn="true" placeholder="...">
+                <p id="p_reminder" style="color:red; display: none">Passwords should match!</p>
+                <p>Your password should be at least 8 characters long, containing a mix of letters and numbers/symbols and at least one uppercase letter</p>
+                {{ regform.pword1.label }}
+                {{ regform.pword1 }}
+                {{ regform.pword2.label }}
+                {{ regform.pword2 }}
 
                 <input type="submit" value="Register">
             </form>
         </div>
     </div>
 
+    {% block script_section %}
     <script>
     $(document).ready(function() {
-        console.log("Document ready");
-        $('#form1').find('input').each(function() {
-            console.log($(this).attr('id'));
+        {% if success %}
+        $.mobile.navigate("#registration")
+        {% endif %}
+        //console.log("Document ready");
+        $('#form1').on('submit', function (e) {
+            $failed = false;
+            // This will do some basic form validation to save time waiting for a redirect
+            $('e_reminder').hide();
+            $('p_reminder').hide();
+            $inputs = ['#fname', '#lname', '#institute', '#email1', '#email2', '#pword1', '#pword2'];
+            //console.log($inputs);
+            $.each($inputs, function(key, value) {
+                $(value).parent().removeClass('changed');
+                if($(value).val().length <= 0) {
+                    $(value).parent().addClass('changed');
+                    $failed = true;
+                };
+            });
+
+            if($('#pword1').val() != $('#pword2').val()) {
+                //console.log("Passwords don't match!");
+                $('#pword1').parent().addClass('changed');
+                $('#pword2').parent().addClass('changed');
+                $('#p_reminder').show();
+                $failed = true;
+            }
+
+            $pword = $('#pword1').val();
+            if($pword.length < 8){
+                console.log("Password too short");
+                $failed = true;
+            };
+            if(!/\d/.test($pword)){
+                console.log("No numbers");
+                $failed = true;
+            };
+            if(!/[a-z]/.test($pword)) {
+                console.log("No lowercase letters");
+                $failed = true;
+            };
+            if(!/[A-Z]/.test($pword)) {
+                console.log("No uppercase letters");
+                $failed = true;
+            };
+            if(/[^0-9a-zA-Z]/.test($pword)) {
+                console.log("Not a good combination");
+                $failed = true;
+            };
+
+
+            if($('#email1').val() != $('#email2').val()) {
+                //console.log("Emails don't match!");
+                $('#email1').parent().addClass('changed');
+                $('#email2').parent().addClass('changed');
+                $('#e_reminder').show();
+                $failed = true;
+            }
+
+            if($failed == true) {
+                e.preventDefault();
+            };
         });
     });
     </script>
+    {% endblock %}
 {% endblock %}

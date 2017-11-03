@@ -2,20 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88584f91-11ee-4451-aecc-5b4c8c893e17" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/image/profile_background.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/image/profile_pic.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/accountsettings.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/windows_sqlite/sqldiff.exe" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/windows_sqlite/sqlite3.exe" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/windows_sqlite/sqlite3_analyzer.exe" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/countries.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/database_connector.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/forms.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/generate_countries.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/populate_database.sql" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/schema.sql" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/homescript.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/test_database.db" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/unit_tester.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/user.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/__init__.py" afterPath="$PROJECT_DIR$/app/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/css/style.css" afterPath="$PROJECT_DIR$/app/static/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/database.db" afterPath="$PROJECT_DIR$/app/database.db" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.css" afterPath="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/accountsettings.html" afterPath="$PROJECT_DIR$/app/templates/accountsettings.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/bottomsheet.html" afterPath="$PROJECT_DIR$/app/templates/bottomsheet.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/home.html" afterPath="$PROJECT_DIR$/app/templates/home.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/index.html" afterPath="$PROJECT_DIR$/app/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/layout.html" afterPath="$PROJECT_DIR$/app/templates/layout.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/leftpanel.html" afterPath="$PROJECT_DIR$/app/templates/leftpanel.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/panel.left.html" afterPath="$PROJECT_DIR$/app/templates/panel.left.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/skeleton.py" afterPath="$PROJECT_DIR$/skeleton.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,33 +36,121 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Telepatholodroid$Unittests_in_unit_tester_py__1_.coverage" NAME="Unittests in unit_tester.py (1) Coverage Results" MODIFIED="1509106057686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/Telepatholodroid$generate_countries.coverage" NAME="generate_countries Coverage Results" MODIFIED="1509371765518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
     <SUITE FILE_PATH="coverage/Telepatholodroid$ThreadingTest.coverage" NAME="ThreadingTest Coverage Results" MODIFIED="1507828085104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Telepatholodroid$Unittests_in_unit_tester_py.coverage" NAME="Unittests in unit_tester.py Coverage Results" MODIFIED="1509105903271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/Telepatholodroid$Unittests_for_unit_tester_DatabaseTest_test_execute.coverage" NAME="Unittests for unit_tester.DatabaseTest.test_execute Coverage Results" MODIFIED="1509038295188" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
     <SUITE FILE_PATH="coverage/Telepatholodroid$test.coverage" NAME="test Coverage Results" MODIFIED="1507827356917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Telepatholodroid$skeleton.coverage" NAME="skeleton Coverage Results" MODIFIED="1508952325075" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Telepatholodroid$skeleton.coverage" NAME="skeleton Coverage Results" MODIFIED="1509735275882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <expand />
+    <select />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/home.html">
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1241">
-              <caret line="85" column="15" lean-forward="false" selection-start-line="85" selection-start-column="15" selection-end-line="85" selection-end-column="15" />
+            <state relative-caret-position="503">
+              <caret line="158" column="17" lean-forward="false" selection-start-line="158" selection-start-column="17" selection-end-line="158" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="22" column="22" lean-forward="false" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="accountsettings.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="database_connector.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/database_connector.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="503">
+              <caret line="87" column="30" lean-forward="true" selection-start-line="87" selection-start-column="30" selection-end-line="87" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+                <marker date="1509735275865" expanded="true" signature="1040:1070" ph="select * fro... users" />
+                <marker date="1509735275865" expanded="true" signature="1202:1235" ph="select * fro... users" />
+                <marker date="1509735275865" expanded="true" signature="1405:1445" ph="select passw... users" />
+                <marker date="1509735275865" expanded="true" signature="1670:1694" ph="insert into users... " />
+                <marker date="1509735275865" expanded="true" signature="1670:1696" ph="insert into users... " />
+                <marker date="1509735275865" expanded="true" signature="1670:1698" ph="insert into users... " />
+                <marker date="1509735275865" expanded="true" signature="1670:1699" ph="insert into users... " />
+                <marker date="1509735275865" expanded="true" signature="1670:1701" ph="insert into users... " />
+                <marker date="1509735275865" expanded="true" signature="1670:1702" ph="insert into users... " />
+                <marker date="1509735275865" expanded="true" signature="1670:1704" ph="insert into users... " />
+                <marker date="1509735275865" expanded="true" signature="1670:1705" ph="insert into users... " />
+                <marker date="1509735275865" expanded="true" signature="1670:1707" ph="insert into users... " />
+                <marker date="1509735275865" expanded="true" signature="1670:1708" ph="insert into users... " />
+                <marker date="1509735275865" expanded="true" signature="1670:1710" ph="insert into users... " />
+                <marker date="1509735275865" expanded="true" signature="1670:1711" ph="insert into users... " />
+                <marker date="1509735275865" expanded="true" signature="1670:1713" ph="insert into users... " />
+                <marker date="1509735275865" expanded="true" signature="1670:1714" ph="insert into users... " />
+                <marker date="1509735275865" expanded="true" signature="1670:1716" ph="insert into users... " />
+                <marker date="1509735275865" expanded="true" signature="1670:1717" ph="insert into users... " />
+                <marker date="1509735275865" expanded="true" signature="1670:1726" ph="insert into users... " />
+                <marker date="1509735275865" expanded="true" signature="1670:1763" ph="insert into users... " />
+                <marker date="1509735275865" expanded="true" signature="2098:2172" ph="select * fro... slides" />
+                <marker date="1509735275865" expanded="true" signature="2231:2252" ph="select slide... s" />
+                <marker date="1509735275865" expanded="true" signature="2231:2282" ph="select slide... user_to_slides" />
+                <marker date="1509735275865" expanded="true" signature="2953:3006" ph="UPDATE users... " />
+                <marker date="1509735275865" expanded="true" signature="3114:3153" ph="UPDATE users... " />
+                <marker date="1509735275865" expanded="true" signature="3241:3278" ph="UPDATE users... " />
+                <marker date="1509735275865" expanded="true" signature="3364:3399" ph="UPDATE users... " />
+                <marker date="1509735275865" expanded="true" signature="3586:3623" ph="select passw... users" />
+                <marker date="1509735275865" expanded="true" signature="3779:3817" ph="UPDATE users... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bottomsheet.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/bottomsheet.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="14" lean-forward="false" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="accountsettings.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/accountsettings.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2397">
-              <caret line="141" column="44" lean-forward="false" selection-start-line="141" selection-start-column="44" selection-end-line="141" selection-end-column="44" />
+            <state relative-caret-position="520">
+              <caret line="105" column="120" lean-forward="false" selection-start-line="105" selection-start-column="120" selection-end-line="105" selection-end-column="120" />
               <folding>
-                <element signature="e#1388#1409#0#HTML" expanded="true" />
-                <element signature="e#2445#2466#0#HTML" expanded="true" />
-                <element signature="e#3503#3524#0#HTML" expanded="true" />
-                <element signature="e#4704#4725#0#HTML" expanded="true" />
+                <element signature="e#765#800#0#HTML" expanded="true" />
+                <element signature="e#5647#5682#0#HTML" expanded="true" />
+                <element signature="e#5741#5774#0#HTML" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="homescript.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/homescript.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-816">
+              <caret line="12" column="36" lean-forward="false" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -59,8 +158,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="605">
-              <caret line="49" column="25" lean-forward="true" selection-start-line="47" selection-start-column="16" selection-end-line="49" selection-end-column="25" />
+            <state relative-caret-position="350">
+              <caret line="60" column="156" lean-forward="true" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="156" />
               <folding />
             </state>
           </provider>
@@ -71,9 +170,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="CSS File" />
         <option value="HTML File" />
+        <option value="Python Script" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -83,9 +183,19 @@
       <find>ui-icon-dele</find>
       <find>nd2tabs</find>
       <find>font-family: &quot;RobotoDraft&quot;,&quot;Roboto&quot;,&quot;Helvetica Neue&quot;,sans-serif;</find>
+      <find>after</find>
+      <find>ui-input-text:after</find>
+      <find>slides</find>
+      <find>17</find>
+      <find>abc123</find>
+      <find>pword2</find>
     </findStrings>
     <replaceStrings>
       <replace />
+      <replace>2017</replace>
+      <replace>'$5$rounds=535000$5ZYgtqjotYA97k/A$LipkTSaEV35d9Y./FXE7krWTEycVB13m6gBaVr8TJY5'</replace>
+      <replace>new_pword1</replace>
+      <replace>new_pword2</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -97,23 +207,32 @@
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/ThreadingTest.py" />
         <option value="$PROJECT_DIR$/app/static/css/style.css.html" />
-        <option value="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.css" />
         <option value="$PROJECT_DIR$/app/static/countries.txt" />
         <option value="$PROJECT_DIR$/app/static/countries.html" />
         <option value="$PROJECT_DIR$/app/templates/countries.html" />
         <option value="$PROJECT_DIR$/app/templates/view.html" />
         <option value="$PROJECT_DIR$/app/templates/viewimg.html" />
-        <option value="$PROJECT_DIR$/skeleton.py" />
         <option value="$PROJECT_DIR$/app/static/css/style.css" />
         <option value="$PROJECT_DIR$/app/templates/panel.left.html" />
         <option value="$PROJECT_DIR$/app/templates/header.html" />
-        <option value="$PROJECT_DIR$/app/__init__.py" />
-        <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/app/templates/layout.html" />
-        <option value="$PROJECT_DIR$/app/templates/home.html" />
+        <option value="$PROJECT_DIR$/skeleton.py" />
         <option value="$PROJECT_DIR$/app/templates/leftpanel.html" />
-        <option value="$PROJECT_DIR$/app/templates/bottomsheet.html" />
+        <option value="$PROJECT_DIR$/app/user.py" />
+        <option value="$PROJECT_DIR$/app/unit_tester.py" />
+        <option value="$PROJECT_DIR$/app/generate_countries.py" />
+        <option value="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.css" />
         <option value="$PROJECT_DIR$/app/templates/index.html" />
+        <option value="$PROJECT_DIR$/app/forms.py" />
+        <option value="$PROJECT_DIR$/app/static/javascript/homescript.js" />
+        <option value="$PROJECT_DIR$/app/schema.sql" />
+        <option value="$PROJECT_DIR$/app/templates/home.html" />
+        <option value="$PROJECT_DIR$/app/views.py" />
+        <option value="$PROJECT_DIR$/app/templates/bottomsheet.html" />
+        <option value="$PROJECT_DIR$/app/templates/homescript.html" />
+        <option value="$PROJECT_DIR$/app/populate_database.sql" />
+        <option value="$PROJECT_DIR$/app/__init__.py" />
+        <option value="$PROJECT_DIR$/app/database_connector.py" />
         <option value="$PROJECT_DIR$/app/templates/accountsettings.html" />
       </list>
     </option>
@@ -169,30 +288,6 @@
               <item name="Telepatholodroid" type="b2602c69:ProjectViewProjectNode" />
               <item name="Telepatholodroid" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Telepatholodroid" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Telepatholodroid" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="nativeDroid2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Telepatholodroid" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Telepatholodroid" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="nativeDroid2" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Telepatholodroid" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Telepatholodroid" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -202,17 +297,22 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/Programs/Python/Python36/python.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Jacob\Documents\year3project\Telepatholodroid\Telepatholodroid\app\templates" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Jacob\Documents\Year 3 Project\Telepatholodroid\Telepatholodroid\app\templates" />
-      <recent name="C:\Users\Jacob\Documents\Year 3 Project\Telepatholodroid\Telepatholodroid\app\static" />
+      <recent name="C:\Users\Jacob\Documents\year3project\Telepatholodroid\Telepatholodroid\app\templates" />
       <recent name="C:\Users\Jacob\Documents\Year 3 Project\Telepatholodroid\Telepatholodroid\app" />
+      <recent name="C:\Users\Jacob\Documents\Year 3 Project\Telepatholodroid\Telepatholodroid" />
+      <recent name="C:\Users\Jacob\Documents\Year 3 Project\Telepatholodroid\Telepatholodroid\windows_sqlite" />
+      <recent name="C:\Users\Jacob\Documents\Year 3 Project\Telepatholodroid\Telepatholodroid\app\templates" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -228,20 +328,65 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.skeleton">
-    <configuration name="ThreadingTest" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Unittests for unit_tester.DatabaseTest.test_execute" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Telepatholodroid" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;unit_tester.DatabaseTest.test_execute&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+    </configuration>
+    <configuration name="Unittests in unit_tester.py (1)" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Telepatholodroid" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/app/unit_tester.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration name="Unittests in unit_tester.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Telepatholodroid" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/unit_tester.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration name="generate_countries" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Telepatholodroid" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ThreadingTest.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/generate_countries.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -264,34 +409,20 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Telepatholodroid" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\Users\Jacob\Documents\Year 3 Project\Telepatholodroid\Telepatholodroid\skeleton.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-    </configuration>
-    <list size="3">
-      <item index="0" class="java.lang.String" itemvalue="Python.test" />
-      <item index="1" class="java.lang.String" itemvalue="Python.ThreadingTest" />
-      <item index="2" class="java.lang.String" itemvalue="Python.skeleton" />
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Python.skeleton" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in unit_tester.py" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for unit_tester.DatabaseTest.test_execute" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in unit_tester.py (1)" />
+      <item index="4" class="java.lang.String" itemvalue="Python.generate_countries" />
     </list>
     <recent_temporary>
-      <list size="3">
+      <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.skeleton" />
-        <item index="1" class="java.lang.String" itemvalue="Python.ThreadingTest" />
-        <item index="2" class="java.lang.String" itemvalue="Python.test" />
+        <item index="1" class="java.lang.String" itemvalue="Python.generate_countries" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in unit_tester.py (1)" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in unit_tester.py" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for unit_tester.DatabaseTest.test_execute" />
       </list>
     </recent_temporary>
   </component>
@@ -362,8 +493,47 @@
       <option name="project" value="LOCAL" />
       <updated>1508786272448</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Wireframe completed, all pages working and arranged in good fashion">
+      <created>1508957728877</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1508957728878</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="Unittests_in_unit_tester_py - 2017.10.27 at 12h 59m 58s.xml">
+      <configuration name="Unittests in unit_tester.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_unit_tester_py - 2017.10.27 at 13h 00m 58s.xml">
+      <configuration name="Unittests in unit_tester.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_unit_tester_py - 2017.10.27 at 13h 02m 22s.xml">
+      <configuration name="Unittests in unit_tester.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_unit_tester_py - 2017.10.27 at 13h 04m 03s.xml">
+      <configuration name="Unittests in unit_tester.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_unit_tester_py - 2017.10.27 at 13h 04m 42s.xml">
+      <configuration name="Unittests in unit_tester.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_unit_tester_py - 2017.10.27 at 13h 05m 03s.xml">
+      <configuration name="Unittests in unit_tester.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_unit_tester_py_(1) - 2017.10.27 at 13h 05m 24s.xml">
+      <configuration name="Unittests in unit_tester.py (1)" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_unit_tester_py_(1) - 2017.10.27 at 13h 07m 02s.xml">
+      <configuration name="Unittests in unit_tester.py (1)" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_unit_tester_py_(1) - 2017.10.27 at 13h 07m 18s.xml">
+      <configuration name="Unittests in unit_tester.py (1)" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_unit_tester_py_(1) - 2017.10.27 at 13h 07m 38s.xml">
+      <configuration name="Unittests in unit_tester.py (1)" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -371,23 +541,24 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.128125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18133616" sideWeight="0.525" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18133616" sideWeight="0.5395833" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08483563" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18133616" sideWeight="0.475" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08483563" sideWeight="0.49791667" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18133616" sideWeight="0.46041667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997879" sideWeight="0.49791667" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.49375" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.49166667" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.49791667" order="11" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -404,7 +575,8 @@
     <MESSAGE value="Added NativeDroid2 files" />
     <MESSAGE value="Made progress on wireframe, especially on login and registration forms" />
     <MESSAGE value="Wireframe almost complete, listview for accessing slides now works as well as swiping between tabs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Wireframe almost complete, listview for accessing slides now works as well as swiping between tabs" />
+    <MESSAGE value="Wireframe completed, all pages working and arranged in good fashion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Wireframe completed, all pages working and arranged in good fashion" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -415,104 +587,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="7" lean-forward="false" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="39" lean-forward="false" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
           <folding>
-            <element signature="e#0#52#0" expanded="true" />
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/javascript/nativeDroid2/examples/extended/tabs.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7157">
-          <caret line="421" column="47" lean-forward="true" selection-start-line="421" selection-start-column="47" selection-end-line="421" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="25" lean-forward="false" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="39" lean-forward="false" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="93" lean-forward="false" selection-start-line="20" selection-start-column="93" selection-end-line="20" selection-end-column="93" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="14" lean-forward="true" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -527,9 +604,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="10" column="39" lean-forward="false" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -560,7 +635,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -649,21 +726,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="39" lean-forward="false" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/skeleton.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/countries.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="240" column="37" lean-forward="false" selection-start-line="240" selection-start-column="37" selection-end-line="240" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -686,29 +748,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="15" lean-forward="false" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/header.html" />
-    <entry file="file://$PROJECT_DIR$/app/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="24" column="21" lean-forward="true" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/panel.left.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -716,11 +759,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/test_database.db">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database.db">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/skeleton.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="59" lean-forward="false" selection-start-line="3" selection-start-column="59" selection-end-line="3" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/leftpanel.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="67" lean-forward="false" selection-start-line="13" selection-start-column="67" selection-end-line="13" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/unit_tester.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="34" column="121" lean-forward="false" selection-start-line="34" selection-start-column="121" selection-end-line="34" selection-end-column="121" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/flask/templating.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/generate_countries.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-505">
-          <caret line="62" column="68" lean-forward="false" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="68" />
-          <folding />
+        <state relative-caret-position="355">
+          <caret line="951" column="29" lean-forward="false" selection-start-line="951" selection-start-column="29" selection-end-line="951" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -732,47 +825,151 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/bottomsheet.html">
+    <entry file="file://$PROJECT_DIR$/app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="177" lean-forward="false" selection-start-line="32" selection-start-column="177" selection-end-line="32" selection-end-column="177" />
+        <state relative-caret-position="272">
+          <caret line="22" column="22" lean-forward="false" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/leftpanel.html">
+    <entry file="file://$PROJECT_DIR$/app/countries.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="62" lean-forward="false" selection-start-line="27" selection-start-column="62" selection-end-line="27" selection-end-column="62" />
+        <state relative-caret-position="4080">
+          <caret line="240" column="37" lean-forward="false" selection-start-line="240" selection-start-column="37" selection-end-line="240" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="44" column="136" lean-forward="false" selection-start-line="44" selection-start-column="136" selection-end-line="44" selection-end-column="136" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/user.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1241">
-          <caret line="85" column="15" lean-forward="false" selection-start-line="85" selection-start-column="15" selection-end-line="85" selection-end-column="15" />
+        <state relative-caret-position="-211">
+          <caret line="7" column="40" lean-forward="false" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/countries.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/populate_database.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="177" lean-forward="false" selection-start-line="4" selection-start-column="177" selection-end-line="4" selection-end-column="177" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/schema.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="51" lean-forward="false" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="605">
-          <caret line="49" column="25" lean-forward="true" selection-start-line="47" selection-start-column="16" selection-end-line="49" selection-end-column="25" />
+        <state relative-caret-position="350">
+          <caret line="60" column="156" lean-forward="true" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="156" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/bottomsheet.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="14" lean-forward="false" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="158" column="17" lean-forward="false" selection-start-line="158" selection-start-column="17" selection-end-line="158" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/accountsettings.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2397">
-          <caret line="141" column="44" lean-forward="false" selection-start-line="141" selection-start-column="44" selection-end-line="141" selection-end-column="44" />
+        <state relative-caret-position="520">
+          <caret line="105" column="120" lean-forward="false" selection-start-line="105" selection-start-column="120" selection-end-line="105" selection-end-column="120" />
           <folding>
-            <element signature="e#1388#1409#0#HTML" expanded="true" />
-            <element signature="e#2445#2466#0#HTML" expanded="true" />
-            <element signature="e#3503#3524#0#HTML" expanded="true" />
-            <element signature="e#4704#4725#0#HTML" expanded="true" />
+            <element signature="e#765#800#0#HTML" expanded="true" />
+            <element signature="e#5647#5682#0#HTML" expanded="true" />
+            <element signature="e#5741#5774#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/homescript.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-816">
+          <caret line="12" column="36" lean-forward="false" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database_connector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="87" column="30" lean-forward="true" selection-start-line="87" selection-start-column="30" selection-end-line="87" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <marker date="1509735275865" expanded="true" signature="1040:1070" ph="select * fro... users" />
+            <marker date="1509735275865" expanded="true" signature="1202:1235" ph="select * fro... users" />
+            <marker date="1509735275865" expanded="true" signature="1405:1445" ph="select passw... users" />
+            <marker date="1509735275865" expanded="true" signature="1670:1694" ph="insert into users... " />
+            <marker date="1509735275865" expanded="true" signature="1670:1696" ph="insert into users... " />
+            <marker date="1509735275865" expanded="true" signature="1670:1698" ph="insert into users... " />
+            <marker date="1509735275865" expanded="true" signature="1670:1699" ph="insert into users... " />
+            <marker date="1509735275865" expanded="true" signature="1670:1701" ph="insert into users... " />
+            <marker date="1509735275865" expanded="true" signature="1670:1702" ph="insert into users... " />
+            <marker date="1509735275865" expanded="true" signature="1670:1704" ph="insert into users... " />
+            <marker date="1509735275865" expanded="true" signature="1670:1705" ph="insert into users... " />
+            <marker date="1509735275865" expanded="true" signature="1670:1707" ph="insert into users... " />
+            <marker date="1509735275865" expanded="true" signature="1670:1708" ph="insert into users... " />
+            <marker date="1509735275865" expanded="true" signature="1670:1710" ph="insert into users... " />
+            <marker date="1509735275865" expanded="true" signature="1670:1711" ph="insert into users... " />
+            <marker date="1509735275865" expanded="true" signature="1670:1713" ph="insert into users... " />
+            <marker date="1509735275865" expanded="true" signature="1670:1714" ph="insert into users... " />
+            <marker date="1509735275865" expanded="true" signature="1670:1716" ph="insert into users... " />
+            <marker date="1509735275865" expanded="true" signature="1670:1717" ph="insert into users... " />
+            <marker date="1509735275865" expanded="true" signature="1670:1726" ph="insert into users... " />
+            <marker date="1509735275865" expanded="true" signature="1670:1763" ph="insert into users... " />
+            <marker date="1509735275865" expanded="true" signature="2098:2172" ph="select * fro... slides" />
+            <marker date="1509735275865" expanded="true" signature="2231:2252" ph="select slide... s" />
+            <marker date="1509735275865" expanded="true" signature="2231:2282" ph="select slide... user_to_slides" />
+            <marker date="1509735275865" expanded="true" signature="2953:3006" ph="UPDATE users... " />
+            <marker date="1509735275865" expanded="true" signature="3114:3153" ph="UPDATE users... " />
+            <marker date="1509735275865" expanded="true" signature="3241:3278" ph="UPDATE users... " />
+            <marker date="1509735275865" expanded="true" signature="3364:3399" ph="UPDATE users... " />
+            <marker date="1509735275865" expanded="true" signature="3586:3623" ph="select passw... users" />
+            <marker date="1509735275865" expanded="true" signature="3779:3817" ph="UPDATE users... " />
           </folding>
         </state>
       </provider>

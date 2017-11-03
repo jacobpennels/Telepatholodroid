@@ -1,0 +1,145 @@
+<script>
+    $(document).ready(function () {
+        // -- Define some 'global' variables --
+        $slide_list = 0;
+        $listview = $('#list_of_slides');
+        $switch_val = $('#prev_img').val();
+        $method = $('#list_sort').val();
+        // -- End of global variables --
+
+        // -- Functions for lists --
+        $SQL_time_to_JS = function ($time) {
+            // Converts the string from database to usable Date object
+            $t = $time.split(/[- :]/);
+            $d = new Date();
+            $d.setFullYear($t[2]);
+            $d.setMonth($t[1]);
+            $d.setDate($t[0]);
+            return $d;
+        };
+
+        $Sort_list = function ($list) {
+            switch($method) {
+                case "date_latest":
+                    //console.log("option1");
+                    $list.sort(function ($a, $b) {
+                        $a_time = $SQL_time_to_JS($a.date_uploaded);
+                        $b_time = $SQL_time_to_JS($b.date_uploaded);
+                        if($a_time.getTime() > $b_time.getTime()) return -1;
+                        if($a_time.getTime() < $b_time.getTime()) return 1;
+                        return 0;
+                    });
+                    break;
+                case "date_earliest":
+                    $list.sort(function ($a, $b) {
+                        $a_time = $SQL_time_to_JS($a.date_uploaded);
+                        $b_time = $SQL_time_to_JS($b.date_uploaded);
+                        if($a_time.getTime() < $b_time.getTime()) return -1;
+                        if($a_time.getTime() > $b_time.getTime()) return 1;
+                        return 0;
+                    });
+                    //console.log("option2");
+                    break;
+                case "alphabetical_descending":
+                    $list.sort(function (a, b) {
+                        if(a.name > b.name) return -1;
+                        if(a.name < b.name) return 1;
+                        return 0;
+                    });
+                    //console.log("option3");
+                    break;
+                case "alphabetical_ascending":
+                    $list.sort(function (a, b) {
+                        if(a.name < b.name) return -1;
+                        if(a.name > b.name) return 1;
+                        return 0;
+                    });
+                    //console.log("option4");
+                    break;
+                default:
+                    console.log("invalid option");
+            }
+            return $list;
+        };
+
+        $Select_Edited = function ($list) {
+            if($switch_val == "yes") {
+                $prev_slides = [];
+                $($slide_list).each(function () {
+                    if(this.has_edited) {
+                        $prev_slides.push(this);
+                    }
+                });
+                return $prev_slides;
+            } else {
+                return $slide_list;
+            }
+        };
+
+        $Draw_List = function($list) {
+            $listview.empty();
+            $($Sort_list($Select_Edited($list))).each(function () {
+                $listview.append("<li id='" + this.name + "'><a href='#bottomsheet_opt'><img src='static/image/thumb1.jpg' class='ui-thumbnail ui-thumbnail-circular'><h2>" + this.name + "</h2><p>Tap for more info</p></a></li>");
+                $listview.listview('refresh');
+                //console.log(this.name);
+            });
+        };
+        // -- End of functions --
+
+        // -- Event functions --
+        $('#cancer_type').change(function () {
+            $info = {"cancer_type": $('#cancer_type').val()};
+            //console.log($info);
+            $.ajax({url: "{{ url_for('get_slides') }}",
+                    type: 'post',
+                    data: JSON.stringify($info),
+                    contentType: "application/json; charset=utf-8",
+                    async: false,
+                    success: function (result) {
+                        $slide_list = result;
+                        //console.log(result);
+                        $Draw_List(result);
+                    }
+            });
+        });
+
+        $('#prev_img').change(function () {
+            $switch_val = $('#prev_img').val();
+            //console.log($switch_val);
+            $Draw_List($slide_list);
+        });
+
+        $('#list_sort').change(function() {
+            $method = $('#list_sort').val();
+            //console.log($method);
+            $Draw_List($slide_list);
+        });
+
+        $('#list_of_slides').on('tap', 'li a', function (e) {
+            $name = $(this).parent().attr('id');
+            //console.log($name);
+            $('#bs_name').empty().append($name);
+
+            $object = $.grep($slide_list, function (e) {
+                return e.name == $name;
+            })[0];
+            $('#bs_dateuploaded').empty().append("Date uploaded: " + $object.date_uploaded);
+            $('#bs_link').attr('href', '{{ url_for("viewimg", imgid='') }}' + $object.name);
+            $('#bs_uploader').empty().append("Uploader: " + $object.uploader);
+        });
+        // -- End of event functions --
+
+        // -- Page setup stuff --
+        // -- Sets up scrollable list --
+        const $window_height = $(window).height();
+        const $header_height = $('#page_header_1').height();
+        const $body_height = ($window_height - $header_height);
+        //console.log($window_height);
+        //console.log($header_height);
+        //console.log($body_height);
+        $('#list_of_slides').css({
+            height: $body_height
+        });
+        // --End of snippet --
+    });
+</script>

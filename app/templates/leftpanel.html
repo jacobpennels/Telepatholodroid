@@ -10,8 +10,8 @@
             </div>
             <div class='col-xs-8'>
                 <div class='box profile-text'>
-                    <strong>Dr Bob Smith</strong>
-                    <span class='subline'>NHS Worthing Hospital</span>
+                    <strong>{{ current_user.title }} {{ current_user.fname }} {{ current_user.lname }}</strong>
+                    <span class='subline'>{{ current_user.institute }}</span>
                 </div>
             </div>
         </div>

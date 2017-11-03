@@ -14,12 +14,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <h3>Personal Details</h3>
+                    <p id="per_confirm" style="color: green; display: none">Details successfully changed!</p>
                     <div class="row">
                         <div class="col-xs-2">
                             <p>Name:</p>
                         </div>
                         <div class="col-xs-8">
-                            <p>Dr Bob Smith</p>
+                            <p id="name_label">{{ current_user.title }} {{ current_user.fname }} {{ current_user.lname }}</p>
                         </div>
                         <div class="col-xs-2">
                             <a href="#" data-role="button" role="button" id="name_btn">Edit<i class="zmdi zmdi-edit"></i></a>
@@ -39,7 +40,7 @@
                             <p>Institute:</p>
                         </div>
                         <div class="col-xs-8">
-                            <p>NHS Worthing Hospital</p>
+                            <p id="institute_label">{{ current_user.institute }}</p>
                         </div>
                         <div class="col-xs-2">
                             <a href="#" data-role="button" role="button" id="institute_btn">Edit<i class="zmdi zmdi-edit"></i></a>
@@ -59,7 +60,7 @@
                             <p>Country:</p>
                         </div>
                         <div class="col-xs-8">
-                            <p>UK</p>
+                            <p id="country_label">{{ current_user.country }}</p>
                         </div>
                         <div class="col-xs-2">
                             <a href="#" data-role="button" role="button" id="country_btn">Edit<i class="zmdi zmdi-edit"></i></a>
@@ -82,7 +83,7 @@
                             <p>Email:</p>
                         </div>
                         <div class="col-xs-8">
-                            <p>bobsmith@dr.com</p>
+                            <p id="email_label">{{ current_user.email }}</p>
                         </div>
                         <div class="col-xs-2">
                             <a href="#" data-role="button" role="button" id="email_btn">Edit<i class="zmdi zmdi-edit"></i></a>
@@ -100,6 +101,10 @@
                 </div>
                 <div class="col-md-6">
                     <h3>Change password</h3>
+                    <p id="p_reminder" style="color:red; display: none">Passwords do not match or are not following correct standard!</p>
+                    <p id="p_confirm" style="color: green; display: none">Password changed!</p>
+                    <p id="p_wrong" style="color: red; display: none">Your old password was incorrect, please try again!</p>
+                    <p>Your password should be at least 8 characters long, containing a mix of letters and numbers/symbols and at least one uppercase letter</p>
                     <form method="post" id="password_form">
                         <label for="current_pword">Enter your current password</label>
                         <input type="password" name="current_pword" id="current_pword" data-clear-btn="true">
@@ -117,36 +122,128 @@
 {% block script_section %}
     <script>
         $(document).ready(function () {
-            $('#name_btn').on('tap', function () {
-                $('#name_form').slideToggle();
-            })
-            $('#name_form').on('submit', function (e) {
-                e.preventDefault();
-                $('#name_form').slideUp();
-            })
-            $('#institute_btn').on('tap', function () {
-                $('#institute_form').slideToggle();
-            })
-            $('#institute_form').on('submit', function (e) {
-                e.preventDefault();
-                $('#institute_form').slideUp();
-            })
-            $('#country_btn').on('tap', function () {
-                $('#country_form').slideToggle();
-            })
-            $('#country_form').on('submit', function (e) {
-                e.preventDefault();
-                $('#country_form').slideUp();
-            })
-            $('#email_btn').on('tap', function () {
-                $('#email_form').slideToggle();
-            })
-            $('#email_form').on('submit', function (e) {
-                e.preventDefault();
-                $('#email_form').slideUp();
-            })
+            $account_forms = [$('#email_form'), $('#name_form'), $('#institute_form'), $('#country_form')];
+            $account_btns = [$('#email_btn'), $('#name_btn'), $('#institute_btn'), $('#country_btn')];
+            $account_val = [$('#email_text'), $('#name_text'), $('#institute_text'), $('#country_text')]
+            $($account_forms).each(function (i, val) {
+                this.on('submit', function (e) {
+                    e.preventDefault();
+                    $new_data = $account_val[i].val();
+                    $account_val[i].parent().removeClass('changed');
+
+                    if($new_data.length <= 0) {
+                        $account_val[i].parent().addClass('changed');
+                        return;
+                    }
+                    if(i == 1) {
+                        // Name form
+                        $name_split = $new_data.split(" ");
+                        if($name_split.length < 3) {
+                            $account_val[i].parent().addClass('changed');
+                            return;
+                        }
+                    }
+                    val.slideUp();
+
+                    console.log(val.attr('id'));
+                    $info = {"detail": val.attr('id'), "data": $new_data};
+                    console.log($info);
+
+                    $label = $("#" + val.attr('id').split('_')[0] + "_label");
+                    console.log($label);
+                    $label.empty().append($new_data);
+
+                    $.ajax({url: "{{ url_for('change_account_setting') }}",
+                        type: 'post',
+                        data: JSON.stringify($info),
+                        contentType: "application/json; charset=utf-8",
+                        success: function (result) {
+                            $('#per_confirm').show().delay(5000).fadeOut();
+                            console.log("succesful change");
+                        }
+                    });
+                });
+            });
+
+            $($account_btns).each(function (i, val) {
+                val.on('tap', function () {
+                    $account_forms[i].slideToggle();
+                    $($account_forms).each(function (j) {
+                        if(j != i) $account_forms[j].slideUp();
+                    })
+                })
+            });
+
             $('#password_form').on('submit', function (e) {
                 e.preventDefault();
+                // Validate that password
+                $('#p_wrong').hide();
+                if($('#current_pword').val().length <= 0){
+                    $('#current_pword').parent().addClass('changed');
+                    $('#p_reminder').show();
+                    $failed = true;
+                }
+                $failed = false;
+                if($('#new_pword_1').val() != $('#new_pword_2').val()) {
+                    //console.log("Passwords don't match!");
+                    $failed = true;
+                }
+
+                $pword = $('#new_pword_1').val();
+                if($pword.length < 8){
+                    //console.log("Password too short");
+                    $failed = true;
+                };
+                if(!/\d/.test($pword)){
+                    //console.log("No numbers");
+                    $failed = true;
+                };
+                if(!/[a-z]/.test($pword)) {
+                    //console.log("No lowercase letters");
+                    $failed = true;
+                };
+                if(!/[A-Z]/.test($pword)) {
+                    //console.log("No uppercase letters");
+                    $failed = true;
+                };
+                if(/[^0-9a-zA-Z]/.test($pword)) {
+                    //console.log("Not a good combination");
+                    $failed = true;
+                };
+
+                if($failed) {
+                    $('#new_pword_1').parent().addClass('changed');
+                    $('#new_pword_2').parent().addClass('changed');
+                    $('#p_reminder').show();
+                } else {
+                    $('#new_pword_1').parent().removeClass('changed');
+                    $('#new_pword_2').parent().removeClass('changed');
+                    $('#p_reminder').hide()
+                    $('#current_pword').parent().removeClass('changed');
+
+                    // send new password to change
+                    $info = {"old_password": $('#current_pword').val(), "new_password": $('#new_pword_1').val()};
+                    //console.log($info);
+                    $.ajax({url: "{{ url_for('change_password') }}",
+                        type: 'post',
+                        data: JSON.stringify($info),
+                        contentType: "application/json; charset=utf-8",
+                        success: function (result) {
+                            if(result['success']) {
+                                $('#new_pword_1').val('');
+                                $('#current_pword').val('');
+                                $('#new_pword_2').val('');
+                                $('#p_confirm').show().delay(5000).fadeOut()
+                                //console.log("succesful change");
+                            } else {
+                                $('#new_pword_1').val('');
+                                $('#current_pword').val('');
+                                $('#new_pword_2').val('');
+                                $('#p_wrong').show();
+                            }
+                        }
+                    });
+                }
             })
         })
     </script>

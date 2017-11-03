@@ -5,12 +5,7 @@
 {% block body %}
     <div data-role="page" data-url="{{ url_for('home') }}">
         {% include 'leftpanel.html' %}
-        <!-- Slide info part -->
-        {% for s in slide_list %}
-            {% with name="Slide " ~ s, id = s %}
-                {% include 'bottomsheet.html' %}
-            {% endwith %}
-        {% endfor %}
+        {% include 'bottomsheet.html' %}
         <div id="page_header_1" data-role="header" data-position="fixed">
             <a href="#leftpanel" data-wow-delay="0.8s" data-role="button" role="button" style="visibility:visible;animation-delay:0.8s;animation-name:fadeIn;"><i class="zmdi zmdi-menu"></i></a>
             <h1>Telepatholodroid</h1>
@@ -23,6 +18,7 @@
                      <form>
                         <label for="cancer_type">Cancer type</label>
                         <select name="cancer_type" id="cancer_type" data-native-menu="false">
+                            <option value="" disabled selected>Pick an option</option>
                             <option value="oral">Oral</option>
                             <option value="stomach">Stomach</option>
                             <option value="chest">Chest</option>
@@ -38,51 +34,23 @@
                         </select>
                         <label for="list_sort" class="select">Sort by</label>
                         <select name="list_sort" id="list_sort" data-native-menu="false">
-                            <option value="recent_access" selected="selected">Most recently accessed</option>
-                            <option value="date_latest">Date: Latest</option>
-                            <option value="date_earliest">Date: Earliest</option>
+                            <option value="alphabetical_ascending" selected="selected">Alphabetical: Ascending</option>
                             <option value="alphabetical_descending">Alphabetical: Descending</option>
-                            <option value="alphabetical_ascending">Alphabetical: Ascending</option>
+                            <option value="date_earliest">Date Uploaded: Descending</option>
+                            <option value="date_latest">Date Uploaded: Ascending</option>
                         </select>
                     </form>
                 </div>
                 <div class="col-xs-9">
                     <ul id="list_of_slides" data-role="listview" data-icon="false">
-                        {% for s in slide_list %}
-                            <li id="slide{{ s }}">
-                                <a href="#bottomsheetopt{{ s }}">
-                                    <img src="{{ url_for('static', filename='image/thumb1.jpg') }}" class="ui-thumbnail ui-thumbnail-circular">
-                                    <h2>Slide {{ s }}</h2>
-                                    <p>Tap for more info</p>
-                                </a>
-                            </li>
-                        {% endfor %}
+
                     </ul>
                 </div>
             </div>
         </div>
     </div>
     {% block script_section %}
-    <script>
-    $(document).ready(function () {
-        $("#list_of_slides").each(function() {
-            $(this).find('li').each(function() {
-                console.log(this);
-            })
-        });
-        // -- Sets up scrollable list --
-        const $window_height = $(window).height();
-        const $header_height = $('#page_header_1').height();
-        const $body_height = ($window_height - $header_height);
-        //console.log($window_height);
-        //console.log($header_height);
-        //console.log($body_height);
-        $('#list_of_slides').css({
-            height: $body_height
-        });
-        // --End of snippet --
-    });
-    </script>
+    {% include 'homescript.html' %}
     {% endblock %}
 
 {% endblock %}
