@@ -133,12 +133,14 @@
         // -- Sets up scrollable list --
         const $window_height = $(window).height();
         const $header_height = $('#page_header_1').height();
-        const $body_height = ($window_height - $header_height);
+        const $add_button_height = $('#add_new_slide').height();
+        const $body_height = ($window_height - $header_height - $add_button_height) - 48;
         //console.log($window_height);
         //console.log($header_height);
-        //console.log($body_height);
+        console.log($body_height);
         $('#list_of_slides').css({
-            height: $body_height
+            height: $body_height,
+            marginTop: '0'
         });
         // --End of snippet --
     });

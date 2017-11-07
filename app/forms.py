@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileRequired
 from wtforms.fields.html5 import EmailField
-from wtforms.fields import PasswordField, StringField, HiddenField, SelectField, TextField
+from wtforms.fields import PasswordField, StringField, HiddenField, SelectField, TextField, FileField
 from wtforms import validators
 from urllib.parse import urlparse, urljoin
 from flask import request, url_for, redirect
@@ -52,4 +53,7 @@ class RegistrationForm(RedirectForm):
     pword1 = PasswordField(u'Enter password <span class="star">*</span>', validators=[validators.DataRequired(), validators.EqualTo('pword2', message="Passwords must be equal")], render_kw={'data-clear-btn':'true', 'placeholder': '...'})
     pword2 = PasswordField(u'Confirm password <span class="star">*</span>', validators=[validators.DataRequired()], render_kw={'data-clear-btn':'true', 'placeholder': '...'})
 
-
+class UploadForm(RedirectForm):
+    name = StringField(u'Slide name', validators=[validators.DataRequired(), validators.length(max=50)], render_kw={'data-clear-btn':'true', 'placeholder':'...'})
+    type = SelectField(u'Cancer type', choices=[('oral', 'Oral'), ('stomach', 'Stomach'), ('chest', 'Chest')], validators=[validators.DataRequired()], render_kw={'data-native-menu': 'false'})
+    u_file = FileField(u'File', render_kw={'data-role': 'none'})

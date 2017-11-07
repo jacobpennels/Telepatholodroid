@@ -30,6 +30,11 @@ def viewimg(imgid=None):
 def account_settings():
     return render_template('accountsettings.html')
 
+@app.route('/uploadimage')
+@login_required
+def uploadimage():
+    return render_template('uploadimage.html', form=forms.UploadForm())
+
 
 
 

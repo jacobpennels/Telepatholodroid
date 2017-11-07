@@ -3,7 +3,7 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-    <div data-role="page" data-url="{{ url_for('home') }}">
+    <div data-role="page" id="main_page" data-url="{{ url_for('home') }}">
         {% include 'leftpanel.html' %}
         {% include 'bottomsheet.html' %}
         <div id="page_header_1" data-role="header" data-position="fixed">
@@ -45,6 +45,11 @@
                     <ul id="list_of_slides" data-role="listview" data-icon="false">
 
                     </ul>
+                    <ul id="add_new_slide" data-role="listview" data-icon="false">
+                        <li>
+                            <a href="{{ url_for('uploadimage') }}" data-ajax="false"><img src="static/image/add_sign.png" class="ui-thumbnail ui-thumbnail-circular"><h2>Add new slide</h2><p>Tap here to upload a new slide</p></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -52,5 +57,4 @@
     {% block script_section %}
     {% include 'homescript.html' %}
     {% endblock %}
-
 {% endblock %}

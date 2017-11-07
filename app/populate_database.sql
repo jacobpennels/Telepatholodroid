@@ -13,6 +13,23 @@ INSERT INTO slides VALUES ('slide_6', 'slide_6.folder', 'stomach', '25-10-2017',
 INSERT INTO slides VALUES ('slide_7', 'slide_7.folder', 'chest', '26-10-2017', 3, NULL);
 INSERT INTO slides VALUES ('slide_8', 'slide_8.folder', 'chest', '27-10-2017', 4, NULL);
 INSERT INTO slides VALUES ('slide_9', 'slide_9.folder', 'chest', '28-10-2017', 5, NULL);
+INSERT INTO slides VALUES ('slide_10', 'slide_2.folder', 'oral', '15-10-2017', 1, NULL);
+INSERT INTO slides VALUES ('slide_11', 'slide_2.folder', 'oral', '16-10-2017', 2, NULL);
+INSERT INTO slides VALUES ('slide_12', 'slide_2.folder', 'oral', '17-10-2017', 3, NULL);
+INSERT INTO slides VALUES ('slide_13', 'slide_2.folder', 'oral', '18-10-2017', 4, NULL);
+INSERT INTO slides VALUES ('slide_14', 'slide_2.folder', 'oral', '19-10-2017', 5, NULL);
+INSERT INTO slides VALUES ('slide_15', 'slide_2.folder', 'oral', '20-10-2017', 1, NULL);
+INSERT INTO slides VALUES ('slide_16', 'slide_2.folder', 'oral', '21-10-2017', 2, NULL);
+INSERT INTO slides VALUES ('slide_17', 'slide_2.folder', 'oral', '22-10-2017', 3, NULL);
+INSERT INTO slides VALUES ('slide_18', 'slide_2.folder', 'oral', '23-10-2017', 4, NULL);
+INSERT INTO slides VALUES ('slide_19', 'slide_2.folder', 'oral', '24-10-2017', 5, NULL);
+INSERT INTO slides VALUES ('slide_20', 'slide_2.folder', 'oral', '25-10-2017', 1, NULL);
+INSERT INTO slides VALUES ('slide_21', 'slide_2.folder', 'oral', '26-10-2017', 2, NULL);
+INSERT INTO slides VALUES ('slide_22', 'slide_2.folder', 'oral', '27-10-2017', 3, NULL);
+INSERT INTO slides VALUES ('slide_23', 'slide_2.folder', 'oral', '28-10-2017', 4, NULL);
+INSERT INTO slides VALUES ('slide_24', 'slide_2.folder', 'oral', '29-10-2017', 5, NULL);
+INSERT INTO slides VALUES ('slide_25', 'slide_2.folder', 'oral', '30-10-2017', 1, NULL);
+INSERT INTO slides VALUES ('slide_26', 'slide_2.folder', 'oral', '31-10-2017', 2, NULL);
 
 INSERT INTO user_to_slides VALUES (1, 1, '21-10-2017');
 INSERT INTO user_to_slides VALUES (1, 2, '22-10-2017');

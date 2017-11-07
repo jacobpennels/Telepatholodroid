@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import request, session, redirect, url_for, render_template,jsonify
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
+from werkzeug.utils import secure_filename
 import signal, sys
 import threading
 import binascii, os
@@ -13,13 +14,19 @@ global running
 global db_lock
 db_lock = threading.Lock() # Must acquire before working on database
 global db
+global upload_folder
+global allowed_extensions
 
 def init_app():
-    global login_manager, running, db
+    global login_manager, running, db, upload_folder, allowed_extensions
+    upload_folder = os.path.abspath('app/static/uploads')
+    print(upload_folder)
+    allowed_extensions = set(['jpg', 'png'])
     app = Flask(__name__)
 
     login_manager = LoginManager()
     login_manager.init_app(app)
+    app.config['UPLOAD_FOLDER'] = upload_folder
     path = os.path.abspath('app/database.db')
     db = database_connector.DatabaseConnector(path)
 
@@ -43,11 +50,14 @@ def signal_handler(signal, frame):
     print("Quitting App")
     sys.exit()
 
+def allow_filename(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_extensions
+
 app = init_app()
 app.secret_key = binascii.hexlify(os.urandom(24))
 
 from app import views, user, forms
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, UploadForm
 login_manager.login_view = 'index'
 
 # Used by Flask-Login
@@ -163,3 +173,26 @@ def change_password():
     success = db.change_password(data, usr_id)
     db_lock.release()
     return jsonify(success)
+
+@app.route('/accept_upload', methods=['POST'])
+@login_required
+def accept_upload():
+    if request.method == 'POST':
+        form = UploadForm()
+        #print(form.u_file.data)
+        #print(form.errors)
+        if form.validate_on_submit():
+            file = form.u_file.data
+            file.filename = form.name.data + "." + (file.filename.rsplit('.')[1])
+            #print(file.filename)
+            if file.filename == '':
+                print("no filename")
+                return redirect(url_for('uploadimage'))
+            if file and allow_filename(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                return redirect(url_for('home'))
+            print("Failed option 1")
+        print("Failed option 2")
+
+    return redirect(url_for('home'))
