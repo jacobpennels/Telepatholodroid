@@ -158,7 +158,10 @@
                         data: JSON.stringify($info),
                         contentType: "application/json; charset=utf-8",
                         success: function (result) {
-                            $('#per_confirm').show().delay(5000).fadeOut();
+                            new $.nd2Toast({
+                                message: "Your details have been changed",
+                                ttl: 5000
+                            });
                             console.log("succesful change");
                         }
                     });
@@ -233,7 +236,10 @@
                                 $('#new_pword_1').val('');
                                 $('#current_pword').val('');
                                 $('#new_pword_2').val('');
-                                $('#p_confirm').show().delay(5000).fadeOut()
+                                new $.nd2Toast({
+                                    message: "Your password has been changed",
+                                    ttl: 5000
+                                });
                                 //console.log("succesful change");
                             } else {
                                 $('#new_pword_1').val('');

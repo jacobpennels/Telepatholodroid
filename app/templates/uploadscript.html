@@ -1,0 +1,58 @@
+<script>
+    $(document).ready(function () {
+        // Initialise the progress bar
+        $('#progress_bar').LineProgressbar({
+            fillBackgroundColor: '#607D8B'
+        });
+
+        $file_input = $('#u_file');
+        $file_input.on('change', function () {
+            $filename_components = $file_input.val().split("\\");
+            $filename = $filename_components[$filename_components.length - 1];
+            $('#file_name').empty().append($filename);
+            console.log($filename);
+        });
+
+        $req_func = function (f_data, j_form, opt) {
+            $('#name').parent().removeClass('changed');
+
+            if(f_data[1]['value'].length <= 0) { // check a name has been given
+                console.log("No name entered");
+                $('#name').parent().addClass('changed');
+                return false;
+            }
+
+            $('#u_btn_box').removeClass('not_select');
+            if(f_data[3]['value']['name'] == undefined) { // Check file has been selected
+                $('#u_btn_box').addClass('not_select');
+                console.log("No file selected");
+                return false;
+            }
+
+            $('#progress_bar').show();
+        };
+
+        $res_func = function () {
+            $('#file_name').empty();
+            $('#progress_bar').hide();
+            new $.nd2Toast({
+                message: "Slide uploaded",
+                ttl: 5000
+            });
+            $('#up_form').clearForm();
+            $('#up_form').resetForm();
+            $('#type').val("oral");
+        };
+
+        $prog = function (event, position, total, percentComplete) {
+            console.log(percentComplete);
+            $('#progress_bar').LineProgressbar({
+                percentage: percentComplete,
+                duration: 0,
+                fillBackgroundColor: '#607D8B'
+            });
+        };
+
+        $('#up_form').ajaxForm({beforeSubmit: $req_func, success: $res_func, uploadProgress: $prog});
+    })
+</script>

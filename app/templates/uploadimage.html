@@ -12,7 +12,7 @@
         </div>
         <div role="main" class="ui-content">
             <p>Upload your image here</p>
-            <form method="post" action="{{ url_for('accept_upload') }}" enctype="multipart/form-data" id="up_form" data-ajax="false">
+            <form method="post" action="{{ url_for('accept_upload') }}" enctype="multipart/form-data" id="up_form">
                 {{ form.csrf_token }}
                 {{ form.name.label }}
                 {{ form.name }}
@@ -20,12 +20,17 @@
                 {{ form.type }}
                 {{ form.u_file.label }}
                 <span data-role="button" class="ui-btn fileUpload">
-                    <span>Choose file</span>
+                    <span id="u_btn_box">Choose file</span>
                     {{ form.u_file }}
+                    <p id="file_name"></p>
                 </span>
                 <br>
                 <input type="submit" value="Upload">
             </form>
+            <div id="progress_bar" style="display: none;"></div>
         </div>
     </div>
+{% endblock %}
+{% block script_section %}
+    {% include 'uploadscript.html' %}
 {% endblock %}

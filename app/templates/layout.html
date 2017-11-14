@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='javascript/nativeDroid2/vendor/waves/waves.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='javascript/nativeDroid2/vendor/wow/animate.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='javascript/nativeDroid2/css/nativedroid2.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='javascript/LineProgressbar-master/jquery.lineProgressbar.min.css') }}">
 
     <title>{% block title %}{%  endblock %}</title>
 </head>
@@ -21,9 +22,11 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script src="{{ url_for('static', filename='javascript/nativeDroid2/js/nativedroid2.js') }}"></script>
-<script src="{{ url_for('static', filename='vendor/waves/waves.min.js') }}"></script>
-<script src="{{ url_for('static', filename='vendor/wow/wow.min.js') }}"></script>
+<script src="{{ url_for('static', filename='javascript/nativeDroid2/vendor/waves/waves.min.js') }}"></script>
+<script src="{{ url_for('static', filename='javascript/nativeDroid2/vendor/wow/wow.min.js') }}"></script>
 <script src="{{ url_for('static', filename='javascript/nativeDroid2/nd2settings.js') }}"></script>
+<script src="{{ url_for('static', filename='javascript/jquery.form.js') }}"></script>
+<script src="{{ url_for('static', filename='javascript/LineProgressbar-master/jquery.lineProgressbar.js') }}"></script>
 {% block script_section %}{% endblock %}
 </body>
 </html>

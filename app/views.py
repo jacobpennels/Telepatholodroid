@@ -33,7 +33,9 @@ def account_settings():
 @app.route('/uploadimage')
 @login_required
 def uploadimage():
-    return render_template('uploadimage.html', form=forms.UploadForm())
+    u_form = forms.UploadForm()
+    u_form.u_file.default = 0
+    return render_template('uploadimage.html', form=u_form)
 
 
 
