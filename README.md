@@ -21,4 +21,5 @@ A Web-App optimised for Android Devices for virtual-slide Telepathology
   And finally Pillow<br>
   <code>pip3 install pillow</code><br>
   </p>
+  <p>Then just run <code>sudo python3.x skeleton.py</code></p>
   
