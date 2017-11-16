@@ -1,14 +1,17 @@
-import javabridge
-import bioformats
-import os
+import openslide
+import PIL
+from openslide import deepzoom
 
-javabridge.start_vm(class_path=bioformats.JARS)
+osr = openslide.OpenSlide('test_img_1.svs')
+thumb = osr.get_thumbnail((250, 250))
 
-ImageReader = bioformats.formatreader.make_image_reader_class()
-reader = ImageReader()
-reader.setId('HEsample.jp2')
-print(str(reader.getSizeX()) + ", " + str(reader.getSizeY()))
+dz = deepzoom.DeepZoomGenerator(osr)
+print(dz.tile_count)
+print(dz.level_tiles)
+print(dz.get_dzi('png'))
 
-test = reader.openBytesXYWH(0, 0, 0, 5, 5)
+img1 = dz.get_tile(9, (0, 0))
 
-javabridge.kill_vm()
+thumb.save("thmb_test.png", "png")
+img1.show()
+

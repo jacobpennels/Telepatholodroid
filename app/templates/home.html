@@ -24,7 +24,16 @@
                             <option value="chest">Chest</option>
                         </select>
                     </form>
-                    <br>
+
+                    <h3>View options</h3>
+                    <form>
+                        <label for="view_type" class="select">Display slides in</label>
+                        <select name="view_type" id="view_type" data-native-menu="false">
+                            <option value="grid" selected="selected">Grid</option>
+                            <option value="list">List</option>
+                        </select>
+                    </form>
+
                     <h3>Sorting options</h3>
                     <form>
                         <label for="prev_img">Only show previously annotated?</label>
@@ -42,9 +51,10 @@
                     </form>
                 </div>
                 <div class="col-xs-9">
-                    <ul id="list_of_slides" data-role="listview" data-icon="false">
-
-                    </ul>
+                    <div id="slide_content">
+                    <ul id="list_of_slides" data-role="listview" data-icon="false"></ul>
+                    <div id="grid_view"></div>
+                    </div>
                     <ul id="add_new_slide" data-role="listview" data-icon="false">
                         <li>
                             <a href="{{ url_for('uploadimage') }}" data-ajax="false"><img src="static/image/add_sign.png" class="ui-thumbnail ui-thumbnail-circular"><h2>Add new slide</h2><p>Tap here to upload a new slide</p></a>

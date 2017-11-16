@@ -1,7 +1,11 @@
 import sqlite3
 from app import user
 import datetime
+import os
 from passlib.hash import sha256_crypt
+import hashlib
+import datetime
+from flask import url_for
 
 class DatabaseConnector:
 
@@ -9,6 +13,7 @@ class DatabaseConnector:
         self.filename = filename
         self.conn = sqlite3.connect(filename)
         self.c = self.conn.cursor()
+        self.up_folder = None
 
     def close(self):
         self.conn.close()
@@ -43,7 +48,10 @@ class DatabaseConnector:
 
     def log_user_in(self, user_email, user_pword):
         print(self.filename)
-        row = self.execute_query('select password from users where email=?', user_email)[0]
+        try:
+            row = self.execute_query('select password from users where email=?', user_email)[0]
+        except IndexError: # User doesn't exist
+            return False
         return sha256_crypt.verify(user_pword,  row[0])
 
     def register_user(self, u):
@@ -59,7 +67,12 @@ class DatabaseConnector:
         slide_id = [x[0] for x in slides_accessed]
         print(slide_id)
         for row in rows:
-            r = {"name": row[0], "type": row[2], "date_uploaded": row[3], "is_uploader": row[4] == usr_id, "has_edited": row[5] in slide_id, "uploader": row[6] + " " + row[7] + " " + row[8]}
+            if(row[1] == "none"):
+                loc = url_for('static', filename="image/thumb1.jpg")
+            else:
+                loc = url_for('static', filename='uploads/' + row[1] + '/thumb.jpg')
+
+            r = {"name": row[0], "type": row[7], "date_uploaded": row[8], "is_uploader": row[9] == usr_id, "has_edited": row[10] in slide_id, "uploader": row[10] + " " + row[11] + " " + row[12], "location": loc}
             results.append(r)
         return results
 
@@ -90,5 +103,29 @@ class DatabaseConnector:
             return {"success": True}
         return {"success": False}
 
+    def check_folder(self, dname, folder):  # Checks the file doesn't exist, and if does, returns a suitable name
+        fname = dname
+        i = 0
+        while (os.path.isdir(os.path.join(folder, dname))):
+            print("Current name, changing")
+            fname = dname + "_" + str(i)
+            i += 1
 
+        return fname
 
+    def add_new_slide(self, form, folder, user_id):
+        print(form.data['name'])
+        file = form.u_file.data
+        filename, ext = file.filename.rsplit('.')
+        # Create a nice random folder name
+        h = hashlib.md5()
+        now_date = datetime.datetime.now().__str__()
+        h.update(str.encode(filename + now_date))
+
+        folder_name = self.check_folder(h.hexdigest()[:10], folder)
+        print(folder_name)
+        os.makedirs(os.path.join(folder, folder_name))
+        file.save(os.path.join(os.path.join(folder, folder_name), form.name.data + "." + ext))
+        data = form.data
+        self.execute_statement('INSERT INTO slides VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)', data['name'], folder_name, data['type'], data['case_num'], data['consultant'], data['clinic_details'], data['prov_diag'], now_date, user_id)
+        return {"success": True}

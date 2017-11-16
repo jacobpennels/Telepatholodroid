@@ -21,7 +21,7 @@ def init_app():
     global login_manager, running, db, upload_folder, allowed_extensions
     upload_folder = os.path.abspath('app/static/uploads')
     print(upload_folder)
-    allowed_extensions = set(['jpg', 'png', 'jp2'])
+    allowed_extensions = set(['jpg', 'png', 'jp2', 'svs'])
     app = Flask(__name__)
 
     login_manager = LoginManager()
@@ -29,6 +29,7 @@ def init_app():
     app.config['UPLOAD_FOLDER'] = upload_folder
     path = os.path.abspath('app/database.db')
     db = database_connector.DatabaseConnector(path)
+    db.up_folder = upload_folder
 
     def interrupt():
         global running
@@ -52,15 +53,6 @@ def signal_handler(signal, frame):
 
 def allow_filename(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_extensions
-
-def check_filename(filename, extension): # Checks the file doesn't exist, and if does, returns a suitable name
-    fname = filename + "." + extension
-    i = 0
-    while(os.path.isfile(os.path.join(app.config['UPLOAD_FOLDER'], fname))):
-        print("Current name, changing")
-        fname = filename +"_" + str(i) + "." + extension
-
-    return fname
 
 app = init_app()
 app.secret_key = binascii.hexlify(os.urandom(24))
@@ -186,21 +178,23 @@ def change_password():
 @app.route('/accept_upload', methods=['POST'])
 @login_required
 def accept_upload():
+    global db, db_lock
     if request.method == 'POST':
         form = UploadForm()
-        print(form.u_file.data)
-        print(form.errors)
         if form.validate_on_submit():
             file = form.u_file.data
-            file.filename = check_filename(form.name.data, file.filename.rsplit('.')[1])
-            print(file.filename)
-            if file.filename == '':
+            #print(file.filename)
+            if form.name.data == '':
                 print("no filename")
-                #return redirect(url_for('uploadimage'))
+                return jsonify({"success": False})
             if file and allow_filename(file.filename):
-                filename = secure_filename(file.filename)
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                #return redirect(url_for('home'))
+                db_lock.acquire()
+                if(not current_user.is_authenticated):
+                    return False
+                res = db.add_new_slide(form, app.config['UPLOAD_FOLDER'], current_user.user_id)
+                db_lock.release()
+                return jsonify(res)
+
             #print("Failed option 1")
         #print("Failed option 2")
 

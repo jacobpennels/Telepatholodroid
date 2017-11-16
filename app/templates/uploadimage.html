@@ -14,6 +14,14 @@
             <p>Upload your image here</p>
             <form method="post" action="{{ url_for('accept_upload') }}" enctype="multipart/form-data" id="up_form">
                 {{ form.csrf_token }}
+                {{ form.case_num.label }}
+                {{ form.case_num }}
+                {{ form.consultant.label }}
+                {{ form.consultant }}
+                {{ form.clinic_details.label }}
+                {{ form.clinic_details }}
+                {{ form.prov_diag.label }}
+                {{ form.prov_diag }}
                 {{ form.name.label }}
                 {{ form.name }}
                 {{ form.type.label }}
@@ -28,6 +36,13 @@
                 <input type="submit" value="Upload">
             </form>
             <div id="progress_bar" style="display: none;"></div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div class="row center-xs">
+                <div class="col-xs-12">
+                    <a href="{{ url_for('home') }}" data-role="button" data-ajax="false">Return to home</a>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

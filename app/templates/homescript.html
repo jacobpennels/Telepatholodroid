@@ -3,9 +3,25 @@
         // -- Define some 'global' variables --
         $slide_list = 0;
         $listview = $('#list_of_slides');
+        $grid_view = $('#grid_view');
         $switch_val = $('#prev_img').val();
         $method = $('#list_sort').val();
+        $view = $('#view_type').val();
         // -- End of global variables --
+
+        // -- Sets up scrollable list --
+        const $window_height = $(window).height();
+        const $header_height = $('#page_header_1').height();
+        const $add_button_height = $('#add_new_slide').height();
+        const $body_height = ($window_height - $header_height - $add_button_height) - 48;
+        //console.log($window_height);
+        //console.log($header_height);
+        console.log($body_height);
+        $('#slide_content').css({
+            height: $body_height,
+            marginTop: '0'
+        });
+        // --End of snippet --
 
         // -- Functions for lists --
         $SQL_time_to_JS = function ($time) {
@@ -78,11 +94,33 @@
 
         $Draw_List = function($list) {
             $listview.empty();
-            $($Sort_list($Select_Edited($list))).each(function () {
-                $listview.append("<li id='" + this.name + "'><a href='#bottomsheet_opt'><img src='static/image/thumb1.jpg' class='ui-thumbnail ui-thumbnail-circular'><h2>" + this.name + "</h2><p>Tap for more info</p></a></li>");
-                $listview.listview('refresh');
-                //console.log(this.name);
-            });
+            $grid_view.empty();
+            if($view == 'list') {
+                $($Sort_list($Select_Edited($list))).each(function () {
+                    $listview.append("<li id='" + this.name + "'><a href='#bottomsheet_opt'><img src='" + this.location + "' class='ui-thumbnail ui-thumbnail-circular'><h2>" + this.name + "</h2><p>Tap for more info</p></a></li>");
+                    $listview.listview('refresh');
+                    //console.log(this.name);
+                });
+            } else if($view == 'grid') {
+                //console.log("Grid view");
+                $listview.append('<div class="box"><div class="row"><div id="col1" class="col-xs-4"></div><div id="col2" class="col-xs-4"></div><div id="col3" class="col-xs-4"></div></div></div>');
+                $($Sort_list($Select_Edited($list))).each(function (i) {
+                    $element = '<li id="' + this.name + '"><a href="#bottomsheet_opt" class="ui-btn"><img src="' + this.location + '" class="ui-thumbnail ui-thumbnail-circular"><h4 style="margin: 0">' + this.name + '</h4></a></li>';
+                    switch(i % 3) {
+                        case 1:
+                            $('#col2').append($element);
+                            break;
+                        case 2:
+                            $('#col3').append($element);
+                            break;
+                        case 0:
+                            $('#col1').append($element);
+                            break;
+                    }
+                });
+            } else {
+                console.log("Incorrect value");
+            }
         };
         // -- End of functions --
 
@@ -117,7 +155,7 @@
 
         $('#list_of_slides').on('tap', 'li a', function (e) {
             $name = $(this).parent().attr('id');
-            //console.log($name);
+            console.log($name);
             $('#bs_name').empty().append($name);
 
             $object = $.grep($slide_list, function (e) {
@@ -126,22 +164,16 @@
             $('#bs_dateuploaded').empty().append("Date uploaded: " + $object.date_uploaded);
             $('#bs_link').attr('href', '{{ url_for("viewimg", imgid='') }}' + $object.name);
             $('#bs_uploader').empty().append("Uploader: " + $object.uploader);
+            $('#slide_thumbnail').attr('src', $object.location);
+        });
+
+        $('#view_type').change(function () {
+            console.log($('#view_type').val());
+            $view = $('#view_type').val();
+            $Draw_List($slide_list);
         });
         // -- End of event functions --
 
         // -- Page setup stuff --
-        // -- Sets up scrollable list --
-        const $window_height = $(window).height();
-        const $header_height = $('#page_header_1').height();
-        const $add_button_height = $('#add_new_slide').height();
-        const $body_height = ($window_height - $header_height - $add_button_height) - 48;
-        //console.log($window_height);
-        //console.log($header_height);
-        console.log($body_height);
-        $('#list_of_slides').css({
-            height: $body_height,
-            marginTop: '0'
-        });
-        // --End of snippet --
     });
 </script>

@@ -8,6 +8,10 @@ p {
 }
 
 #list_of_slides {
+    margin-top: 0;
+}
+
+#slide_content {
     width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;

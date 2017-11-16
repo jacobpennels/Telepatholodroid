@@ -1,6 +1,9 @@
 <script>
     $(document).ready(function () {
         // Initialise the progress bar
+
+        $form_inputs = [$('#name'), $('#case_num'), $('#consultant'), $('#prov_diag')];
+
         $('#progress_bar').LineProgressbar({
             fillBackgroundColor: '#607D8B'
         });
@@ -14,20 +17,23 @@
         });
 
         $req_func = function (f_data, j_form, opt) {
-            $('#name').parent().removeClass('changed');
-
-            if(f_data[1]['value'].length <= 0) { // check a name has been given
-                console.log("No name entered");
-                $('#name').parent().addClass('changed');
-                return false;
-            }
+            $failed = false;
+            $($form_inputs).each(function () {
+                this.parent().removeClass('changed');
+                if(this.val().length <= 0) {
+                    failed = true;
+                    this.parent().addClass('changed');
+                }
+            });
 
             $('#u_btn_box').removeClass('not_select');
-            if(f_data[3]['value']['name'] == undefined) { // Check file has been selected
+            if(f_data[7]['value']['name'] == undefined) { // Check file has been selected
                 $('#u_btn_box').addClass('not_select');
                 console.log("No file selected");
                 return false;
             }
+
+            if($failed) return false;
 
             $('#progress_bar').show();
         };
