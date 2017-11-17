@@ -28,9 +28,9 @@
             // Converts the string from database to usable Date object
             $t = $time.split(/[- :]/);
             $d = new Date();
-            $d.setFullYear($t[2]);
+            $d.setFullYear($t[0]);
             $d.setMonth($t[1]);
-            $d.setDate($t[0]);
+            $d.setDate($t[2]);
             return $d;
         };
 
@@ -161,7 +161,9 @@
             $object = $.grep($slide_list, function (e) {
                 return e.name == $name;
             })[0];
-            $('#bs_dateuploaded').empty().append("Date uploaded: " + $object.date_uploaded);
+
+            $t = $object.date_uploaded.split(/[- :]/);
+            $('#bs_dateuploaded').empty().append("Date uploaded: " + $t[2] + "-" + $t[1] + "-" + $t[0]);
             $('#bs_link').attr('href', '{{ url_for("viewimg", imgid='') }}' + $object.name);
             $('#bs_uploader').empty().append("Uploader: " + $object.uploader);
             $('#slide_thumbnail').attr('src', $object.location);

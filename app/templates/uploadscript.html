@@ -38,13 +38,20 @@
             $('#progress_bar').show();
         };
 
-        $res_func = function () {
+        $res_func = function (res_text) {
             $('#file_name').empty();
             $('#progress_bar').hide();
-            new $.nd2Toast({
-                message: "Slide uploaded",
-                ttl: 5000
-            });
+            if(res_text.success == true) {
+                new $.nd2Toast({
+                    message: "Slide uploaded as " + res_text.s_name,
+                    ttl: 5000
+                });
+            } else {
+                new $.nd2Toast({
+                    message: "Upload failed, please try again",
+                    ttl: 5000
+                });
+            }
             $('#up_form').clearForm();
             $('#up_form').resetForm();
             $('#type').val("oral");

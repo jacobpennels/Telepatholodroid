@@ -1,5 +1,5 @@
 import sqlite3
-from app import user
+from app import user, SlideInfo
 import datetime
 import os
 from passlib.hash import sha256_crypt
@@ -72,7 +72,7 @@ class DatabaseConnector:
             else:
                 loc = url_for('static', filename='uploads/' + row[1] + '/thumb.jpg')
 
-            r = {"name": row[0], "type": row[7], "date_uploaded": row[8], "is_uploader": row[9] == usr_id, "has_edited": row[10] in slide_id, "uploader": row[10] + " " + row[11] + " " + row[12], "location": loc}
+            r = {"name": row[0], "type": row[2], "date_uploaded": row[7], "is_uploader": row[9] == usr_id, "has_edited": row[10] in slide_id, "uploader": row[10] + " " + row[11] + " " + row[12], "location": loc}
             results.append(r)
         return results
 
@@ -113,19 +113,31 @@ class DatabaseConnector:
 
         return fname
 
+    def check_file_name(self, name):
+        current_names = [x[0] for x in self.execute_query('select name from slides')]
+        fname = name
+        i = 0
+        while(fname in current_names):
+            fname = name + "_" + str(i)
+            i += 1
+
+        return fname
+
     def add_new_slide(self, form, folder, user_id):
         print(form.data['name'])
         file = form.u_file.data
         filename, ext = file.filename.rsplit('.')
+        s_name = self.check_file_name(form.data['name'])
+
         # Create a nice random folder name
         h = hashlib.md5()
         now_date = datetime.datetime.now().__str__()
         h.update(str.encode(filename + now_date))
-
         folder_name = self.check_folder(h.hexdigest()[:10], folder)
         print(folder_name)
+
         os.makedirs(os.path.join(folder, folder_name))
-        file.save(os.path.join(os.path.join(folder, folder_name), form.name.data + "." + ext))
+        file.save(os.path.join(os.path.join(folder, folder_name), filename + "." + ext))
         data = form.data
-        self.execute_statement('INSERT INTO slides VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)', data['name'], folder_name, data['type'], data['case_num'], data['consultant'], data['clinic_details'], data['prov_diag'], now_date, user_id)
-        return {"success": True}
+        self.execute_statement('INSERT INTO slides VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)', s_name, folder_name, data['type'], data['case_num'], data['consultant'], data['clinic_details'], data['prov_diag'], now_date, user_id)
+        return [{"success": True, "s_name": s_name}, SlideInfo.SlideInfo(os.path.join(folder, folder_name), file.filename)]

@@ -1,24 +1,31 @@
 from flask import Flask
-from flask import request, session, redirect, url_for, render_template,jsonify
+from flask import request, session, redirect, url_for, render_template, jsonify
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from werkzeug.utils import secure_filename
 import signal, sys
 import threading
 import binascii, os
+import queue
+import time
 
-from app import database_connector
+from app import database_connector, SlideInfo
 
 global app
 global login_manager
-global running
+running = False
 global db_lock
-db_lock = threading.Lock() # Must acquire before working on database
+db_lock = threading.Lock()  # Must acquire before working on database
 global db
 global upload_folder
 global allowed_extensions
+global s_queue
+global image_handler
+
 
 def init_app():
-    global login_manager, running, db, upload_folder, allowed_extensions
+    global login_manager, running, db, upload_folder, allowed_extensions, s_queue, image_handler
+    s_queue = queue.Queue()
+    running = True
     upload_folder = os.path.abspath('app/static/uploads')
     print(upload_folder)
     allowed_extensions = set(['jpg', 'png', 'jp2', 'svs'])
@@ -31,13 +38,20 @@ def init_app():
     db = database_connector.DatabaseConnector(path)
     db.up_folder = upload_folder
 
+    image_handler = ImageHandler()
+    image_handler.start()
+
     def interrupt():
         global running
         running = False
+        #print(running)
+
+        image_handler.join()
         db.close()
         print("Quitting App")
 
     def signal_handler(signal, frame):
+        global running
         interrupt()
         sys.exit(0)
 
@@ -45,32 +59,61 @@ def init_app():
     running = True
     return app
 
-def signal_handler(signal, frame):
-    global running
-    running = False
-    print("Quitting App")
-    sys.exit()
+
+class ImageHandler(threading.Thread):  # TODO implement image handling
+    def run(self):
+        global s_queue
+        global running
+
+        #print("Running is set to " + str(running))
+        self.get_images()
+
+    def get_images(self):
+        print("Beginning image handling")
+        global running
+        while(running):
+            try:
+                slide = s_queue.get(timeout=1)
+                print(slide)
+                self.handle_image(slide)
+            except queue.Empty:
+                pass
+
+        time.sleep(1)  # Stop the thread looping too hard
+
+        print("Image handler shutting down")
+
+    def handle_image(self, slide):
+        if(not isinstance(slide, SlideInfo.SlideInfo)):
+            return False
+        print(slide.dir)
+        print(slide.file)
+
 
 def allow_filename(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_extensions
+
 
 app = init_app()
 app.secret_key = binascii.hexlify(os.urandom(24))
 
 from app import views, user, forms
 from app.forms import LoginForm, RegistrationForm, UploadForm
+
 login_manager.login_view = 'index'
+
 
 # Used by Flask-Login
 
 @login_manager.user_loader
 def load_user(user_id):
-    #print("user id is " + str(user_id))
+    # print("user id is " + str(user_id))
     global db, db_lock
     db_lock.acquire()
     val = db.get_user_by_id(user_id)
     db_lock.release()
     return val
+
 
 # These views handle AJAX calls
 
@@ -105,6 +148,7 @@ def login():
     else:
         return render_template('index.html', loginform=LoginForm(), regform=RegistrationForm())
 
+
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     global db, db_lock
@@ -129,11 +173,13 @@ def register():
     else:
         return redirect(url_for('index'))
 
+
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
 
 @app.route('/get_slides', methods=['POST'])
 @login_required
@@ -142,12 +188,13 @@ def get_slides():
     data = request.get_json()
     print("Recieved a ajax request")
     print("Cancer type is: " + data['cancer_type'])
-    if(current_user.is_authenticated):
+    if (current_user.is_authenticated):
         usr_id = current_user.user_id
     db_lock.acquire()
     results = db.get_slide_info_by_category(data['cancer_type'], usr_id)
     db_lock.release()
     return jsonify(results)
+
 
 @app.route('/change_account_setting', methods=['POST'])
 @login_required
@@ -155,12 +202,13 @@ def change_account_setting():
     global db, db_lock
     data = request.get_json()
     usr_id = None
-    if(current_user.is_authenticated):
+    if (current_user.is_authenticated):
         usr_id = current_user.user_id
     db_lock.acquire()
     success = db.change_account_detail(data, usr_id)
     db_lock.release()
     return jsonify(success)
+
 
 @app.route('/change_password', methods=['POST'])
 @login_required
@@ -168,34 +216,36 @@ def change_password():
     global db, db_lock
     data = request.get_json()
     usr_id = None
-    if(current_user.is_authenticated):
+    if (current_user.is_authenticated):
         usr_id = current_user.user_id
     db_lock.acquire()
     success = db.change_password(data, usr_id)
     db_lock.release()
     return jsonify(success)
 
+
 @app.route('/accept_upload', methods=['POST'])
 @login_required
 def accept_upload():
-    global db, db_lock
+    global db, db_lock, s_queue
     if request.method == 'POST':
         form = UploadForm()
         if form.validate_on_submit():
             file = form.u_file.data
-            #print(file.filename)
+            # print(file.filename)
             if form.name.data == '':
                 print("no filename")
                 return jsonify({"success": False})
             if file and allow_filename(file.filename):
                 db_lock.acquire()
-                if(not current_user.is_authenticated):
+                if (not current_user.is_authenticated):
                     return False
                 res = db.add_new_slide(form, app.config['UPLOAD_FOLDER'], current_user.user_id)
                 db_lock.release()
-                return jsonify(res)
+                s_queue.put(res[1])
+                return jsonify(res[0])
 
-            #print("Failed option 1")
-        #print("Failed option 2")
+                # print("Failed option 1")
+                # print("Failed option 2")
 
     return redirect(url_for('home'))
