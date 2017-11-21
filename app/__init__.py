@@ -7,6 +7,9 @@ import threading
 import binascii, os
 import queue
 import time
+import openslide
+from openslide import deepzoom
+from PIL import Image, ImageDraw
 
 from app import database_connector, SlideInfo
 
@@ -88,6 +91,30 @@ class ImageHandler(threading.Thread):  # TODO implement image handling
             return False
         print(slide.dir)
         print(slide.file)
+        osr = openslide.OpenSlide(slide.dir + "/" + slide.file)
+        self.create_thumbnail(osr.get_thumbnail((150, 150)), slide.dir)
+        self.create_files(osr, slide.dir)
+
+    def create_thumbnail(self, img, s_dir): # Creates a 150px x 150px image as a thumbnail
+        size = (max(img.size),) * 2
+        layer = Image.new('RGB', size, (255, 255, 255))
+        layer.paste(img, tuple(map(lambda x: (x[0] - x[1]) // 2, zip(size, img.size))))
+
+        layer.save(s_dir + "/thumb.png")
+
+    def create_files(self, o, d):
+        # Creates the relevant file hierachy for the given image
+        # Is a lengthy process so may take a while to complete - need way of telling this to the user
+        dz = deepzoom.DeepZoomGenerator(o)
+
+        for i, l in enumerate(dz.level_tiles):
+            dir_name = d + '/level_' + str(i)
+            os.makedirs(dir_name)
+            print(i)
+            for x in range(l[0]):
+                for y in range(l[1]):
+                    img = dz.get_tile(i, (x, y))
+                    img.save(dir_name + '/tile_' + str(x) + '_' + str(y) + '.png')
 
 
 def allow_filename(filename):

@@ -70,7 +70,14 @@ class DatabaseConnector:
             if(row[1] == "none"):
                 loc = url_for('static', filename="image/thumb1.jpg")
             else:
-                loc = url_for('static', filename='uploads/' + row[1] + '/thumb.jpg')
+                if(os.path.isdir(self.up_folder + "/" + row[1])):
+                    if(os.path.isfile(self.up_folder + "/" + row[1] + "/thumb.jpg")):
+                        loc = url_for('static', filename='uploads/' + row[1] + '/thumb.jpg')
+                    else:
+                        loc = url_for('static', filename='uploads/' + row[1] + '/thumb.png')
+                else:
+                    self.delete_slide(row)
+                    continue
 
             r = {"name": row[0], "type": row[2], "date_uploaded": row[7], "is_uploader": row[9] == usr_id, "has_edited": row[10] in slide_id, "uploader": row[10] + " " + row[11] + " " + row[12], "location": loc}
             results.append(r)
@@ -141,3 +148,7 @@ class DatabaseConnector:
         data = form.data
         self.execute_statement('INSERT INTO slides VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)', s_name, folder_name, data['type'], data['case_num'], data['consultant'], data['clinic_details'], data['prov_diag'], now_date, user_id)
         return [{"success": True, "s_name": s_name}, SlideInfo.SlideInfo(os.path.join(folder, folder_name), file.filename)]
+
+    def delete_slide(self, r):
+        print("Couldn't find folder, therefore deleting slide " + r[0] + ", in location " + r[1])
+        self.execute_statement('DELETE FROM slides WHERE name=? and location=?', r[0], r[1])

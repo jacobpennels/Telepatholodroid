@@ -43,7 +43,7 @@
             $('#progress_bar').hide();
             if(res_text.success == true) {
                 new $.nd2Toast({
-                    message: "Slide uploaded as " + res_text.s_name,
+                    message: "Slide uploaded as " + res_text.s_name + ", be aware that it may take a few minutes before the image is ready to view",
                     ttl: 5000
                 });
             } else {

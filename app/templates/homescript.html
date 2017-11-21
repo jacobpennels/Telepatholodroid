@@ -177,5 +177,22 @@
         // -- End of event functions --
 
         // -- Page setup stuff --
+        // When going back to page, cancer type may be set but no slides available
+        // This method runs on page load and makes sure the correct slides are presented
+        if($('#cancer_type').val() != "") {
+            $info = {"cancer_type": $('#cancer_type').val()};
+            //console.log($info);
+            $.ajax({url: "{{ url_for('get_slides') }}",
+                    type: 'post',
+                    data: JSON.stringify($info),
+                    contentType: "application/json; charset=utf-8",
+                    async: false,
+                    success: function (result) {
+                        $slide_list = result;
+                        //console.log(result);
+                        $Draw_List(result);
+                    }
+            });
+        }
     });
 </script>
