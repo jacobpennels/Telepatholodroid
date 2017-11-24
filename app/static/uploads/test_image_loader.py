@@ -3,6 +3,7 @@ import PIL
 from openslide import deepzoom
 import os
 import shutil
+import json
 
 # Work out correct path
 if os.path.isdir('test'):
@@ -13,19 +14,22 @@ print(path)
 
 # Open image and then save the thumbnail image
 osr = openslide.OpenSlide('test_img_1.svs')
-thumb = osr.get_thumbnail((250, 250))
-thumb.save(path + "/thumb.png", "png")
+#thumb = osr.get_thumbnail((250, 250))
+#thumb.save(path + "/thumb.png", "png")
 print(osr.dimensions)
 
 dz = deepzoom.DeepZoomGenerator(osr)
 
-for i, l in enumerate(dz.level_tiles):
-    dir_name = path + '/level_' + str(i)
-    os.makedirs(dir_name)
-    print(i)
-    for x in range(l[0]):
-        for y in range(l[1]):
-            img = dz.get_tile(i, (x, y))
-            img.save(dir_name + '/tile_' + str(x) + '_' + str(y) + '.png')
+info = {}
+print(len(dz.level_dimensions))
+print(len(dz.level_tiles))
+for i, d in enumerate(dz.level_dimensions):
+    tiles = dz.level_tiles[i]
+    info['level_' + str(i)] = [d[0], d[1], tiles[0], tiles[1]]
+
+print(info)
+print(json.dumps(info))
+with open("dimensions.json", 'w') as f:
+    f.write(json.dumps(info))
 
 

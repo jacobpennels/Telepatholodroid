@@ -152,3 +152,7 @@ class DatabaseConnector:
     def delete_slide(self, r):
         print("Couldn't find folder, therefore deleting slide " + r[0] + ", in location " + r[1])
         self.execute_statement('DELETE FROM slides WHERE name=? and location=?', r[0], r[1])
+
+    def get_slide_data(self, name):
+        return self.execute_query('SELECT * FROM slides WHERE name=?', name)[0] # Should be only one result
+

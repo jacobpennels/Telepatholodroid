@@ -1,0 +1,118 @@
+<script>
+    $(document).ready(function () {
+        $location = "{{ l }}";
+        //console.log($location);
+        $dimensions = $.parseJSON({{ d | tojson | safe  }});
+        //console.log($dimensions);
+        //console.log($dimensions["level_2"]);
+        $pan_start_x = null;
+        $pan_start_y = null;
+        $diff_x = 0;
+        $diff_y = 0;
+
+        $canvas = $('#s_canvas');
+        $canvas = $canvas.hammer({
+            recognizers: [
+                [Hammer.Pan, {direction: Hammer.DIRECTION_ALL}],
+                [Hammer.Pinch, {enable: true}]
+            ]
+        });
+        $canvas_h = window.innerHeight - 5;
+        $canvas_w = window.outerWidth;
+        $canvas.attr('width', $canvas_w);
+        $canvas.attr('height', $canvas_h);
+        $.jCanvas.defaults.fromCenter = false;
+
+        // Display first image at highest dimension
+        $current_label = "";
+        $previous_level = "level_0";
+        $.each($dimensions, function (i) {
+            if(this[0] > $canvas_w || this[1] > $canvas_h) {
+                $current_label = $previous_level;
+                return;
+            }
+            $previous_level = i;
+        });
+        console.log($current_label);
+
+        $current_level = $dimensions[$current_label];
+        console.log($current_level);
+
+        // Starting positions
+        $draw_x = ($canvas_w - $current_level[0]) / 2; // These variables store the 'origin' of the image displayed,
+        $draw_y = ($canvas_h - $current_level[1]) / 2; // and are used to calculate positions relative to it
+
+        $DrawImage = function(sx, sy) {
+            $canvas.removeLayerGroup('tiles');
+            //console.log($draw_x + ", " + $draw_y);
+            for (i = 0; i < $current_level[2]; i++) {
+                for (j = 0; j < $current_level[3]; j++) {
+                    //console.log((x + (i * 256)) + ", " + (y + (j * 256)));
+
+                    $canvas.addLayer({
+                        type: 'image',
+                        name: "tile_" + i + "_" + j,
+                        groups: ['tiles'],
+                        source: $location + "/" + $current_label + "/tile_" + i + "_" + j + ".png",
+                        x: (sx + (i * 256)), y: (sy + (j * 256)),
+                        scale: 1
+                    });
+                }
+            }
+            $canvas.drawLayers('tiles');
+        };
+
+        // Draw first image
+        $DrawImage($draw_x, $draw_y);
+
+        $canvas.drawText({
+            fillStyle: '#000',
+            strokeStyle: '#fff',
+            strokeWidth: 0,
+            x: 0, y: 0,
+            fontSize: 32,
+            fontFamily: 'Verdana, sans-serif',
+            text: $current_label
+        });
+
+        $canvas.bind('panstart', function (ev) {
+            $pan_start_x = ev.gesture.center.x;
+            $pan_start_y = ev.gesture.center.y;
+            //console.log("Pan starting at " + $pan_start_x + ", " + $pan_start_y);
+            $diff_x = 0;
+            $diff_y = 0;
+        });
+
+        $canvas.bind('panmove', function(ev) {
+            $diff_x = ev.gesture.center.x - $pan_start_x;
+            $diff_y = ev.gesture.center.y - $pan_start_y;
+            //console.log($diff_x + ", " + $diff_y);
+            //console.log($draw_x + ", " + $draw_y);
+            $DrawImage($draw_x + $diff_x, $draw_y + $diff_y);
+        });
+
+        $canvas.bind('panend', function(ev) {
+            //console.log("pan ended");
+            $pan_start_x = null;
+            $pan_start_y = null;
+            $draw_x += $diff_x;
+            $draw_y += $diff_y;
+            $diff_x = 0;
+            $diff_y = 0;
+        });
+
+        $canvas.bind('pinchstart', function(ev) {
+            $canvas.drawText({
+                fillStyle: '#000',
+                strokeStyle: '#fff',
+                strokeWidth: 0,
+                x: 0, y: 0,
+                fontSize: 32,
+                fontFamily: 'Verdana, sans-serif',
+                text: "(" + ev.gesture.center.x + ", " + ev.gesture.center.y + ")"
+            });
+
+            console.log("Pinch started at (" + ev.gesture.center.x + ", " + ev.gesture.center.y + ")");
+        })
+    })
+</script>

@@ -3,6 +3,13 @@
 
 {% block body %}
     <div data-role="page" data-url="{{ url_for('viewimg', imgid=imgid) }}">
-         <p>You are viewing the image {{ imgid }}</p>
+         <canvas id="s_canvas"></canvas>
     </div>
 {% endblock %}
+
+{% block script_section %}
+    {% with l=loc, d=dimensions %}
+    {% include 'viewscript.html' %}
+    {% endwith %}
+{%  endblock %}
+

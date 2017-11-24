@@ -10,6 +10,7 @@ import time
 import openslide
 from openslide import deepzoom
 from PIL import Image, ImageDraw
+from json import dumps
 
 from app import database_connector, SlideInfo
 
@@ -105,16 +106,25 @@ class ImageHandler(threading.Thread):  # TODO implement image handling
     def create_files(self, o, d):
         # Creates the relevant file hierachy for the given image
         # Is a lengthy process so may take a while to complete - need way of telling this to the user
-        dz = deepzoom.DeepZoomGenerator(o)
+        dz = deepzoom.DeepZoomGenerator(o, tile_size=256, overlap=0)
 
         for i, l in enumerate(dz.level_tiles):
             dir_name = d + '/level_' + str(i)
             os.makedirs(dir_name)
-            print(i)
+            #print(i)
             for x in range(l[0]):
                 for y in range(l[1]):
                     img = dz.get_tile(i, (x, y))
                     img.save(dir_name + '/tile_' + str(x) + '_' + str(y) + '.png')
+        print("The slide is uploaded")
+        # Create dimensions file for use in
+        info = {}
+        for i, a in enumerate(dz.level_dimensions):
+            tiles = dz.level_tiles[i]
+            info['level_' + str(i)] = [a[0], a[1], tiles[0], tiles[1]]
+
+        with open(d + "/dimensions.json", 'w') as f:
+            f.write(dumps(info))
 
 
 def allow_filename(filename):
@@ -214,7 +224,10 @@ def get_slides():
     global db, db_lock
     data = request.get_json()
     print("Recieved a ajax request")
-    print("Cancer type is: " + data['cancer_type'])
+    try:
+        print("Cancer type is: " + data['cancer_type'])
+    except TypeError:
+        print("No cancer defined")
     if (current_user.is_authenticated):
         usr_id = current_user.user_id
     db_lock.acquire()

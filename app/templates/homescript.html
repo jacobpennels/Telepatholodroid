@@ -165,6 +165,7 @@
             $t = $object.date_uploaded.split(/[- :]/);
             $('#bs_dateuploaded').empty().append("Date uploaded: " + $t[2] + "-" + $t[1] + "-" + $t[0]);
             $('#bs_link').attr('href', '{{ url_for("viewimg", imgid='') }}' + $object.name);
+            $('#bs_review').attr('href', '{{ url_for("reviewimg", imgid='') }}' + $object.name);
             $('#bs_uploader').empty().append("Uploader: " + $object.uploader);
             $('#slide_thumbnail').attr('src', $object.location);
         });

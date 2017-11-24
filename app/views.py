@@ -5,6 +5,7 @@ from app import app, forms, user
 from app import db_lock, db
 import os
 from flask import request
+import json
 
 @app.route('/')
 def index():
@@ -23,7 +24,18 @@ def home():
 @app.route('/viewimg/<imgid>')
 @login_required
 def viewimg(imgid=None):
-    return render_template('viewimg.html', imgid=imgid)
+    if(imgid == None):
+        return redirect('home')
+    db_lock.acquire()
+    data = db.get_slide_data(imgid)[1] # Get location of file
+    db_lock.release()
+    dimensions = ""
+    with open(os.path.abspath('app/static/uploads/' + data + '/dimensions.json'), 'r') as f:
+        dimensions = f.readline()
+        #dimensions = json.dumps(dimensions)
+        print(dimensions)
+
+    return render_template('viewimg.html', imgid=imgid, loc=str(url_for('static', filename="uploads") + "/" + data), dimensions=dimensions)
 
 @app.route('/accountsettings')
 @login_required
@@ -36,6 +48,14 @@ def uploadimage():
     u_form = forms.UploadForm()
     u_form.u_file.default = 0
     return render_template('uploadimage.html', form=u_form)
+
+@app.route('/reviewimg/<imgid>')
+@login_required
+def reviewimg(imgid=None):
+    db_lock.acquire()
+    data = db.get_slide_data(imgid)
+    db_lock.release()
+    return render_template('reviewimg.html', data=data)
 
 
 
