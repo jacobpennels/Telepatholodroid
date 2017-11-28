@@ -3,12 +3,30 @@
         $location = "{{ l }}";
         //console.log($location);
         $dimensions = $.parseJSON({{ d | tojson | safe  }});
+        $tile_info = null;
+        $count = 0;
+        $.each($dimensions, function () {
+            $count += 1;
+        });
+        console.log($count);
         //console.log($dimensions);
         //console.log($dimensions["level_2"]);
         $pan_start_x = null;
         $pan_start_y = null;
         $diff_x = 0;
         $diff_y = 0;
+        $diff_sc = 1;
+        $pinch_start = null;
+        $prev_pinch = null;
+        $pinch_x = 0;
+        $pinch_y = 0;
+        $x_t = 0;
+        $y_t = 0;
+        // Variables for working out scaling
+        $h = 0;
+        $w = 0;
+
+        $current_dims = null;
 
         $canvas = $('#s_canvas');
         $canvas = $canvas.hammer({
@@ -19,6 +37,7 @@
         });
         $canvas_h = window.innerHeight - 5;
         $canvas_w = window.outerWidth;
+        console.log("Canvas size: " + $canvas_h + ", " + $canvas_w);
         $canvas.attr('width', $canvas_w);
         $canvas.attr('height', $canvas_h);
         $.jCanvas.defaults.fromCenter = false;
@@ -37,33 +56,65 @@
 
         $current_level = $dimensions[$current_label];
         console.log($current_level);
+        $current_dims = $.parseJSON($.ajax({
+            url: $location + "/" + $current_label + "/dim.json",
+            dataType: "json",
+            async: false
+        }).responseText);
+        console.log($current_dims);
 
         // Starting positions
-        $draw_x = ($canvas_w - $current_level[0]) / 2; // These variables store the 'origin' of the image displayed,
-        $draw_y = ($canvas_h - $current_level[1]) / 2; // and are used to calculate positions relative to it
+        $draw_x = ($canvas_w - $current_level[0]) / 2; // Stores where the image is drawn from so as not to mess with scaling
+        $draw_y = ($canvas_h - $current_level[1]) / 2;
+        $act_x = $draw_x; // These variables contain the actual origin of the image
+        $act_y = $draw_y;
+        $scale = 1; // Initial scale of image
 
-        $DrawImage = function(sx, sy) {
+        $DrawImage = function(sx, sy, sc, sc_x, sc_y) {
             $canvas.removeLayerGroup('tiles');
+            // Introduce some logic to only draw tiles that will be seen
             //console.log($draw_x + ", " + $draw_y);
+            /*
+            $canvas.drawRect({
+                layer: true,
+                groups: ['tiles'],
+                name: 'box',
+                fillStyle: '#000',
+                x: sx - 2, y: sy - 2,
+                width: $current_level[0] + 4,
+                height: $current_level[1] + 4,
+                scale: sc
+            });*/
             for (i = 0; i < $current_level[2]; i++) {
                 for (j = 0; j < $current_level[3]; j++) {
-                    //console.log((x + (i * 256)) + ", " + (y + (j * 256)));
-
+                    //console.log((sx + (i * 256 * sc)) + ", " + (sy + (j * 256 * sc)));
+                    $t_name = "tile_" + i + "_" + j;
+                    //console.log($t_name);
+                    $i_name = $location + "/" + $current_label + "/" + $t_name + ".png";
+                    //console.log(Object.keys($current_dims));
+                    //console.log($current_dims[$t_name]);
                     $canvas.addLayer({
                         type: 'image',
-                        name: "tile_" + i + "_" + j,
+                        name: $t_name,
                         groups: ['tiles'],
-                        source: $location + "/" + $current_label + "/tile_" + i + "_" + j + ".png",
-                        x: (sx + (i * 256)), y: (sy + (j * 256)),
-                        scale: 1
+                        source: $i_name,
+                        x: (sx + (i * 256 * sc)), y: (sy + (j * 256 * sc)),
+                        width: $current_dims[$t_name][0] * sc,
+                        height: $current_dims[$t_name][1] * sc,
+                        /*scale: sc,*/
+                        fromCenter: false
                     });
+
+                    $temp = $canvas.getLayer('tile_' + i + '_' + j);
+                    //console.log(Object.keys($temp));
+                    $canvas.getLayer('tile_' + i + '_' + j).width = $canvas.getLayer('tile_' + i + '_' + j).width;
                 }
             }
             $canvas.drawLayers('tiles');
         };
 
         // Draw first image
-        $DrawImage($draw_x, $draw_y);
+        $DrawImage($draw_x, $draw_y, $scale);
 
         $canvas.drawText({
             fillStyle: '#000',
@@ -88,7 +139,7 @@
             $diff_y = ev.gesture.center.y - $pan_start_y;
             //console.log($diff_x + ", " + $diff_y);
             //console.log($draw_x + ", " + $draw_y);
-            $DrawImage($draw_x + $diff_x, $draw_y + $diff_y);
+            $DrawImage($draw_x + $diff_x, $draw_y + $diff_y, $scale);
         });
 
         $canvas.bind('panend', function(ev) {
@@ -97,22 +148,96 @@
             $pan_start_y = null;
             $draw_x += $diff_x;
             $draw_y += $diff_y;
+            $act_x += $diff_x;
+            $act_y += $diff_y;
             $diff_x = 0;
             $diff_y = 0;
         });
 
+        $IncreaseLevel = function() {
+            $l = parseInt($current_label.split("_")[1]);
+            console.log($l);
+            $l += 1;
+            if($l >= $count) {
+                $l = $count - 1;
+            }
+            $current_label = "level_" + $l;
+            console.log($current_label);
+            $current_level = $dimensions[$current_label];
+
+            $current_dims = $.parseJSON($.ajax({
+                url: $location + "/" + $current_label + "/dim.json",
+                dataType: "json",
+                async: false
+            }).responseText);
+
+            $.jCanvas.defaults.fromCenter = false;
+        };
+
         $canvas.bind('pinchstart', function(ev) {
-            $canvas.drawText({
+            console.log("Pinch started at (" + ev.gesture.center.x + ", " + ev.gesture.center.y + ")");
+            $pinch_start = ev.gesture.center;
+            $prev_pinch = ev;
+            $x_t = $draw_x;
+            $y_t = $draw_y;
+        });
+
+        $canvas.bind('pinchmove', function(ev) {
+            //console.log("Pinching");
+            //console.log("Scale is " + ev.gesture.scale);
+            //console.log(ev.gesture.scale);
+            $new_scale = ev.gesture.scale / $prev_pinch.gesture.scale;
+            $scale = $scale * $new_scale;
+
+            if($scale > 2) { // Time to go to next level
+                $act_x = ($scale * ($draw_x - ($draw_x + (0.5 * $current_level[0])))) + ($draw_x + (0.5 * $current_level[0]));
+                $draw_x = $act_x;
+                $act_y = ($scale * ($draw_y - ($draw_y + (0.5 * $current_level[1])))) + ($draw_y + (0.5 * $current_level[1]));
+                $draw_y = $act_y;
+
+                console.log("going up a level");
+                $pinch_start = ev.gesture.center;
+                $IncreaseLevel();
+                $scale = 1;
+            }
+
+            $prev_pinch = ev;
+
+            $x_t = ($new_scale * ($x_t - ev.gesture.center.x)) + ev.gesture.center.x;
+            $y_t = ($new_scale * ($y_t - ev.gesture.center.y)) + ev.gesture.center.y;
+
+            $x_t = $draw_x + ev.gesture.center.x - $pinch_start.x;
+            $y_t = $draw_y + ev.gesture.center.y - $pinch_start.y;
+
+            //console.log($x_t);
+            $DrawImage($x_t, $y_t, $scale);
+            // Create scaled x and y that are stored throughout the pinch, and can be called on if a level increase is needed
+        });
+
+        $canvas.bind('pinchend', function(ev) {
+            //$scale = $scale * ev.gesture.scale;
+            console.log("Pinch ended at (" + ev.gesture.center.x + ", " + ev.gesture.center.y + ")");
+            $draw_x += ev.gesture.center.x - $pinch_start.x;
+            $draw_y += ev.gesture.center.y - $pinch_start.y;
+            $act_x = ($scale * ($draw_x - ($draw_x + (0.5 * $current_level[0])))) + ($draw_x + (0.5 * $current_level[0]));
+            $act_y = ($scale * ($draw_y - ($draw_y + (0.5 * $current_level[1])))) + ($draw_y + (0.5 * $current_level[1]));
+            $pinch_start = null;
+            $prev_pinch = null;
+            //$DrawImage($draw_x, $draw_y, $scale);
+            //console.log("(" + $draw_x + ", " + $draw_y + "), at scale factor " + $scale);
+            $canvas.drawEllipse({
                 fillStyle: '#000',
-                strokeStyle: '#fff',
-                strokeWidth: 0,
-                x: 0, y: 0,
-                fontSize: 32,
-                fontFamily: 'Verdana, sans-serif',
-                text: "(" + ev.gesture.center.x + ", " + ev.gesture.center.y + ")"
+                width: 20, height: 20,
+                x: $act_x - 10,
+                y: $act_y - 10
             });
 
-            console.log("Pinch started at (" + ev.gesture.center.x + ", " + ev.gesture.center.y + ")");
-        })
+            $canvas.drawEllipse({
+                fillStyle: '#F00',
+                width: 20, height: 20,
+                x: $draw_x - 10,
+                y: $draw_y - 10
+            });
+        });
     })
 </script>

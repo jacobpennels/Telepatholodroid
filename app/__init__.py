@@ -112,10 +112,16 @@ class ImageHandler(threading.Thread):  # TODO implement image handling
             dir_name = d + '/level_' + str(i)
             os.makedirs(dir_name)
             #print(i)
+            tile_info = {}
             for x in range(l[0]):
                 for y in range(l[1]):
                     img = dz.get_tile(i, (x, y))
                     img.save(dir_name + '/tile_' + str(x) + '_' + str(y) + '.png')
+                    tile_info['tile_' + str(x) + '_' + str(y)] = dz.get_tile_dimensions(i, (x, y))
+
+            with open(dir_name + '/dim.json', 'w') as f:
+                f.write(dumps(tile_info))
+
         print("The slide is uploaded")
         # Create dimensions file for use in
         info = {}
