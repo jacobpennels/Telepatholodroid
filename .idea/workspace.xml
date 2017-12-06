@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88584f91-11ee-4451-aecc-5b4c8c893e17" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/database.db" afterPath="$PROJECT_DIR$/app/database.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/__init__.py" afterPath="$PROJECT_DIR$/app/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/layout.html" afterPath="$PROJECT_DIR$/app/templates/layout.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/viewscript.html" afterPath="$PROJECT_DIR$/app/templates/viewscript.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -51,7 +47,7 @@
       <file leaf-file-name="viewscript.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/templates/viewscript.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1278">
+            <state relative-caret-position="18">
               <caret line="103" column="38" lean-forward="false" selection-start-line="103" selection-start-column="38" selection-end-line="103" selection-end-column="38" />
               <folding />
             </state>
@@ -171,7 +167,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -215,6 +210,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -478,7 +474,14 @@
       <option name="project" value="LOCAL" />
       <updated>1511530880207</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Made changes to pan and zoom, can now tile on zoom in">
+      <created>1511905561627</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1511905561627</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -561,7 +564,8 @@
     <MESSAGE value="Created thread to handle preprocessing of slides" />
     <MESSAGE value="Image uploading works entirely now, create the correct hierarchy for the tiles created" />
     <MESSAGE value="Users can now open an image and pan about it, next is to implement zooming" />
-    <option name="LAST_COMMIT_MESSAGE" value="Users can now open an image and pan about it, next is to implement zooming" />
+    <MESSAGE value="Made changes to pan and zoom, can now tile on zoom in" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made changes to pan and zoom, can now tile on zoom in" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -787,7 +791,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/viewscript.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1278">
+        <state relative-caret-position="18">
           <caret line="103" column="38" lean-forward="false" selection-start-line="103" selection-start-column="38" selection-end-line="103" selection-end-column="38" />
           <folding />
         </state>
