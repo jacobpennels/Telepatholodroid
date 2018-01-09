@@ -28,18 +28,30 @@
 
         $current_dims = null;
 
+        $toolBar = $('#toolbar');
+        console.log("Toolbar height: " + $toolBar.height());
         $canvas = $('#s_canvas');
+
+        $add_button = $('#add_button');
+        $remove_button = $('#remove_button');
+        $back_button = $('#back_button');
+        $finish_button = $('#finish_button');
+        $cancel_button = $('#cancel_button');
+
+
         $canvas = $canvas.hammer({
             recognizers: [
                 [Hammer.Pan, {direction: Hammer.DIRECTION_ALL}],
                 [Hammer.Pinch, {enable: true}]
             ]
         });
-        $canvas_h = window.innerHeight - 5;
+        $canvas_h = window.innerHeight;
         $canvas_w = window.outerWidth;
         console.log("Canvas size: " + $canvas_h + ", " + $canvas_w);
         $canvas.attr('width', $canvas_w);
         $canvas.attr('height', $canvas_h);
+        $toolBar.attr('height', 0.2 * window.innerHeight);
+        $toolBar.attr('width', window.outerWidth);
         $.jCanvas.defaults.fromCenter = false;
 
         // Display first image at highest dimension
@@ -73,20 +85,15 @@
         $DrawImage = function(sx, sy, sc, sc_x, sc_y) {
             $canvas.removeLayerGroup('tiles');
             // Introduce some logic to only draw tiles that will be seen
-            //console.log($draw_x + ", " + $draw_y);
-            /*
-            $canvas.drawRect({
-                layer: true,
-                groups: ['tiles'],
-                name: 'box',
-                fillStyle: '#000',
-                x: sx - 2, y: sy - 2,
-                width: $current_level[0] + 4,
-                height: $current_level[1] + 4,
-                scale: sc
-            });*/
-            for (i = 0; i < $current_level[2]; i++) {
-                for (j = 0; j < $current_level[3]; j++) {
+            $start_i = ((sx < 0) ? Math.floor(-sx / (256 * sc)) : 0);
+            $end_i = Math.min(Math.ceil(($canvas_w - sx) / (256 * sc)), $current_level[2]);
+            $start_j = ((sy < 0) ? Math.floor(-sy / (256 * sc)) : 0);
+            $end_j = Math.min(Math.ceil(($canvas_h - sy) / (256 * sc)), $current_level[3]);
+
+            console.log("Tiles on screen: " + (($end_i - $start_i) * ($end_j - $start_j)));
+
+            for (i = $start_i; i < $end_i; i++) {
+                for (j = $start_j; j < $end_j; j++) {
                     //console.log((sx + (i * 256 * sc)) + ", " + (sy + (j * 256 * sc)));
                     $t_name = "tile_" + i + "_" + j;
                     //console.log($t_name);
@@ -111,20 +118,23 @@
                 }
             }
             $canvas.drawLayers('tiles');
+            /*
+            $canvas.drawText({
+                fillStyle: '#000',
+                strokeStyle: '#fff',
+                strokeWidth: 0,
+                x: 0, y: 0,
+                fontSize: 32,
+                fontFamily: 'Verdana, sans-serif',
+                text: $current_label
+            });
+            */
         };
 
         // Draw first image
         $DrawImage($draw_x, $draw_y, $scale);
 
-        $canvas.drawText({
-            fillStyle: '#000',
-            strokeStyle: '#fff',
-            strokeWidth: 0,
-            x: 0, y: 0,
-            fontSize: 32,
-            fontFamily: 'Verdana, sans-serif',
-            text: $current_label
-        });
+
 
         $canvas.bind('panstart', function (ev) {
             $pan_start_x = ev.gesture.center.x;
@@ -174,6 +184,26 @@
             $.jCanvas.defaults.fromCenter = false;
         };
 
+        $DecreaseLevel = function() {
+            $l = parseInt($current_label.split("_")[1]);
+            console.log($l);
+            $l -= 1;
+            if($l < 0) {
+                $l = 0;
+            }
+            $current_label = "level_" + $l;
+            console.log($current_label);
+            $current_level = $dimensions[$current_label];
+
+            $current_dims = $.parseJSON($.ajax({
+                url: $location + "/" + $current_label + "/dim.json",
+                dataType: "json",
+                async: false
+            }).responseText);
+
+            $.jCanvas.defaults.fromCenter = false;
+        };
+
         $canvas.bind('pinchstart', function(ev) {
             console.log("Pinch started at (" + ev.gesture.center.x + ", " + ev.gesture.center.y + ")");
             $pinch_start = ev.gesture.center;
@@ -190,14 +220,22 @@
             $scale = $scale * $new_scale;
 
             if($scale > 2) { // Time to go to next level
-                $act_x = ($scale * ($draw_x - ($draw_x + (0.5 * $current_level[0])))) + ($draw_x + (0.5 * $current_level[0]));
-                $draw_x = $act_x;
-                $act_y = ($scale * ($draw_y - ($draw_y + (0.5 * $current_level[1])))) + ($draw_y + (0.5 * $current_level[1]));
-                $draw_y = $act_y;
+                $draw_x = ($scale * ($draw_x - ($draw_x + (0.5 * $current_level[0])))) + ($draw_x + (0.5 * $current_level[0]));
+                $draw_y = ($scale * ($draw_y - ($draw_y + (0.5 * $current_level[1])))) + ($draw_y + (0.5 * $current_level[1]));
 
                 console.log("going up a level");
                 $pinch_start = ev.gesture.center;
                 $IncreaseLevel();
+                $scale = 1;
+            }
+
+            if($scale < 0.5) {
+                $draw_x = ($scale * ($draw_x - ($draw_x + (0.5 * $current_level[0])))) + ($draw_x + (0.5 * $current_level[0]));
+                $draw_y = ($scale * ($draw_y - ($draw_y + (0.5 * $current_level[1])))) + ($draw_y + (0.5 * $current_level[1]));
+
+                console.log("going down a level");
+                $pinch_start = ev.gesture.center;
+                $DecreaseLevel();
                 $scale = 1;
             }
 
@@ -206,8 +244,8 @@
             $x_t = ($new_scale * ($x_t - ev.gesture.center.x)) + ev.gesture.center.x;
             $y_t = ($new_scale * ($y_t - ev.gesture.center.y)) + ev.gesture.center.y;
 
-            $x_t = $draw_x + ev.gesture.center.x - $pinch_start.x;
-            $y_t = $draw_y + ev.gesture.center.y - $pinch_start.y;
+            //$x_t = $draw_x + ev.gesture.center.x - $pinch_start.x;
+            //$y_t = $draw_y + ev.gesture.center.y - $pinch_start.y;
 
             //console.log($x_t);
             $DrawImage($x_t, $y_t, $scale);
@@ -217,14 +255,15 @@
         $canvas.bind('pinchend', function(ev) {
             //$scale = $scale * ev.gesture.scale;
             console.log("Pinch ended at (" + ev.gesture.center.x + ", " + ev.gesture.center.y + ")");
-            $draw_x += ev.gesture.center.x - $pinch_start.x;
-            $draw_y += ev.gesture.center.y - $pinch_start.y;
+            $draw_x = $x_t; //+= ev.gesture.center.x - $pinch_start.x;
+            $draw_y = $y_t; //+= ev.gesture.center.y - $pinch_start.y;
             $act_x = ($scale * ($draw_x - ($draw_x + (0.5 * $current_level[0])))) + ($draw_x + (0.5 * $current_level[0]));
             $act_y = ($scale * ($draw_y - ($draw_y + (0.5 * $current_level[1])))) + ($draw_y + (0.5 * $current_level[1]));
             $pinch_start = null;
             $prev_pinch = null;
             //$DrawImage($draw_x, $draw_y, $scale);
             //console.log("(" + $draw_x + ", " + $draw_y + "), at scale factor " + $scale);
+            /*
             $canvas.drawEllipse({
                 fillStyle: '#000',
                 width: 20, height: 20,
@@ -238,6 +277,23 @@
                 x: $draw_x - 10,
                 y: $draw_y - 10
             });
+            */
         });
+        //TODO This is the area of interest right now
+        $add_button.on('tap', function() {
+            console.log("add button pressed");
+            //$('#toolbar_1').hide();
+            $('#toolbar_2').show();
+        });
+
+        $cancel_button.on('tap', function() {
+            console.log("annotation canceled");
+            $('#toolbar_2').hide();
+            //$('#toolbar_1').show();
+        });
+
+        $finish_button.on('tap', function() {
+            console.log("Finish button pressed");
+        })
     })
 </script>
