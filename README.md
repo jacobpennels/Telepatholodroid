@@ -20,7 +20,7 @@ A Web-App optimised for Android Devices for virtual-slide Telepathology
   <code>pip3 install openslide-python</code><br>
   pdfkit<br>
   <code>pip3 install pdfkit</code>
-  <code>sudo apt-get install whtmltopdf</code>
+  <code>sudo apt-get install wkhtmltopdf</code>
   And finally Pillow<br>
   <code>pip3 install pillow</code><br>
   </p>
