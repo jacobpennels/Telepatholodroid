@@ -2,9 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88584f91-11ee-4451-aecc-5b4c8c893e17" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/spectrum.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/javascript/spectrum.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/database.db" afterPath="$PROJECT_DIR$/app/database.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/__init__.py" afterPath="$PROJECT_DIR$/app/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/database_connector.py" afterPath="$PROJECT_DIR$/app/database_connector.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/forms.py" afterPath="$PROJECT_DIR$/app/forms.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/schema.sql" afterPath="$PROJECT_DIR$/app/schema.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/layout.html" afterPath="$PROJECT_DIR$/app/templates/layout.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/viewimg.html" afterPath="$PROJECT_DIR$/app/templates/viewimg.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/viewscript.html" afterPath="$PROJECT_DIR$/app/templates/viewscript.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,7 +26,7 @@
     <SUITE FILE_PATH="coverage/Telepatholodroid$Unittests_in_unit_tester_py__1_.coverage" NAME="Unittests in unit_tester.py (1) Coverage Results" MODIFIED="1509106057686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
     <SUITE FILE_PATH="coverage/Telepatholodroid$Unittests_in_unit_tester_py.coverage" NAME="Unittests in unit_tester.py Coverage Results" MODIFIED="1509105903271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
     <SUITE FILE_PATH="coverage/Telepatholodroid$Unittests_for_unit_tester_DatabaseTest_test_execute.coverage" NAME="Unittests for unit_tester.DatabaseTest.test_execute Coverage Results" MODIFIED="1509038295188" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
-    <SUITE FILE_PATH="coverage/Telepatholodroid$skeleton.coverage" NAME="skeleton Coverage Results" MODIFIED="1515501760626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Telepatholodroid$skeleton.coverage" NAME="skeleton Coverage Results" MODIFIED="1515686185820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Telepatholodroid$test.coverage" NAME="test Coverage Results" MODIFIED="1507827356917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Telepatholodroid$test_image_loader.coverage" NAME="test_image_loader Coverage Results" MODIFIED="1511463152259" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/static/uploads" />
     <SUITE FILE_PATH="coverage/Telepatholodroid$generate_countries.coverage" NAME="generate_countries Coverage Results" MODIFIED="1509371765518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
@@ -39,8 +48,8 @@
       <file leaf-file-name="viewscript.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/templates/viewscript.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="285" column="35" lean-forward="true" selection-start-line="285" selection-start-column="35" selection-end-line="285" selection-end-column="35" />
+            <state relative-caret-position="84">
+              <caret line="390" column="16" lean-forward="false" selection-start-line="390" selection-start-column="16" selection-end-line="390" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -49,11 +58,68 @@
       <file leaf-file-name="viewimg.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/viewimg.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="16" lean-forward="false" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+            <state relative-caret-position="386">
+              <caret line="39" column="30" lean-forward="false" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="602">
+              <caret line="312" column="26" lean-forward="false" selection-start-line="312" selection-start-column="26" selection-end-line="312" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="720">
+              <caret line="53" column="11" lean-forward="false" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="database_connector.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/database_connector.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-10">
+              <caret line="134" column="31" lean-forward="true" selection-start-line="134" selection-start-column="31" selection-end-line="134" selection-end-column="31" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <marker date="1515684869284" expanded="true" signature="1148:1178" ph="select * fro... users" />
+                <marker date="1515684869284" expanded="true" signature="1310:1343" ph="select * fro... users" />
+                <marker date="1515684869284" expanded="true" signature="1530:1570" ph="select passw... users" />
+                <marker date="1515684869284" expanded="true" signature="1868:1924" ph="insert into users... " />
+                <marker date="1515684869284" expanded="true" signature="2296:2370" ph="select * fro... slides" />
+                <marker date="1515684869284" expanded="true" signature="2429:2480" ph="select slide... user_to_slides" />
+                <marker date="1515684869284" expanded="true" signature="3752:3805" ph="UPDATE users... " />
+                <marker date="1515684869284" expanded="true" signature="3913:3952" ph="UPDATE users... " />
+                <marker date="1515684869284" expanded="true" signature="4040:4077" ph="UPDATE users... " />
+                <marker date="1515684869284" expanded="true" signature="4163:4198" ph="UPDATE users... " />
+                <marker date="1515684869284" expanded="true" signature="4385:4422" ph="select passw... users" />
+                <marker date="1515684869284" expanded="true" signature="4578:4616" ph="UPDATE users... " />
+                <marker date="1515684869284" expanded="true" signature="5176:5199" ph="select name slides" />
+                <marker date="1515684869284" expanded="true" signature="6053:6112" ph="INSERT INTO slides... " />
+                <marker date="1515684869284" expanded="true" signature="6536:6582" ph="DELETE FROM " />
+                <marker date="1515684869284" expanded="true" signature="6669:6702" ph="SELECT * FRO... slides" />
+                <marker date="1515684869284" expanded="true" signature="7030:7084" ph="INSERT INTO annotations... " />
+                <marker date="1515684869284" expanded="true" signature="7288:7330" ph="SELECT * FRO... annotations" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1160">
+              <caret line="86" column="28" lean-forward="true" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -122,24 +188,24 @@
         <option value="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.css" />
         <option value="$PROJECT_DIR$/app/static/javascript/jquery-ui-1.12.1.custom/jquery-ui.css" />
         <option value="$PROJECT_DIR$/app/templates/home.html" />
-        <option value="$PROJECT_DIR$/app/forms.py" />
         <option value="$PROJECT_DIR$/app/templates/uploadimage.html" />
-        <option value="$PROJECT_DIR$/app/schema.sql" />
         <option value="$PROJECT_DIR$/app/populate_database.sql" />
         <option value="$PROJECT_DIR$/app/SlideInfo.py" />
         <option value="$PROJECT_DIR$/app/templates/uploadscript.html" />
         <option value="$PROJECT_DIR$/app/templates/bottomsheet.html" />
         <option value="$PROJECT_DIR$/app/templates/homescript.html" />
-        <option value="$PROJECT_DIR$/app/database_connector.py" />
         <option value="$PROJECT_DIR$/app/templates/reviewimg.html" />
         <option value="$PROJECT_DIR$/app/static/javascript/PreventGhostClick.js" />
-        <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/app/static/uploads/test_image_loader.py" />
         <option value="$PROJECT_DIR$/app/static/javascript/touch-emulator.js" />
-        <option value="$PROJECT_DIR$/app/templates/layout.html" />
-        <option value="$PROJECT_DIR$/app/__init__.py" />
         <option value="$PROJECT_DIR$/app/static/css/style.css" />
+        <option value="$PROJECT_DIR$/app/__init__.py" />
+        <option value="$PROJECT_DIR$/app/database_connector.py" />
+        <option value="$PROJECT_DIR$/app/schema.sql" />
         <option value="$PROJECT_DIR$/app/templates/viewimg.html" />
+        <option value="$PROJECT_DIR$/app/forms.py" />
+        <option value="$PROJECT_DIR$/app/templates/layout.html" />
+        <option value="$PROJECT_DIR$/app/views.py" />
         <option value="$PROJECT_DIR$/app/templates/viewscript.html" />
       </list>
     </option>
@@ -171,7 +237,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -188,13 +254,26 @@
               <item name="Telepatholodroid" type="b2602c69:ProjectViewProjectNode" />
               <item name="Telepatholodroid" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Telepatholodroid" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Telepatholodroid" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="javascript" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Telepatholodroid" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Telepatholodroid" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -471,7 +550,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512597612772</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Finished image panning and zooming, begun annotation groundworks">
+      <created>1515511554637</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1515511554637</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -512,15 +598,15 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13261455" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20245399" sideWeight="0.57196766" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20245399" sideWeight="0.5784367" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08384458" sideWeight="0.49380055" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20245399" sideWeight="0.42803234" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20245399" sideWeight="0.42156336" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.398773" sideWeight="0.49791667" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.398773" sideWeight="0.49595687" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -555,36 +641,14 @@
     <MESSAGE value="Image uploading works entirely now, create the correct hierarchy for the tiles created" />
     <MESSAGE value="Users can now open an image and pan about it, next is to implement zooming" />
     <MESSAGE value="Made changes to pan and zoom, can now tile on zoom in" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made changes to pan and zoom, can now tile on zoom in" />
+    <MESSAGE value="Finished image panning and zooming, begun annotation groundworks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished image panning and zooming, begun annotation groundworks" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/templates/uploadimage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="42" column="99" lean-forward="false" selection-start-line="42" selection-start-column="99" selection-end-line="42" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="81" column="27" lean-forward="false" selection-start-line="81" selection-start-column="27" selection-end-line="81" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/uploads/a9ef6e8bab/thumb.jpg" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/uploads/test/thumb.png" />
     <entry file="file://$PROJECT_DIR$/app/static/uploads/test/level_0/tile_0_0.png" />
     <entry file="file://$PROJECT_DIR$/app/static/uploads/test/level_1/tile_0_0.png" />
     <entry file="file://$PROJECT_DIR$/app/static/uploads/test/level_2/tile_0_0.png" />
@@ -606,13 +670,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="47" lean-forward="false" selection-start-line="0" selection-start-column="47" selection-end-line="0" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/schema.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="259" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -679,20 +736,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/static/uploads/4d48a1cc50/thumb.png" />
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="34" column="9" lean-forward="false" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database_connector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/javascript/touch-emulator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5904">
@@ -707,21 +750,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="110" column="46" lean-forward="false" selection-start-line="110" selection-start-column="46" selection-end-line="110" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="12" column="135" lean-forward="false" selection-start-line="12" selection-start-column="135" selection-end-line="12" selection-end-column="135" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/uploads/8b9d429d2e/level_0/dim.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -733,7 +761,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -741,7 +768,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -749,7 +775,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -757,15 +782,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="620">
           <caret line="40" column="1" lean-forward="false" selection-start-line="40" selection-start-column="1" selection-end-line="40" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-222">
-          <caret line="24" column="14" lean-forward="false" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -773,32 +789,135 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="16" column="242" lean-forward="false" selection-start-line="16" selection-start-column="242" selection-end-line="16" selection-end-column="242" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="24" column="14" lean-forward="false" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/panel.left.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-54">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/uploadimage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="42" column="99" lean-forward="false" selection-start-line="42" selection-start-column="99" selection-end-line="42" selection-end-column="99" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/generate_countries.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/accountsettings.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3888">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="558">
+          <caret line="166" column="23" lean-forward="true" selection-start-line="155" selection-start-column="20" selection-end-line="166" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/schema.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="127" lean-forward="false" selection-start-line="6" selection-start-column="127" selection-end-line="6" selection-end-column="127" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="602">
+          <caret line="312" column="26" lean-forward="false" selection-start-line="312" selection-start-column="26" selection-end-line="312" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="34" column="68" lean-forward="false" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1160">
+          <caret line="86" column="28" lean-forward="true" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database_connector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-10">
+          <caret line="134" column="31" lean-forward="true" selection-start-line="134" selection-start-column="31" selection-end-line="134" selection-end-column="31" />
+          <folding>
+            <marker date="1515684869284" expanded="true" signature="1148:1178" ph="select * fro... users" />
+            <marker date="1515684869284" expanded="true" signature="1310:1343" ph="select * fro... users" />
+            <marker date="1515684869284" expanded="true" signature="1530:1570" ph="select passw... users" />
+            <marker date="1515684869284" expanded="true" signature="1868:1924" ph="insert into users... " />
+            <marker date="1515684869284" expanded="true" signature="2296:2370" ph="select * fro... slides" />
+            <marker date="1515684869284" expanded="true" signature="2429:2480" ph="select slide... user_to_slides" />
+            <marker date="1515684869284" expanded="true" signature="3752:3805" ph="UPDATE users... " />
+            <marker date="1515684869284" expanded="true" signature="3913:3952" ph="UPDATE users... " />
+            <marker date="1515684869284" expanded="true" signature="4040:4077" ph="UPDATE users... " />
+            <marker date="1515684869284" expanded="true" signature="4163:4198" ph="UPDATE users... " />
+            <marker date="1515684869284" expanded="true" signature="4385:4422" ph="select passw... users" />
+            <marker date="1515684869284" expanded="true" signature="4578:4616" ph="UPDATE users... " />
+            <marker date="1515684869284" expanded="true" signature="5176:5199" ph="select name slides" />
+            <marker date="1515684869284" expanded="true" signature="6053:6112" ph="INSERT INTO slides... " />
+            <marker date="1515684869284" expanded="true" signature="6536:6582" ph="DELETE FROM " />
+            <marker date="1515684869284" expanded="true" signature="6669:6702" ph="SELECT * FRO... slides" />
+            <marker date="1515684869284" expanded="true" signature="7030:7084" ph="INSERT INTO annotations... " />
+            <marker date="1515684869284" expanded="true" signature="7288:7330" ph="SELECT * FRO... annotations" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="53" column="11" lean-forward="false" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/viewimg.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="16" lean-forward="false" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="386">
+          <caret line="39" column="30" lean-forward="false" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/viewscript.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="285" column="35" lean-forward="true" selection-start-line="285" selection-start-column="35" selection-end-line="285" selection-end-column="35" />
+        <state relative-caret-position="84">
+          <caret line="390" column="16" lean-forward="false" selection-start-line="390" selection-start-column="16" selection-end-line="390" selection-end-column="16" />
           <folding />
         </state>
       </provider>

@@ -156,3 +156,17 @@ class DatabaseConnector:
     def get_slide_data(self, name):
         return self.execute_query('SELECT * FROM slides WHERE name=?', name)[0] # Should be only one result
 
+    def add_new_annotation(self, data, user_id):
+        temp = [] # Turn the points into a list of points
+        for a in data['points']:
+            for b in a:
+                temp.append(str(b))
+
+        points = ",".join(temp)
+        print(points)
+        self.execute_statement('INSERT INTO annotations VALUES(?, ?, ?, ?, ?, ?, NULL)', data['name'], data['anno_description'], data['colour'], points, user_id, data['slide_id'])
+        return {"success": True}
+
+    def get_annotations(self, slide_id):
+        return self.execute_query('SELECT * FROM annotations WHERE slide_id=?', slide_id)
+

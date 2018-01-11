@@ -295,3 +295,19 @@ def accept_upload():
                 # print("Failed option 2")
 
     return redirect(url_for('home'))
+
+
+@app.route('/save_annotation', methods=['POST'])
+@login_required
+def save_annotation():
+    data = request.get_json()
+    print("name: " + str(data['name']) + ", description: " + str(data['anno_description']))
+    user_id = None
+    if(current_user.is_authenticated):
+        user_id = current_user.user_id
+
+    db_lock.acquire()
+    success = db.add_new_annotation(data, user_id)
+    db_lock.release()
+
+    return jsonify(success)

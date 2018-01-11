@@ -3,6 +3,13 @@
         $location = "{{ l }}";
         //console.log($location);
         $dimensions = $.parseJSON({{ d | tojson | safe  }});
+        $annotations = {{ anno | safe  }};
+        $.each($annotations, function() {
+            console.log(this[0]);
+            $.each(this[3], function() {
+                console.log(this)
+            });
+        });
         $tile_info = null;
         $count = 0;
         $.each($dimensions, function () {
@@ -26,7 +33,21 @@
         $h = 0;
         $w = 0;
 
+        $('#colour').spectrum({ // Set up colour picker
+            flat: true,
+            showInput: true,
+            showButtons: false,
+            preferredFormat: "hex",
+            showInput: false,
+            palette: [["red", "rgba(0, 255, 0, .5)", "rgb(0, 0, 255)"]]
+        });
+
         $current_dims = null;
+
+        $annotation_drawing = false;
+        $annotation_points = [];
+        $annotation_show = false;
+        $submitting_form = false;
 
         $toolBar = $('#toolbar');
         console.log("Toolbar height: " + $toolBar.height());
@@ -35,9 +56,8 @@
         $add_button = $('#add_button');
         $remove_button = $('#remove_button');
         $back_button = $('#back_button');
-        $finish_button = $('#finish_button');
-        $cancel_button = $('#cancel_button');
-
+        $view_button = $('#show_annotations');
+        $anno_form = $('#new_annotation');
 
         $canvas = $canvas.hammer({
             recognizers: [
@@ -45,12 +65,12 @@
                 [Hammer.Pinch, {enable: true}]
             ]
         });
-        $canvas_h = window.innerHeight;
+        $canvas_h = window.innerHeight - $toolBar.height() - 5; //* 0.9;
         $canvas_w = window.outerWidth;
         console.log("Canvas size: " + $canvas_h + ", " + $canvas_w);
         $canvas.attr('width', $canvas_w);
         $canvas.attr('height', $canvas_h);
-        $toolBar.attr('height', 0.2 * window.innerHeight);
+        //$toolBar.attr('height', 0.1 * window.innerHeight);
         $toolBar.attr('width', window.outerWidth);
         $.jCanvas.defaults.fromCenter = false;
 
@@ -81,6 +101,50 @@
         $act_x = $draw_x; // These variables contain the actual origin of the image
         $act_y = $draw_y;
         $scale = 1; // Initial scale of image
+
+        $DrawAnnotation = function(ann, sx, sy, sc) {
+            if($annotation_drawing || $submitting_form) {
+                $obj = {
+                    strokeStyle: '#000',
+                    strokeWidth: 5,
+                    rounded: true,
+                    closed: true
+                };
+
+                $.each(ann, function (i) {
+                    console.log("Point " + this[0] + ", " + this[1]);
+                    $canvas.drawEllipse({
+                        fillStyle: '#000',
+                        width: 10, height: 10,
+                        x: this[0] - 5,
+                        y: this[1] - 5
+                    });
+                    $obj['x' + (i + 1)] = this[0];
+                    $obj['y' + (i + 1)] = this[1];
+                });
+                console.log($obj);
+                $canvas.drawLine($obj);
+            }
+
+            if($annotation_show) {
+                //console.log("SHOWING ANNOTATIONS");
+                $.each($annotations, function() {
+                    $obj_temp = {
+                        strokeStyle: this[2],
+                        strokeWidth: 5,
+                        rounded: true,
+                        closed: true
+                    };
+
+                    $.each(this[3], function(i) {
+                        $obj_temp['x' + (i + 1)] = (this[0] * sc * $current_level[0]) + sx;
+                        $obj_temp['y' + (i + 1)] = (this[1] * sc * $current_level[1]) + sy;
+                    });
+                    //console.log($obj_temp);
+                    $canvas.drawLine($obj_temp);
+                })
+            }
+        };
 
         $DrawImage = function(sx, sy, sc, sc_x, sc_y) {
             $canvas.removeLayerGroup('tiles');
@@ -118,6 +182,7 @@
                 }
             }
             $canvas.drawLayers('tiles');
+            $DrawAnnotation($annotation_points, sx, sy, sc);
             /*
             $canvas.drawText({
                 fillStyle: '#000',
@@ -137,6 +202,8 @@
 
 
         $canvas.bind('panstart', function (ev) {
+            if($annotation_drawing)
+                return;
             $pan_start_x = ev.gesture.center.x;
             $pan_start_y = ev.gesture.center.y;
             //console.log("Pan starting at " + $pan_start_x + ", " + $pan_start_y);
@@ -145,6 +212,8 @@
         });
 
         $canvas.bind('panmove', function(ev) {
+            if($annotation_drawing)
+                return;
             $diff_x = ev.gesture.center.x - $pan_start_x;
             $diff_y = ev.gesture.center.y - $pan_start_y;
             //console.log($diff_x + ", " + $diff_y);
@@ -153,6 +222,8 @@
         });
 
         $canvas.bind('panend', function(ev) {
+            if($annotation_drawing)
+                return;
             //console.log("pan ended");
             $pan_start_x = null;
             $pan_start_y = null;
@@ -205,6 +276,8 @@
         };
 
         $canvas.bind('pinchstart', function(ev) {
+            if($annotation_drawing)
+                return;
             console.log("Pinch started at (" + ev.gesture.center.x + ", " + ev.gesture.center.y + ")");
             $pinch_start = ev.gesture.center;
             $prev_pinch = ev;
@@ -213,6 +286,8 @@
         });
 
         $canvas.bind('pinchmove', function(ev) {
+            if($annotation_drawing)
+                return;
             //console.log("Pinching");
             //console.log("Scale is " + ev.gesture.scale);
             //console.log(ev.gesture.scale);
@@ -253,6 +328,8 @@
         });
 
         $canvas.bind('pinchend', function(ev) {
+            if($annotation_drawing)
+                return;
             //$scale = $scale * ev.gesture.scale;
             console.log("Pinch ended at (" + ev.gesture.center.x + ", " + ev.gesture.center.y + ")");
             $draw_x = $x_t; //+= ev.gesture.center.x - $pinch_start.x;
@@ -279,21 +356,89 @@
             });
             */
         });
+
+        $canvas.bind('tap', function(ev) {
+            if($annotation_drawing) {
+                console.log("tap at: " + ev.clientX + ", " + ev.clientY);
+                /*
+                $canvas.drawEllipse({
+                    fillStyle: '#000',
+                    width: 20, height: 20,
+                    x: ev.clientX - 10,
+                    y: ev.clientY - 10
+                });
+                */
+                $annotation_points.push([ev.clientX, ev.clientY]);
+                $DrawImage($draw_x, $draw_y, $scale);
+            }
+        });
+
         //TODO This is the area of interest right now
-        $add_button.on('tap', function() {
-            console.log("add button pressed");
-            //$('#toolbar_1').hide();
-            $('#toolbar_2').show();
+        $add_button.on('tap', function(e) {
+            //console.log("add button pressed");
+            $annotation_drawing = !$annotation_drawing;
+            if($annotation_drawing) {
+                e.preventDefault();
+                $annotation_points = [];
+                //console.log("Beginning drawing");
+                $add_button.empty();
+                $add_button.append("<i class='zmdi zmdi-check'></i> finish");
+                $submitting_form = false;
+            } else {
+                //console.log("Ending drawing");
+                if($annotation_points.length == 0)
+                    e.preventDefault();
+
+                $add_button.empty();
+                $add_button.append("<i class='zmdi zmdi-plus'></i> add");
+                $submitting_form = true;
+            }
+            $DrawImage($draw_x, $draw_y, $scale);
+            //console.log($add_button);
         });
 
-        $cancel_button.on('tap', function() {
-            console.log("annotation canceled");
-            $('#toolbar_2').hide();
-            //$('#toolbar_1').show();
+        $anno_form.on('submit', function(ev) {
+            ev.preventDefault();
+            console.log("Form submitted");
+            $DrawImage($draw_x, $draw_y, $scale);
+            //console.log($annotation_points);
+            $scaled_points = [];
+            $.each($annotation_points, function(i) {
+                // If have points of annotation as proportion of image size, makes drawing it at any size easy
+                this[0] = (this[0] - $draw_x) / ($current_level[0] * $scale);
+                this[1] = (this[1] - $draw_y) / ($current_level[1] * $scale);
+            });
+            $info = {"name": $('#name').val(), "anno_description": $('#anno_description').val(), "colour": $('#colour').val(), "points": $annotation_points, "slide_id": "{{ id }}"};
+            $new_annotation = [$info["name"], $info["anno_description"], $info["colour"], $annotation_points];
+            $annotations.push($new_annotation);
+            console.log($info);
+            $.ajax({url: "{{ url_for('save_annotation') }}",
+                type: 'post',
+                data: JSON.stringify($info),
+                contentType: "application/json; charset=utf-8"
+            });
+            $('#name').val("");
+            $('#anno_description').val("");
+            $annotation_points = [];
+            $DrawImage($draw_x, $draw_y, $scale);
+            $submitting_form = false;
         });
 
-        $finish_button.on('tap', function() {
-            console.log("Finish button pressed");
+        $view_button.on('tap', function(ev) {
+            $annotation_show = !$annotation_show;
+            if($annotation_show) {
+                $view_button.empty();
+                $view_button.append("<i class='zmdi zmdi-eye-off'></i> hide annotations");
+            } else {
+                $view_button.empty();
+                $view_button.append("<i class='zmdi zmdi-eye'></i> show annotations");
+            }
+            $DrawImage($draw_x, $draw_y, $scale);
+        });
+
+        $back_button.on('tap', function(ev) {
+            e.preventDefault();
+            history.go(-1);
         })
     })
 </script>

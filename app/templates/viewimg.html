@@ -2,38 +2,50 @@
 {% block title %}Image View{% endblock %}
 
 {% block body %}
-    <div data-role="page" data-url="{{ url_for('viewimg', imgid=imgid) }}">
+    <div data-role="page" data-url="{{ url_for('viewimg', imgid=imgid) }}" class="nd2-no-menu-swipe">
         <div role="main" data-inset="false">
             <canvas id="s_canvas"></canvas>
+            <div id="toolbar" class="row center-xs">
+                <div class="col-xs-3">
+                    <div class="box">
+                        <a id="back_button" href="#" class="ui-btn ui-btn-raised clr-primary nd2-btn-icon-block"><i class='zmdi zmdi-long-arrow-left'></i> back</a>
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="box">
+                        <a id="add_button" href="#bottomsheetoptions" class="ui-btn ui-btn-raised clr-primary nd2-btn-icon-block"><i class='zmdi zmdi-plus'></i> add</a>
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="box">
+                        <a id="remove_button" href="#" class="ui-btn ui-btn-raised clr-primary nd2-btn-icon-block"><i class='zmdi zmdi-minus'></i> delete</a>
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="box">
+                        <a id="show_annotations" href="#" class="ui-btn ui-btn-raised clr-primary nd2-btn-icon-block"><i class="zmdi zmdi-eye"></i> show annotations</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div data-role="footer" data-position="fixed" id="toolbar" >
-            <div id="toolbar_2" class="row center-xs" style="display: none">
-                <div id="finish_button" class="col-xs-6"><div class="box"><a href="#" class="ui-btn ui-mini nd2-btn-icon-block"><i class='zmdi zmdi-check'></i> finish</a></div></div>
-                <div id="cancel_button" class="col-xs-6"><div class="box"><a href="#" class="ui-btn ui-mini nd2-btn-icon-block"><i class='zmdi zmdi-block-alt'></i> cancel</a></div></div>
-            </div>
-            <div id="toolbar_1" class="row center-xs">
-                <div id="back_button" class="col-xs-4">
-                    <div class="box">
-                        <a href="#" class="ui-btn ui-mini nd2-btn-icon-block"><i class='zmdi zmdi-long-arrow-left'></i> back</a>
-                    </div>
-                </div>
-                <div id="add_button" class="col-xs-4">
-                    <div class="box">
-                        <a href="#" class="ui-btn ui-mini nd2-btn-icon-block"><i class='zmdi zmdi-plus'></i> add</a>
-                    </div>
-                </div>
-                <div id="remove_button" class="col-xs-4">
-                    <div class="box">
-                        <a href="#" class="ui-btn ui-mini nd2-btn-icon-block"><i class='zmdi zmdi-minus'></i> delete</a>
-                    </div>
-                </div>
-            </div>
+
+        <div data-role="panel" id="bottomsheetoptions" data-position-fixed="true" data-display="overlay">
+            <h3>Save annotation</h3>
+            <form method="post" action="{{ url_for('save_annotation') }}" id="new_annotation">
+                {{ form.name.label }}
+                {{ form.name }}
+                {{ form.anno_description.label }}
+                {{ form.anno_description }}
+                {{ form.colour.label }}
+                {{ form.colour }}
+                <input type="submit" value="SAVE" data-rel="close">
+            </form>
         </div>
     </div>
 {% endblock %}
 
 {% block script_section %}
-    {% with l=loc, d=dimensions %}
+    {% with l=loc, d=dimensions, id=imgid, anno=anno %}
     {% include 'viewscript.html' %}
     {% endwith %}
 {%  endblock %}

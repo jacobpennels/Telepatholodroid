@@ -90,3 +90,11 @@ class UploadForm(RedirectForm):
     type = SelectField(u'Cancer type', choices=[('oral', 'Oral'), ('stomach', 'Stomach'), ('chest', 'Chest')],
                        validators=[validators.DataRequired()], render_kw={'data-native-menu': 'false'})
     u_file = FileField(u'File', render_kw={'data-role': 'none'})
+
+class AnnotationForm(RedirectForm):
+    name = StringField(u'Annotation name', validators=[validators.DataRequired(), validators.length(max=50)],
+                       render_kw={'data-clear-btn': 'true', 'placeholder':'...'})
+    anno_description = TextAreaField(u'Annotation description', validators=[validators.DataRequired()],
+                                render_kw={'data-clear-btn': 'true', 'placeholder': '...', 'rows': 5})
+    colour = StringField(u'Annotation colour', validators=[validators.DataRequired(), validators.length(max=50)],
+                         render_kw={'data-clear-btn': 'true', 'placeholder':'...'})

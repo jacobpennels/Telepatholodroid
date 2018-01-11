@@ -24,18 +24,44 @@ def home():
 @app.route('/viewimg/<imgid>')
 @login_required
 def viewimg(imgid=None):
+    annotation_form = forms.AnnotationForm()
     if(imgid == None):
         return redirect('home')
     db_lock.acquire()
     data = db.get_slide_data(imgid)[1] # Get location of file
+    anno = db.get_annotations(imgid)
     db_lock.release()
+    annotations = []
+    for v in anno:
+        temp = []
+        for a in v:
+            temp.append(a)
+        annotations.append(temp)
+
+    for a in annotations:
+        points = a[3]
+        p_array = []
+
+        temp = []
+        print(points.split(","))
+        for p in points.split(","):
+            if(len(temp) < 2):
+                temp.append(float(p))
+            else:
+                p_array.append(temp)
+                temp = [float(p)]
+        p_array.append(temp)
+        a[3] = p_array
+
+    print(annotations)
+
     dimensions = ""
     with open(os.path.abspath('app/static/uploads/' + data + '/dimensions.json'), 'r') as f:
         dimensions = f.readline()
         #dimensions = json.dumps(dimensions)
         print(dimensions)
 
-    return render_template('viewimg.html', imgid=imgid, loc=str(url_for('static', filename="uploads") + "/" + data), dimensions=dimensions)
+    return render_template('viewimg.html', imgid=imgid, loc=str(url_for('static', filename="uploads") + "/" + data), dimensions=dimensions, form = annotation_form, anno=json.dumps(annotations))
 
 @app.route('/accountsettings')
 @login_required
