@@ -156,6 +156,9 @@ class DatabaseConnector:
     def get_slide_data(self, name):
         return self.execute_query('SELECT * FROM slides WHERE name=?', name)[0] # Should be only one result
 
+    def get_slide_data_by_id(self, slide_id):
+        return self.execute_query('SELECT * FROM slides WHERE id=?', slide_id)[0]
+
     def add_new_annotation(self, data, user_id):
         temp = [] # Turn the points into a list of points
         for a in data['points']:

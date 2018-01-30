@@ -12,7 +12,7 @@ from openslide import deepzoom
 from PIL import Image, ImageDraw
 from json import dumps
 
-from app import database_connector, SlideInfo
+from app import database_connector, SlideInfo, GenerateReport
 
 global app
 global login_manager
@@ -24,10 +24,11 @@ global upload_folder
 global allowed_extensions
 global s_queue
 global image_handler
+global gp
 
 
 def init_app():
-    global login_manager, running, db, upload_folder, allowed_extensions, s_queue, image_handler
+    global login_manager, running, db, upload_folder, allowed_extensions, s_queue, image_handler, gp
     s_queue = queue.Queue()
     running = True
     upload_folder = os.path.abspath('app/static/uploads')
@@ -44,6 +45,7 @@ def init_app():
 
     image_handler = ImageHandler()
     image_handler.start()
+    gp = GenerateReport.GenerateReport('app/static/temp')
 
     def interrupt():
         global running
@@ -311,3 +313,27 @@ def save_annotation():
     db_lock.release()
 
     return jsonify(success)
+
+@app.route('/generate_report', methods=['POST'])
+@login_required
+def generate_report():
+    global gp
+    data = request.get_json()
+    #print(data['slide_data'])
+    #print(data['anno_data'])
+    db_lock.acquire()
+    print("Slide id is " + str(data['slide_data'][-1]))
+    slide_info = db.get_slide_data_by_id(data['slide_data'][-1])
+    anno_info = db.get_annotations(data['slide_data'][0])
+    db_lock.release()
+    print(slide_info)
+    annotations = []
+    for a in anno_info:
+        if(a[-1] in data['anno_data']):
+            annotations.append(a)
+
+    print(annotations)
+
+    report = gp.create_and_save_report(str(slide_info[1]), slide_info, annotations)
+    return jsonify({"success": True, "location": report})
+

@@ -1,0 +1,39 @@
+<script>
+    $(document).ready(function() {
+        $data = {{ d | safe }};
+        $anno = {{ a | safe }}
+        console.log("Data is " + $data.length + " long");
+        $.each($data, function(i, v) {
+            console.log(i);
+            console.log(v);
+        });
+
+        $GetAnnotations = function() {
+            $result = [];
+            $('#annotation_data li select option:selected').each(function(i) {
+                //console.log(this.value);
+                if(this.value == "yes"){
+                    $result.push($anno[i][6]);
+                }
+                //console.log(this.find(":selected").text());
+            });
+            return $result;
+        };
+
+        $('#generate_report').on('tap', function(e) {
+            e.preventDefault();
+            $annotations = $GetAnnotations();
+            console.log($annotations);
+            $info = {"slide_data" : $data, "anno_data" : $annotations};
+            $.ajax({url: "{{ url_for('generate_report') }}",
+                    type: 'post',
+                    data: JSON.stringify($info),
+                    contentType: "application/json; charset=utf-8",
+                    async: false,
+                    success: function (result) {
+                        console.log(result);
+                    }
+            });
+        });
+    })
+</script>

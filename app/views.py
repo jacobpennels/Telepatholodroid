@@ -80,8 +80,10 @@ def uploadimage():
 def reviewimg(imgid=None):
     db_lock.acquire()
     data = db.get_slide_data(imgid)
+    anno = db.get_annotations(imgid)
     db_lock.release()
-    return render_template('reviewimg.html', data=data)
+    print(anno)
+    return render_template('reviewimg.html', data=data, data_j=json.dumps(data), anno=anno, anno_j=json.dumps(anno))
 
 
 
