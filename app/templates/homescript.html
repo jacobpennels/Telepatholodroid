@@ -10,15 +10,20 @@
         // -- End of global variables --
 
         // -- Sets up scrollable list --
-        const $window_height = $(window).height();
-        const $header_height = $('#page_header_1').height();
-        const $add_button_height = $('#add_new_slide').height();
-        const $body_height = ($window_height - $header_height - $add_button_height) - 48;
+        const $window_height = $(window).outerHeight();
+        const $header_height = $('#page_header_1').outerHeight();
+        const $add_button_height = $('#add_new_slide').outerHeight();
+        const $body_height = ($window_height - $header_height - $add_button_height);
         //console.log($window_height);
         //console.log($header_height);
         console.log($body_height);
         $('#slide_content').css({
             height: $body_height,
+            marginTop: '0'
+        });
+
+        $('#display_options').css({
+            height: $window_height - $header_height,
             marginTop: '0'
         });
         // --End of snippet --
@@ -97,7 +102,7 @@
             $grid_view.empty();
             if($view == 'list') {
                 $($Sort_list($Select_Edited($list))).each(function () {
-                    $listview.append("<li id='" + this.name + "'><a href='#bottomsheet_opt'><img src='" + this.location + "' class='ui-thumbnail ui-thumbnail-circular'><h2>" + this.name + "</h2><p>Tap for more info</p></a></li>");
+                    $listview.append("<li id='" + this.name + "'><a href='#bottomsheet_opt'" +  ((this.viewable == 0) ? "class='ui-state-disabled'" : "") + "><img src='" + this.location + "' class='ui-thumbnail ui-thumbnail-circular'><h2>" + this.name + "</h2><p>Tap for more info</p></a></li>");
                     $listview.listview('refresh');
                     //console.log(this.name);
                 });
@@ -105,7 +110,8 @@
                 //console.log("Grid view");
                 $listview.append('<div class="box"><div class="row"><div id="col1" class="col-xs-4"></div><div id="col2" class="col-xs-4"></div><div id="col3" class="col-xs-4"></div></div></div>');
                 $($Sort_list($Select_Edited($list))).each(function (i) {
-                    $element = '<li id="' + this.name + '"><a href="#bottomsheet_opt" class="ui-btn"><img src="' + this.location + '" class="ui-thumbnail ui-thumbnail-circular"><h4 style="margin: 0">' + this.name + '</h4></a></li>';
+                    //console.log(this.viewable);
+                    $element = '<li id="' + this.name + '"><a href="#bottomsheet_opt" class="ui-btn ' + ((this.viewable == 0) ? 'ui-state-disabled' : '') + '"><img src="' + this.location + '" class="ui-thumbnail ui-thumbnail-circular"><h4 style="margin: 0">' + this.name + '</h4></a></li>';
                     switch(i % 3) {
                         case 1:
                             $('#col2').append($element);
@@ -135,7 +141,7 @@
                     async: false,
                     success: function (result) {
                         $slide_list = result;
-                        //console.log(result);
+                        console.log(result);
                         $Draw_List(result);
                     }
             });
@@ -164,8 +170,8 @@
 
             $t = $object.date_uploaded.split(/[- :]/);
             $('#bs_dateuploaded').empty().append("Date uploaded: " + $t[2] + "-" + $t[1] + "-" + $t[0]);
-            $('#bs_link').attr('href', '{{ url_for("viewimg", imgid='') }}' + $object.name);
-            $('#bs_review').attr('href', '{{ url_for("reviewimg", imgid='') }}' + $object.name);
+            $('#bs_link').attr('href', '{{ url_for("viewimg", imgid='') }}' + $object.slide_id);
+            $('#bs_review').attr('href', '{{ url_for("reviewimg", imgid='') }}' + $object.slide_id);
             $('#bs_uploader').empty().append("Uploader: " + $object.uploader);
             $('#slide_thumbnail').attr('src', $object.location);
         });

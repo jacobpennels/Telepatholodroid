@@ -81,13 +81,9 @@ class UploadForm(RedirectForm):
                            render_kw={'data-clear-btn': 'true', 'placeholder':'...'})
     consultant = StringField(u'Consultant', validators=[validators.DataRequired(), validators.length(max=50)],
                              render_kw={'data-clear-btn': 'true', 'placeholder': '...'})
-    clinic_details = TextAreaField(u'Clinical details', validators=[validators.DataRequired()],
-                                   render_kw={'data-clear-btn': 'true', 'placeholder': '...', 'rows': 5})
-    prov_diag = StringField(u'Provisional diagnosis', validators=[validators.DataRequired()],
-                            render_kw={'data=clear-btn': 'true', 'placeholder': '...'})
     name = StringField(u'Slide name', validators=[validators.DataRequired(), validators.length(max=50)],
                        render_kw={'data-clear-btn': 'true', 'placeholder': '...'})
-    type = SelectField(u'Cancer type', choices=[('oral', 'Oral'), ('stomach', 'Stomach'), ('chest', 'Chest')],
+    type = SelectField(u'Cancer location', choices=[('oral', 'Oral'), ('stomach', 'Stomach'), ('chest', 'Chest')],
                        validators=[validators.DataRequired()], render_kw={'data-native-menu': 'false'})
     u_file = FileField(u'File', render_kw={'data-role': 'none'})
 

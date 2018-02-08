@@ -18,6 +18,13 @@ p {
     -webkit-overflow-scrolling: touch;
 }
 
+#display_options {
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
 .fileUpload {
     position: relative;
     overflow: hidden;

@@ -19,13 +19,35 @@
                         <li id="slide_category"><div class="row"><div class="col-xs-6">Category:</div> <div class="col-xs-6">{{ data[2] }}</div></div></li>
                         <li id="slide_casenum"><div class="row"><div class="col-xs-6">Case number:</div> <div class="col-xs-6">{{ data[3] }}</div></div></li>
                         <li id="slide_consultant"><div class="row"><div class="col-xs-6">Consultant:</div> <div class="col-xs-6">{{ data[4] }}</div></div></li>
-                        <li id="slide_clinical"><div class="row"><div class="col-xs-6">Clinical Details:</div> <div class="col-xs-6">{{ data[5] }}</div></div></li>
-                        <li id="prov_diag"><div class="row"><div class="col-xs-6">Provisional diagnosis:</div> <div class="col-xs-6">{{ data[6] }}</div></div></li>
                         <li id="slide_date"><div class="row"><div class="col-xs-6">Date uploaded:</div> <div class="col-xs-6">{{ data[7] }}</div></div></li>
                     </ul>
                 </div>
                 <div class="col-xs-3">
                     <img src="/static/uploads/{{ data[1] }}/thumb.png">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul data-role="listview" data-icon="false">
+                        <li id="slide_clinical">
+                            <div class="row">
+                                <div class="col-xs-2">Clinical Details:</div>
+                                <div id="prov_d" class="col-xs-8">{{ data[6] }}</div>
+                                <div class="col-xs-2">
+                                    <a href="#" data-role="button" role="button" id="prog_btn">Edit <i class="zmdi zmdi-edit"></i></a>
+                                </div>
+                            </div>
+                        </li>
+                        <li id="prog_diag">
+                            <div class="row">
+                                <div class="col-xs-2">Provisional diagnosis:</div>
+                                <div id="clin_d" class="col-xs-8">{{ data[5] }}</div>
+                                <div class="col-xs-2">
+                                    <a href="#" data-role="button" role="button" id="clin_btn">Edit <i class="zmdi zmdi-edit"></i></a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <br>
@@ -56,6 +78,7 @@
                 {% endfor %}
             </ul>
         </div>
+        <a href="#" id="view_report" class="ui-btn ui-btn-raised" style="display: none" target="_blank">View Report <i class="zmdi zmdi-eye"></i></a>
         <a href="#" id="generate_report" class="ui-btn ui-btn-raised">Generate Report <i class="zmdi zmdi-file-text"></i></a>
     </div>
     {% block script_section %}

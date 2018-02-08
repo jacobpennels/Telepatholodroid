@@ -14,41 +14,43 @@
         <div role="main" class="ui-content">
              <div class="row center-lg">
                 <div class="col-xs-3">
-                    <h3>Filter options</h3>
-                     <form>
-                        <label for="cancer_type">Cancer type</label>
-                        <select name="cancer_type" id="cancer_type" data-native-menu="false">
-                            <option value="" disabled selected>Pick an option</option>
-                            <option value="oral">Oral</option>
-                            <option value="stomach">Stomach</option>
-                            <option value="chest">Chest</option>
-                        </select>
-                    </form>
+                    <div id="display_options">
+                        <h3>Filter options</h3>
+                         <form>
+                            <label for="cancer_type">Cancer type</label>
+                            <select name="cancer_type" id="cancer_type" data-native-menu="false">
+                                <option value="" disabled selected>Pick an option</option>
+                                <option value="oral">Oral</option>
+                                <option value="stomach">Stomach</option>
+                                <option value="chest">Chest</option>
+                            </select>
+                        </form>
 
-                    <h3>View options</h3>
-                    <form>
-                        <label for="view_type" class="select">Display slides in</label>
-                        <select name="view_type" id="view_type" data-native-menu="false">
-                            <option value="grid" selected="selected">Grid</option>
-                            <option value="list">List</option>
-                        </select>
-                    </form>
+                        <h3>View options</h3>
+                        <form>
+                            <label for="view_type" class="select">Display slides in</label>
+                            <select name="view_type" id="view_type" data-native-menu="false">
+                                <option value="grid" selected="selected">Grid</option>
+                                <option value="list">List</option>
+                            </select>
+                        </form>
 
-                    <h3>Sorting options</h3>
-                    <form>
-                        <label for="prev_img">Only show previously annotated?</label>
-                        <select name="prev_img" id="prev_img" data-role="flipswitch">
-                            <option value="no" selected="selected">NO</option>
-                            <option value="yes">YES</option>
-                        </select>
-                        <label for="list_sort" class="select">Sort by</label>
-                        <select name="list_sort" id="list_sort" data-native-menu="false">
-                            <option value="alphabetical_ascending" selected="selected">Alphabetical: Ascending</option>
-                            <option value="alphabetical_descending">Alphabetical: Descending</option>
-                            <option value="date_earliest">Date Uploaded: Descending</option>
-                            <option value="date_latest">Date Uploaded: Ascending</option>
-                        </select>
-                    </form>
+                        <h3>Sorting options</h3>
+                        <form>
+                            <label for="prev_img">Only show previously annotated?</label>
+                            <select name="prev_img" id="prev_img" data-role="flipswitch">
+                                <option value="no" selected="selected">NO</option>
+                                <option value="yes">YES</option>
+                            </select>
+                            <label for="list_sort" class="select">Sort by</label>
+                            <select name="list_sort" id="list_sort" data-native-menu="false">
+                                <option value="alphabetical_ascending" selected="selected">Alphabetical: Ascending</option>
+                                <option value="alphabetical_descending">Alphabetical: Descending</option>
+                                <option value="date_earliest">Date Uploaded: Descending</option>
+                                <option value="date_latest">Date Uploaded: Ascending</option>
+                            </select>
+                        </form>
+                    </div>
                 </div>
                 <div class="col-xs-9">
                     <div id="slide_content">

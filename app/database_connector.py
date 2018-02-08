@@ -78,8 +78,8 @@ class DatabaseConnector:
                 else:
                     self.delete_slide(row)
                     continue
-
-            r = {"name": row[0], "type": row[2], "date_uploaded": row[7], "is_uploader": row[9] == usr_id, "has_edited": row[10] in slide_id, "uploader": row[10] + " " + row[11] + " " + row[12], "location": loc}
+            # name0 | location1 | type2 | case_num3 | consultant4 | clinic_details5 | prov_diag6 | dateuploaded7 | viewable8 | uploader_id9 | id10 | title11 | fname12 | lname13 | email14 | date_joined15 | institute16 | country17 | password18 | id19
+            r = {"name": row[0], "type": row[2], "date_uploaded": row[7], "is_uploader": row[9] == usr_id, "has_edited": row[10] in slide_id, "uploader": row[11] + " " + row[12] + " " + row[13], "location": loc, "viewable": row[8], "slide_id" : row[10]}
             results.append(r)
         return results
 
@@ -146,8 +146,8 @@ class DatabaseConnector:
         os.makedirs(os.path.join(folder, folder_name))
         file.save(os.path.join(os.path.join(folder, folder_name), filename + "." + ext))
         data = form.data
-        self.execute_statement('INSERT INTO slides VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)', s_name, folder_name, data['type'], data['case_num'], data['consultant'], data['clinic_details'], data['prov_diag'], now_date, user_id)
-        return [{"success": True, "s_name": s_name}, SlideInfo.SlideInfo(os.path.join(folder, folder_name), file.filename)]
+        self.execute_statement('INSERT INTO slides VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)', s_name, folder_name, data['type'], data['case_num'], data['consultant'], "", "", now_date, 0, user_id)
+        return [{"success": True, "s_name": s_name}, SlideInfo.SlideInfo(os.path.join(folder, folder_name), file.filename, s_name)]
 
     def delete_slide(self, r):
         print("Couldn't find folder, therefore deleting slide " + r[0] + ", in location " + r[1])
@@ -172,4 +172,15 @@ class DatabaseConnector:
 
     def get_annotations(self, slide_id):
         return self.execute_query('SELECT * FROM annotations WHERE slide_id=?', slide_id)
+
+    def confirm_upload(self, s_name):
+        self.execute_statement('UPDATE slides SET viewable=1 WHERE name=?', s_name)
+
+    def update_prov_diag(self, slide_id, info):
+        self.execute_statement('UPDATE slides SET prov_diag=? WHERE id=?', info, slide_id)
+        return {"success" : True}
+
+    def update_clin_details(self, slide_id, info):
+        self.execute_statement('UPDATE slides SET clinic_details=? WHERE id=?', info, slide_id)
+        return {"success" : True}
 

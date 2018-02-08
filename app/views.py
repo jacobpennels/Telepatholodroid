@@ -28,8 +28,10 @@ def viewimg(imgid=None):
     if(imgid == None):
         return redirect('home')
     db_lock.acquire()
-    data = db.get_slide_data(imgid)[1] # Get location of file
-    anno = db.get_annotations(imgid)
+    temp = db.get_slide_data_by_id(imgid) # Get location of file
+    data = temp[1]
+    slide_id = temp[-1]
+    anno = db.get_annotations(slide_id)
     db_lock.release()
     annotations = []
     for v in anno:
@@ -61,7 +63,7 @@ def viewimg(imgid=None):
         #dimensions = json.dumps(dimensions)
         print(dimensions)
 
-    return render_template('viewimg.html', imgid=imgid, loc=str(url_for('static', filename="uploads") + "/" + data), dimensions=dimensions, form = annotation_form, anno=json.dumps(annotations))
+    return render_template('viewimg.html', imgid=imgid, slide_id = slide_id, loc=str(url_for('static', filename="uploads") + "/" + data), dimensions=dimensions, form = annotation_form, anno=json.dumps(annotations))
 
 @app.route('/accountsettings')
 @login_required
@@ -79,8 +81,8 @@ def uploadimage():
 @login_required
 def reviewimg(imgid=None):
     db_lock.acquire()
-    data = db.get_slide_data(imgid)
-    anno = db.get_annotations(imgid)
+    data = db.get_slide_data_by_id(imgid)
+    anno = db.get_annotations(data[-1])
     db_lock.release()
     print(anno)
     return render_template('reviewimg.html', data=data, data_j=json.dumps(data), anno=anno, anno_j=json.dumps(anno))

@@ -25,10 +25,10 @@ global allowed_extensions
 global s_queue
 global image_handler
 global gp
-
+global path
 
 def init_app():
-    global login_manager, running, db, upload_folder, allowed_extensions, s_queue, image_handler, gp
+    global login_manager, running, db, upload_folder, allowed_extensions, s_queue, image_handler, gp, path
     s_queue = queue.Queue()
     running = True
     upload_folder = os.path.abspath('app/static/uploads')
@@ -65,6 +65,10 @@ def init_app():
     running = True
     return app
 
+def confirm_is_uploaded(name):
+    db_lock.acquire()
+    db.confirm_upload(name)
+    db_lock.release()
 
 class ImageHandler(threading.Thread):  # TODO implement image handling
     def run(self):
@@ -90,6 +94,7 @@ class ImageHandler(threading.Thread):  # TODO implement image handling
         print("Image handler shutting down")
 
     def handle_image(self, slide):
+        global path, db_lock
         if(not isinstance(slide, SlideInfo.SlideInfo)):
             return False
         print(slide.dir)
@@ -97,6 +102,11 @@ class ImageHandler(threading.Thread):  # TODO implement image handling
         osr = openslide.OpenSlide(slide.dir + "/" + slide.file)
         self.create_thumbnail(osr.get_thumbnail((150, 150)), slide.dir)
         self.create_files(osr, slide.dir)
+        db_lock.acquire()
+        db_temp = database_connector.DatabaseConnector(path)
+        db_temp.confirm_upload(slide.name)
+        db_temp.close()
+        db_lock.release()
 
     def create_thumbnail(self, img, s_dir): # Creates a 150px x 150px image as a thumbnail
         size = (max(img.size),) * 2
@@ -319,12 +329,12 @@ def save_annotation():
 def generate_report():
     global gp
     data = request.get_json()
-    #print(data['slide_data'])
-    #print(data['anno_data'])
+    print(data['slide_data'])
+    print(data['anno_data'])
     db_lock.acquire()
     print("Slide id is " + str(data['slide_data'][-1]))
     slide_info = db.get_slide_data_by_id(data['slide_data'][-1])
-    anno_info = db.get_annotations(data['slide_data'][0])
+    anno_info = db.get_annotations(data['slide_data'][-1])
     db_lock.release()
     print(slide_info)
     annotations = []
@@ -336,4 +346,22 @@ def generate_report():
 
     report = gp.create_and_save_report(str(slide_info[1]), slide_info, annotations)
     return jsonify({"success": True, "location": report})
+
+@app.route('/update_slide_info', methods=['POST'])
+@login_required
+def update_slide_info():
+    global db, db_lock
+    data = request.get_json()
+    attr = data['attr']
+    db_lock.acquire()
+    if(attr == 0): # Update provisional diagnosis
+        info = jsonify(db.update_prov_diag(data['slide_id'], data['info']))
+    else:
+        info = jsonify(db.update_clin_details(data['slide_id'], data['info']))
+
+    db_lock.release()
+    return info
+
+
+
 

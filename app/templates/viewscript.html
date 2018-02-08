@@ -1,6 +1,7 @@
 <script>
     $(document).ready(function () {
         $location = "{{ l }}";
+        console.log("{{ id }}");
         //console.log($location);
         $dimensions = $.parseJSON({{ d | tojson | safe  }});
         $annotations = {{ anno | safe  }};
@@ -437,7 +438,7 @@
         });
 
         $back_button.on('tap', function(ev) {
-            e.preventDefault();
+            ev.preventDefault();
             history.go(-1);
         })
     })

@@ -1,7 +1,13 @@
 <script>
     $(document).ready(function() {
+        $prov_button = $('#prog_btn');
+        $clin_button = $('#clin_btn');
+        $p_out = false;
+        $c_out = false;
+        $prov_data = $('#prov_d');
+        $clin_data = $('#clin_d');
         $data = {{ d | safe }};
-        $anno = {{ a | safe }}
+        $anno = {{ a | safe }};
         console.log("Data is " + $data.length + " long");
         $.each($data, function(i, v) {
             console.log(i);
@@ -11,7 +17,7 @@
         $GetAnnotations = function() {
             $result = [];
             $('#annotation_data li select option:selected').each(function(i) {
-                //console.log(this.value);
+                console.log(this.value);
                 if(this.value == "yes"){
                     $result.push($anno[i][6]);
                 }
@@ -31,9 +37,81 @@
                     contentType: "application/json; charset=utf-8",
                     async: false,
                     success: function (result) {
+                        $('#view_report').attr('href', "{{ url_for('static', filename='temp/') }}" + result['location']);
+                        $('#view_report').show();
                         console.log(result);
                     }
             });
+        });
+
+        $prov_button.on('tap', function(e) {
+            e.preventDefault();
+            console.log("Prov button pressed");
+            if($p_out) {
+                $data[6] = $('#prov_text').val();
+                $info = {"attr" : 0, "slide_id" : $data[10], "info" : $data[6]};
+
+                $.ajax({url: "{{ url_for('update_slide_info') }}",
+                    type: 'post',
+                    data: JSON.stringify($info),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        new $.nd2Toast({
+                            message: "The clinical details have been updated",
+                            ttl: 5000
+                        });
+                        console.log("succesful change");
+                    }
+                });
+
+                $prov_data.empty();
+                $prov_data.append($data[6]);
+                $prov_button.empty();
+                $prov_button.append('Edit <i class="zmdi zmdi-edit"></i>');
+                $p_out = false;
+            } else {
+                $prov_data.empty();
+                $width = $('#prog_diag').width();
+                $prov_data.append('<form method="post" style="width: ' + $width + '"><textarea id="prov_text" name="text" rows="5" style="width: 100%">' + $data[6] + '</textarea></form>');
+                $prov_button.empty();
+                $prov_button.append('Submit <i class="zmdi zmdi-save"></i>');
+                $p_out = true;
+            }
+        });
+
+        $clin_button.on('tap', function(e) {
+            e.preventDefault();
+            console.log("Clin button pressed");
+            if($c_out) {
+                $data[5] = $('#clin_text').val();
+                $info = {"attr" : 1, "slide_id" : $data[10], "info" : $data[5]};
+                console.log("Sending ajax");
+                $.ajax({url: "{{ url_for('update_slide_info') }}",
+                    type: 'post',
+                    data: JSON.stringify($info),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        new $.nd2Toast({
+                            message: "The provisional diagnosis has been updated",
+                            ttl: 5000
+                        });
+                        console.log("succesful change");
+                    }
+                });
+
+                $clin_data.empty();
+                $clin_data.append($data[5]);
+                $clin_button.empty();
+                $clin_button.append('Edit <i class="zmdi zmdi-edit"></i>');
+                $c_out = false;
+            } else {
+                $clin_data.empty();
+                $width = $('#slide_clinical').width();
+                $clin_data.append('<form method="post" style="width: ' + $width + '"><textarea id="clin_text" name="text" rows="5" style="width: 100%">' + $data[5] + '</textarea></form>');
+                $clin_button.empty();
+                $clin_button.append('Submit <i class="zmdi zmdi-save"></i>');
+                $c_out = true;
+            }
         });
     })
 </script>
