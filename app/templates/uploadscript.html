@@ -2,7 +2,7 @@
     $(document).ready(function () {
         // Initialise the progress bar
 
-        $form_inputs = [$('#name'), $('#case_num'), $('#consultant'), $('#prov_diag')];
+        $form_inputs = [$('#name'), $('#case_num'), $('#consultant')];
 
         $('#progress_bar').LineProgressbar({
             fillBackgroundColor: '#607D8B'
@@ -27,7 +27,7 @@
             });
 
             $('#u_btn_box').removeClass('not_select');
-            if(f_data[7]['value']['name'] == undefined) { // Check file has been selected
+            if(f_data[5]['value']['name'] == undefined) { // Check file has been selected
                 $('#u_btn_box').addClass('not_select');
                 console.log("No file selected");
                 return false;
