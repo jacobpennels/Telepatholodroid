@@ -33,6 +33,8 @@
         // Variables for working out scaling
         $h = 0;
         $w = 0;
+        $buttons = [];
+        $button_pressed = false;
 
         $('#colour').spectrum({ // Set up colour picker
             flat: true,
@@ -63,11 +65,12 @@
         $canvas = $canvas.hammer({
             recognizers: [
                 [Hammer.Pan, {direction: Hammer.DIRECTION_ALL}],
-                [Hammer.Pinch, {enable: true}]
+                [Hammer.Pinch, {enable: true}],
+                [Hammer.Press, {time: 0}]
             ]
         });
         $canvas_h = window.innerHeight - $toolBar.height() - 5; //* 0.9;
-        $canvas_w = window.outerWidth;
+        $canvas_w = window.innerWidth;
         console.log("Canvas size: " + $canvas_h + ", " + $canvas_w);
         $canvas.attr('width', $canvas_w);
         $canvas.attr('height', $canvas_h);
@@ -103,9 +106,110 @@
         $act_y = $draw_y;
         $scale = 1; // Initial scale of image
 
+        $ShowAnnotation = function(ann, sx, sy, sc) {
+            // Will focus the camera on the chosen annotation
+            $max_x = 0;
+            $min_x = 1;
+            $max_y = 0;
+            $min_y = 1;
+            $.each(ann[3], function() {
+                console.log(this);
+                if(parseFloat(this[0]) > $max_x) {
+                    $max_x = this[0];
+                }
+
+                if(parseFloat(this[0]) < $min_x) {
+                    $min_x = this[0];
+                }
+
+                if(parseFloat(this[1]) > $max_y) {
+                    $max_y = this[1];
+                }
+
+                if(parseFloat(this[1]) < $min_y) {
+                    $min_y = this[1];
+                }
+            });
+            console.log("Max x: " + $max_x + ", min x: " + $min_x + ", Max y: " + $max_y + ", min y: " + $min_y);
+            $previous_level = "level_0";
+            $current_label = "level_0";
+            //console.log($dimensions);
+            $.each($dimensions, function (i) {
+                $x_dist = (($max_x - $min_x) * this[0]);
+                $y_dist = (($max_y - $min_y) * this[1]);
+                //console.log(i);
+                //console.log($previous_level);
+                //console.log("X: " + $x_dist + " compared to " + $canvas_w * 0.9);
+                //console.log("Y: " + $y_dist + " compared to " + $canvas_h * 0.9);
+                if($x_dist > $canvas_w * 0.9 || $y_dist > $canvas_h * 0.9) {
+                    $current_label = $previous_level;
+                    return;
+                }
+                $previous_level = i;
+                $current_label = i;
+            });
+            console.log($current_label);
+            $current_level = $dimensions[$current_label];
+            console.log($current_level);
+            $current_dims = $.parseJSON($.ajax({
+                url: $location + "/" + $current_label + "/dim.json",
+                dataType: "json",
+                async: false
+            }).responseText);
+            console.log($current_dims);
+            $draw_x = ($canvas_w - $current_level[0]) / 2; // Stores where the image is drawn from so as not to mess with scaling
+            $draw_y = ($canvas_h - $current_level[1]) / 2;
+            console.log("(" + $draw_x + ", " + $draw_y + ")");
+
+            $x_dist = (($max_x - $min_x) * $current_level[0]);
+            $y_dist = (($max_y - $min_y) * $current_level[1]);
+            $x_scale = $canvas_w * 0.9 / $x_dist;
+            $y_scale = $canvas_h * 0.9 / $y_dist;
+            console.log("[" + $x_scale + ", " + $y_scale + "]");
+            $scale = Math.min($x_scale, $y_scale); // Initial scale of image
+
+            // get the centre of the annotation to zoom on
+            $mid_x = (($max_x + $min_x) / 2) * $current_level[0] * $scale;
+            $mid_y = (($max_y + $min_y) / 2) * $current_level[1] * $scale;
+            console.log("Mid x: " + $mid_x + ", Mid y: " + $mid_y);
+            $draw_x -= $mid_x - ($current_level[0] / 2); // will translate the middle of the annotation to the centre of the screen
+            $draw_y -= $mid_y - ($current_level[1] / 2);
+            console.log("(" + $draw_x + ", " + $draw_y + ")");
+
+            $act_x = $draw_x;
+            $act_y = $draw_y;
+            $DrawImage($draw_x, $draw_y, $scale);
+            $view_button.empty();
+            $view_button.append("<i class='zmdi zmdi-eye-off'></i> hide annotations");
+            $annotation_show = true;
+            $DrawAnnotation(ann, $draw_x, $draw_y, $scale);
+        };
+
+        $b_width = $canvas_h / 20;
+        $b_names = ['p_up', 'p_down', 'p_right', 'p_left', 'z_in', 'z_out'];
+        for(i = 0; i < 6; i++) {
+            //console.log(i);
+            $buttons.push({
+                type: 'rectangle',
+                name: $b_names[i],
+                fillStyle: '#607D8B',
+                width: $b_width, height: $b_width,
+                x: $canvas_w - ($b_width * 1.1),
+                y: ($b_width *0.5) + (i * $b_width * 1.2),
+                cornerRadius: $b_width / 10
+            });
+        }
+
+        $DrawNavBar = function () {
+            $.each($buttons, function() {
+                $canvas.addLayer(this);
+            })
+        };
+
         $DrawAnnotation = function(ann, sx, sy, sc) {
             if($annotation_drawing || $submitting_form) {
                 $obj = {
+                    type: 'line',
                     strokeStyle: '#000',
                     strokeWidth: 5,
                     rounded: true,
@@ -114,7 +218,8 @@
 
                 $.each(ann, function (i) {
                     console.log("Point " + this[0] + ", " + this[1]);
-                    $canvas.drawEllipse({
+                    $canvas.addLayer({
+                        type: 'ellipse',
                         fillStyle: '#000',
                         width: 10, height: 10,
                         x: this[0] - 5,
@@ -124,13 +229,15 @@
                     $obj['y' + (i + 1)] = this[1];
                 });
                 console.log($obj);
-                $canvas.drawLine($obj);
+                $canvas.addLayer($obj);
             }
 
             if($annotation_show) {
                 //console.log("SHOWING ANNOTATIONS");
                 $.each($annotations, function() {
                     $obj_temp = {
+                        type: 'line',
+                        group: ['annotation'],
                         strokeStyle: this[2],
                         strokeWidth: 5,
                         rounded: true,
@@ -142,13 +249,13 @@
                         $obj_temp['y' + (i + 1)] = (this[1] * sc * $current_level[1]) + sy;
                     });
                     //console.log($obj_temp);
-                    $canvas.drawLine($obj_temp);
+                    $canvas.addLayer($obj_temp);
                 })
             }
         };
 
         $DrawImage = function(sx, sy, sc, sc_x, sc_y) {
-            $canvas.removeLayerGroup('tiles');
+            $canvas.removeLayers();
             // Introduce some logic to only draw tiles that will be seen
             $start_i = ((sx < 0) ? Math.floor(-sx / (256 * sc)) : 0);
             $end_i = Math.min(Math.ceil(($canvas_w - sx) / (256 * sc)), $current_level[2]);
@@ -182,8 +289,10 @@
                     $canvas.getLayer('tile_' + i + '_' + j).width = $canvas.getLayer('tile_' + i + '_' + j).width;
                 }
             }
-            $canvas.drawLayers('tiles');
             $DrawAnnotation($annotation_points, sx, sy, sc);
+            $DrawNavBar();
+            $canvas.drawLayers();
+
             /*
             $canvas.drawText({
                 fillStyle: '#000',
@@ -197,14 +306,98 @@
             */
         };
 
+        $sa = "{{ sa }}";
+        $focus_anno = $sa;
+
+        $.each($annotations, function() {
+            if(this[6] == $sa) {
+                $focus_anno = this;
+            }
+        });
+
+        console.log($focus_anno);
         // Draw first image
-        $DrawImage($draw_x, $draw_y, $scale);
+        if($focus_anno == -1) {
+            $DrawImage($draw_x, $draw_y, $scale);
+        } else {
+            $ShowAnnotation($focus_anno, $draw_x, $draw_y, $scale);
+        }
 
+        $canvas.bind('press', function(ev) {
+            $.each($buttons, function() {
+                if((this.x < ev.gesture.center.x && this.x + this.width > ev.gesture.center.x)) {
+                    if((this.y < ev.gesture.center.y && this.y + this.height > ev.gesture.center.y)) {
+                        console.log(this.name + " has been pressed");
+                        switch(this.name) {
+                            case 'p_up':
+                                $draw_x -= 10;
+                                break;
+                            case 'p_down':
+                                $draw_x += 10;
+                                break;
+                            case 'p_right':
+                                console.log("P_UP");
+                                $draw_y += 10;
+                                break;
+                            case 'p_left':
+                                console.log("P_UP");
+                                $draw_y -= 10;
+                                break;
+                            case 'z_in':
+                                $old_scale = $scale;
+                                $scale += 0.1;
 
+                                if($scale > 2) {
+                                    $draw_x = ($scale * ($draw_x - ($draw_x + ($current_level[0] * $old_scale / 2)))) + ($draw_x + ($current_level[0] * $old_scale / 2));
+                                    $draw_y = ($scale * ($draw_y - ($draw_y + ($current_level[1] * $old_scale / 2)))) + ($draw_y + ($current_level[1] * $old_scale / 2));
+                                    $IncreaseLevel();
+                                    console.log("GOING UP LEVEL");
+
+                                    $scale = 1;
+                                }
+                                $draw_x = ($scale * ($draw_x - ($draw_x + ($current_level[0] * $old_scale / 2)))) + ($draw_x + ($current_level[0] * $old_scale / 2));
+                                $draw_y = ($scale * ($draw_y - ($draw_y + ($current_level[1] * $old_scale / 2)))) + ($draw_y + ($current_level[1] * $old_scale / 2));
+                                break;
+                            case 'z_out':
+                                $old_scale = $scale;
+                                $scale -= 0.1;
+                                if($scale < 0.5) {
+                                    $draw_x = ($scale * ($draw_x - ($current_level[0] * $old_scale / 2))) + ($current_level[0] * $old_scale / 2);
+                                    $draw_y = ($scale * ($draw_y - ($current_level[1] * $old_scale / 2))) + ($current_level[1] * $old_scale/ 2);
+                                    $DecreaseLevel();
+                                    console.log("GOING DOWN LEVEL");
+                                    //$draw_x = ($canvas_w - $current_level[0]) / 2;
+                                    //$draw_y = ($canvas_h - $current_level[1]) / 2;
+                                    $scale = 1;
+                                }
+                                $draw_x = ($scale * ($draw_x - ($current_level[0] * $old_scale / 2))) + ($current_level[0] * $old_scale / 2);
+                                $draw_y = ($scale * ($draw_y - ($current_level[1] * $old_scale / 2))) + ($current_level[1] * $old_scale / 2);
+                                break;
+                        }
+                    }
+                }
+            });
+            $DrawImage($draw_x, $draw_y, $scale);
+        });
+
+        $canvas.bind('pressup', function() {
+            $button_pressed = false;
+            console.log("Button released");
+        });
 
         $canvas.bind('panstart', function (ev) {
             if($annotation_drawing)
                 return;
+
+            $.each($buttons, function() {
+                if((this.x < ev.gesture.center.x && this.x + this.width > ev.gesture.center.x)) {
+                    if((this.y < ev.gesture.center.y && this.y + this.height > ev.gesture.center.y)) {
+                        console.log(this.name + " has been pressed");
+                        $button_pressed = true;
+                        return;
+                    }
+                }
+            });
             $pan_start_x = ev.gesture.center.x;
             $pan_start_y = ev.gesture.center.y;
             //console.log("Pan starting at " + $pan_start_x + ", " + $pan_start_y);
@@ -213,8 +406,9 @@
         });
 
         $canvas.bind('panmove', function(ev) {
-            if($annotation_drawing)
+            if($annotation_drawing || $button_pressed)
                 return;
+
             $diff_x = ev.gesture.center.x - $pan_start_x;
             $diff_y = ev.gesture.center.y - $pan_start_y;
             //console.log($diff_x + ", " + $diff_y);
@@ -225,6 +419,7 @@
         $canvas.bind('panend', function(ev) {
             if($annotation_drawing)
                 return;
+            $button_pressed = false;
             //console.log("pan ended");
             $pan_start_x = null;
             $pan_start_y = null;
@@ -411,6 +606,8 @@
             });
             $info = {"name": $('#name').val(), "anno_description": $('#anno_description').val(), "colour": $('#colour').val(), "points": $annotation_points, "slide_id": "{{ id }}"};
             $new_annotation = [$info["name"], $info["anno_description"], $info["colour"], $annotation_points];
+            $ShowAnnotation($new_annotation, $draw_x, $draw_y, $scale);
+            $info['image'] = $canvas.getCanvasImage('jpeg');
             $annotations.push($new_annotation);
             console.log($info);
             $.ajax({url: "{{ url_for('save_annotation') }}",
@@ -440,6 +637,6 @@
         $back_button.on('tap', function(ev) {
             ev.preventDefault();
             history.go(-1);
-        })
+        });
     })
 </script>
