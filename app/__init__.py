@@ -8,6 +8,7 @@ import binascii, os
 import queue
 import time
 import openslide
+import base64
 from openslide import deepzoom
 from PIL import Image, ImageDraw
 from json import dumps
@@ -317,6 +318,9 @@ def save_annotation():
     user_id = None
     if(current_user.is_authenticated):
         user_id = current_user.user_id
+    print(data['image'])
+    with open("test_image.png", "wb") as fh:
+        fh.write(base64.b64decode(base64.b64encode(bytes(data["image"], 'utf-8'))))
 
     db_lock.acquire()
     success = db.add_new_annotation(data, user_id)

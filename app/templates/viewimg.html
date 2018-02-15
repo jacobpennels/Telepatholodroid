@@ -5,6 +5,7 @@
     <div data-role="page" data-url="{{ url_for('viewimg', imgid=imgid) }}" class="nd2-no-menu-swipe">
         <div role="main" data-inset="false">
             <canvas id="s_canvas"></canvas>
+
             <div id="toolbar" class="row center-xs">
                 <div class="col-xs-3">
                     <div class="box">
@@ -45,7 +46,7 @@
 {% endblock %}
 
 {% block script_section %}
-    {% with l=loc, d=dimensions, id=slide_id, anno=anno %}
+    {% with l=loc, d=dimensions, id=slide_id, anno=anno, sa=sa %}
     {% include 'viewscript.html' %}
     {% endwith %}
 {%  endblock %}
