@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <div data-role="page" id="main_page" data-url="{{ url_for('home') }}">
+        {% include 'leftpanel.html' %}
+        <div id="page_header_1" data-role="header" data-position="fixed">
+            <a href="#leftpanel" data-wow-delay="0.8s" data-role="button" role="button" style="visibility:visible;animation-delay:0.8s;animation-name:fadeIn;"><i class="zmdi zmdi-menu"></i></a>
+            <h1>Telepatholodroid</h1>
+            <h3>Slide selection</h3>
+        </div>
+        <div role="main" class="ui-content">
+            <div class="row">
+                <div class="col-xs-9">
+                    <h4>Permissions for {{ slide[0] }}</h4>
+                </div>
+                <div class="col-xs-3">
+                    <img src="/static/uploads/{{ slide[1] }}/thumb.png">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <h5>Currently permitted users</h5>
+                </div>
+                <div class="col-xs-4">
+                    <h5>Options</h5>
+                </div>
+            </div>
+            <ul data-role="listview" data-icon="false" id="user_data">
+                {% for p in pu %}
+                    <li id="user_row_{{ loop.index0 }}">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <h5>{{ p['name'] }}</h5>
+                                <p>{{ p['email'] }}</p>
+                            </div>
+                            <div class="col-xs-4">
+                                <a id="remove_user_{{ loop.index0 }}" href="#" class="ui-btn ui-btn-raised">Remove permissions</a>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <h5>Add new user</h5>
+            <p>Type in the email of a user to add their permissions to this list</p>
+            <div class="row">
+                <div class="col-xs-8">
+                    <input id="new_user_box" type="text" placeholder="Email">
+                </div>
+                <div class="col-xs-4">
+                    <a id="add_new_user" href="#" class="ui-btn ui-btn-raised">Add new user</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% block script_section %}
+    {% with pu=pujs, slide_id=slide[-1] %}
+        {% include 'permissionscript.html' %}
+    {% endwith %}
+{% endblock %}
+{% endblock %}

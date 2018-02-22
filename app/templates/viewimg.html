@@ -4,12 +4,32 @@
 {% block body %}
     <div data-role="page" data-url="{{ url_for('viewimg', imgid=imgid) }}" class="nd2-no-menu-swipe">
         <div role="main" data-inset="false">
-            <canvas id="s_canvas"></canvas>
+            <div class="row">
+                <div id="canvas_column" class="col-xs-11">
+                    <canvas id="s_canvas"></canvas>
+                </div>
+                <div class="col-xs-1">
+                    <br>
+                    <a id="pan_up" href="#" class="ui-btn ui-btn-raised clr-primary nd2-btn-icon-block"><i class='zmdi zmdi-long-arrow-up'></i><b>&uArr;</b></a>
+                    <br>
+                    <a id="pan_down" href="#" class="ui-btn ui-btn-raised clr-primary nd2-btn-icon-block"><i class='zmdi zmdi-long-arrow-up'></i><b>&dArr;</b></a>
+                    <br>
+                    <a id="pan_left" href="#" class="ui-btn ui-btn-raised clr-primary nd2-btn-icon-block"><i class='zmdi zmdi-long-arrow-up'></i><b>&rArr;</b></a>
+                    <br>
+                    <a id="pan_right" href="#" class="ui-btn ui-btn-raised clr-primary nd2-btn-icon-block"><i class='zmdi zmdi-long-arrow-up'></i><b>&lArr;</b></a>
+                    <br>
+                    <a id="zoom_in" href="#" class="ui-btn ui-btn-raised clr-primary nd2-btn-icon-block"><i class='zmdi zmdi-zoom-in'></i> in</a>
+                    <br>
+                    <a id="zoom_out" href="#" class="ui-btn ui-btn-raised clr-primary nd2-btn-icon-block"><i class='zmdi zmdi-zoom-out'></i> out</a>
+                    <br>
+                    <a id="recenter" href="#" class="ui-btn ui-btn-raised clr-primary nd2-btn-icon-block"><i class='zmdi zmdi-arrows'></i></a>
+                </div>
+            </div>
 
             <div id="toolbar" class="row center-xs">
                 <div class="col-xs-3">
                     <div class="box">
-                        <a id="back_button" href="#" class="ui-btn ui-btn-raised clr-primary nd2-btn-icon-block"><i class='zmdi zmdi-long-arrow-left'></i> back</a>
+                        <a id="back_button" href="#" class="ui-btn ui-btn-raised clr-primary nd2-btn-icon-block"><i class='zmdi zmdi-long-arrow-return'></i> back</a>
                     </div>
                 </div>
                 <div class="col-xs-3">

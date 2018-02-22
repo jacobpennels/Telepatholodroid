@@ -1,5 +1,7 @@
 <script>
+    var image_string = "";
     $(document).ready(function () {
+        $image_string = "";
         $location = "{{ l }}";
         console.log("{{ id }}");
         //console.log($location);
@@ -70,7 +72,7 @@
             ]
         });
         $canvas_h = window.innerHeight - $toolBar.height() - 5; //* 0.9;
-        $canvas_w = window.innerWidth;
+        $canvas_w = $('#canvas_column').width();
         console.log("Canvas size: " + $canvas_h + ", " + $canvas_w);
         $canvas.attr('width', $canvas_w);
         $canvas.attr('height', $canvas_h);
@@ -100,13 +102,17 @@
         console.log($current_dims);
 
         // Starting positions
-        $draw_x = ($canvas_w - $current_level[0]) / 2; // Stores where the image is drawn from so as not to mess with scaling
-        $draw_y = ($canvas_h - $current_level[1]) / 2;
+        $scale = Math.min(($canvas_w * 0.9) / $current_level[0], ($canvas_h * 0.9) / $current_level[1]); // Initial scale of image
+        console.log("INTIAL SCALE: " + $scale);
+
+        $draw_x = ($canvas_w - ($current_level[0] * $scale)) / 2;
+        $draw_y = ($canvas_h - ($current_level[1] * $scale)) / 2;
         $act_x = $draw_x; // These variables contain the actual origin of the image
         $act_y = $draw_y;
-        $scale = 1; // Initial scale of image
 
-        $ShowAnnotation = function(ann, sx, sy, sc) {
+        $default_details = [$current_label, $current_level, $current_dims, $draw_x, $draw_y, $scale];
+
+        $ShowAnnotation = function(ann, sx, sy, sc, save_im) {
             // Will focus the camera on the chosen annotation
             $max_x = 0;
             $min_x = 1;
@@ -178,32 +184,15 @@
 
             $act_x = $draw_x;
             $act_y = $draw_y;
-            $DrawImage($draw_x, $draw_y, $scale);
+            $DrawImage($draw_x, $draw_y, $scale, true);
             $view_button.empty();
             $view_button.append("<i class='zmdi zmdi-eye-off'></i> hide annotations");
             $annotation_show = true;
             $DrawAnnotation(ann, $draw_x, $draw_y, $scale);
-        };
-
-        $b_width = $canvas_h / 20;
-        $b_names = ['p_up', 'p_down', 'p_right', 'p_left', 'z_in', 'z_out'];
-        for(i = 0; i < 6; i++) {
-            //console.log(i);
-            $buttons.push({
-                type: 'rectangle',
-                name: $b_names[i],
-                fillStyle: '#607D8B',
-                width: $b_width, height: $b_width,
-                x: $canvas_w - ($b_width * 1.1),
-                y: ($b_width *0.5) + (i * $b_width * 1.2),
-                cornerRadius: $b_width / 10
-            });
-        }
-
-        $DrawNavBar = function () {
-            $.each($buttons, function() {
-                $canvas.addLayer(this);
-            })
+            //$image_string = "";
+            if(!save_im) {
+                $canvas.drawLayers();
+            }
         };
 
         $DrawAnnotation = function(ann, sx, sy, sc) {
@@ -254,7 +243,7 @@
             }
         };
 
-        $DrawImage = function(sx, sy, sc, sc_x, sc_y) {
+        $DrawImage = function(sx, sy, sc, getImage, sc_x, sc_y) {
             $canvas.removeLayers();
             // Introduce some logic to only draw tiles that will be seen
             $start_i = ((sx < 0) ? Math.floor(-sx / (256 * sc)) : 0);
@@ -290,8 +279,10 @@
                 }
             }
             $DrawAnnotation($annotation_points, sx, sy, sc);
-            $DrawNavBar();
-            $canvas.drawLayers();
+            //$DrawNavBar();
+            $image_string = "";
+            if(!getImage)
+                $canvas.drawLayers();
 
             /*
             $canvas.drawText({
@@ -310,7 +301,7 @@
         $focus_anno = $sa;
 
         $.each($annotations, function() {
-            if(this[6] == $sa) {
+            if(this[7] == $sa) {
                 $focus_anno = this;
             }
         });
@@ -320,70 +311,8 @@
         if($focus_anno == -1) {
             $DrawImage($draw_x, $draw_y, $scale);
         } else {
-            $ShowAnnotation($focus_anno, $draw_x, $draw_y, $scale);
+            $ShowAnnotation($focus_anno, $draw_x, $draw_y, $scale, false);
         }
-
-        $canvas.bind('press', function(ev) {
-            $.each($buttons, function() {
-                if((this.x < ev.gesture.center.x && this.x + this.width > ev.gesture.center.x)) {
-                    if((this.y < ev.gesture.center.y && this.y + this.height > ev.gesture.center.y)) {
-                        console.log(this.name + " has been pressed");
-                        switch(this.name) {
-                            case 'p_up':
-                                $draw_x -= 10;
-                                break;
-                            case 'p_down':
-                                $draw_x += 10;
-                                break;
-                            case 'p_right':
-                                console.log("P_UP");
-                                $draw_y += 10;
-                                break;
-                            case 'p_left':
-                                console.log("P_UP");
-                                $draw_y -= 10;
-                                break;
-                            case 'z_in':
-                                $old_scale = $scale;
-                                $scale += 0.1;
-
-                                if($scale > 2) {
-                                    $draw_x = ($scale * ($draw_x - ($draw_x + ($current_level[0] * $old_scale / 2)))) + ($draw_x + ($current_level[0] * $old_scale / 2));
-                                    $draw_y = ($scale * ($draw_y - ($draw_y + ($current_level[1] * $old_scale / 2)))) + ($draw_y + ($current_level[1] * $old_scale / 2));
-                                    $IncreaseLevel();
-                                    console.log("GOING UP LEVEL");
-
-                                    $scale = 1;
-                                }
-                                $draw_x = ($scale * ($draw_x - ($draw_x + ($current_level[0] * $old_scale / 2)))) + ($draw_x + ($current_level[0] * $old_scale / 2));
-                                $draw_y = ($scale * ($draw_y - ($draw_y + ($current_level[1] * $old_scale / 2)))) + ($draw_y + ($current_level[1] * $old_scale / 2));
-                                break;
-                            case 'z_out':
-                                $old_scale = $scale;
-                                $scale -= 0.1;
-                                if($scale < 0.5) {
-                                    $draw_x = ($scale * ($draw_x - ($current_level[0] * $old_scale / 2))) + ($current_level[0] * $old_scale / 2);
-                                    $draw_y = ($scale * ($draw_y - ($current_level[1] * $old_scale / 2))) + ($current_level[1] * $old_scale/ 2);
-                                    $DecreaseLevel();
-                                    console.log("GOING DOWN LEVEL");
-                                    //$draw_x = ($canvas_w - $current_level[0]) / 2;
-                                    //$draw_y = ($canvas_h - $current_level[1]) / 2;
-                                    $scale = 1;
-                                }
-                                $draw_x = ($scale * ($draw_x - ($current_level[0] * $old_scale / 2))) + ($current_level[0] * $old_scale / 2);
-                                $draw_y = ($scale * ($draw_y - ($current_level[1] * $old_scale / 2))) + ($current_level[1] * $old_scale / 2);
-                                break;
-                        }
-                    }
-                }
-            });
-            $DrawImage($draw_x, $draw_y, $scale);
-        });
-
-        $canvas.bind('pressup', function() {
-            $button_pressed = false;
-            console.log("Button released");
-        });
 
         $canvas.bind('panstart', function (ev) {
             if($annotation_drawing)
@@ -447,7 +376,7 @@
                 dataType: "json",
                 async: false
             }).responseText);
-
+            $scale = 1;
             $.jCanvas.defaults.fromCenter = false;
         };
 
@@ -467,7 +396,7 @@
                 dataType: "json",
                 async: false
             }).responseText);
-
+            $scale = 1;
             $.jCanvas.defaults.fromCenter = false;
         };
 
@@ -489,15 +418,30 @@
             //console.log(ev.gesture.scale);
             $new_scale = ev.gesture.scale / $prev_pinch.gesture.scale;
             $scale = $scale * $new_scale;
+            if($scale > 2) {
+                $l_temp = parseInt($current_label.split("_")[1]);
+                $l_temp += 1;
+                if ($l_temp >= $count) {
+                    $scale = 2;
+                    $DrawImage($x_t, $y_t, $scale);
+                    $prev_pinch = ev;
+                    return;
+                }
+            }
+
+            $prev_pinch = ev;
+
+            $x_t = ($new_scale * ($x_t - ev.gesture.center.x)) + ev.gesture.center.x;
+            $y_t = ($new_scale * ($y_t - ev.gesture.center.y)) + ev.gesture.center.y;
 
             if($scale > 2) { // Time to go to next level
+
                 $draw_x = ($scale * ($draw_x - ($draw_x + (0.5 * $current_level[0])))) + ($draw_x + (0.5 * $current_level[0]));
                 $draw_y = ($scale * ($draw_y - ($draw_y + (0.5 * $current_level[1])))) + ($draw_y + (0.5 * $current_level[1]));
 
                 console.log("going up a level");
                 $pinch_start = ev.gesture.center;
                 $IncreaseLevel();
-                $scale = 1;
             }
 
             if($scale < 0.5) {
@@ -507,13 +451,7 @@
                 console.log("going down a level");
                 $pinch_start = ev.gesture.center;
                 $DecreaseLevel();
-                $scale = 1;
             }
-
-            $prev_pinch = ev;
-
-            $x_t = ($new_scale * ($x_t - ev.gesture.center.x)) + ev.gesture.center.x;
-            $y_t = ($new_scale * ($y_t - ev.gesture.center.y)) + ev.gesture.center.y;
 
             //$x_t = $draw_x + ev.gesture.center.x - $pinch_start.x;
             //$y_t = $draw_y + ev.gesture.center.y - $pinch_start.y;
@@ -604,17 +542,24 @@
                 this[0] = (this[0] - $draw_x) / ($current_level[0] * $scale);
                 this[1] = (this[1] - $draw_y) / ($current_level[1] * $scale);
             });
-            $info = {"name": $('#name').val(), "anno_description": $('#anno_description').val(), "colour": $('#colour').val(), "points": $annotation_points, "slide_id": "{{ id }}"};
+            $info = {"name": $('#name').val(), "anno_description": $('#anno_description').val(), "colour": $('#colour').val(), "points": $annotation_points, "slide_id": "{{ id }}", "image": ""};
             $new_annotation = [$info["name"], $info["anno_description"], $info["colour"], $annotation_points];
-            $ShowAnnotation($new_annotation, $draw_x, $draw_y, $scale);
-            $info['image'] = $canvas.getCanvasImage('jpeg');
-            $annotations.push($new_annotation);
-            console.log($info);
-            $.ajax({url: "{{ url_for('save_annotation') }}",
-                type: 'post',
-                data: JSON.stringify($info),
-                contentType: "application/json; charset=utf-8"
+
+            $ShowAnnotation($new_annotation, $draw_x, $draw_y, $scale, true);
+            $canvas.drawLayers({
+                complete: function () {
+                    $info['image'] = $canvas.getCanvasImage('png');
+                    console.log($info);
+                    $.ajax({url: "{{ url_for('save_annotation') }}",
+                        type: 'post',
+                        data: JSON.stringify($info),
+                        contentType: "application/json; charset=utf-8"
+                    });
+                }
             });
+
+            $annotations.push($new_annotation);
+
             $('#name').val("");
             $('#anno_description').val("");
             $annotation_points = [];
@@ -638,5 +583,143 @@
             ev.preventDefault();
             history.go(-1);
         });
+
+        // The following code is designed to let the user navigate around the image when they don't have access to a touch screen device
+        $timeout = null;
+        $nav_buttons = [$('#pan_up'), $('#pan_down'), $('#pan_left'), $('#pan_right'), $('#zoom_in'), $('#zoom_out')];
+        $.event.special.tap.tapholdThreshold = 0;
+
+        $('#pan_up').bind('mousedown touchstart', function(ev) {
+            $timeout = setInterval(function() {
+                $draw_y -= 10;
+                $DrawImage($draw_x, $draw_y, $scale);
+                console.log("Moving");
+            }, 100);
+
+            return false;
+        });
+
+        $('#pan_down').bind('mousedown touchstart', function(ev) {
+            $timeout = setInterval(function() {
+                $draw_y += 10;
+                $DrawImage($draw_x, $draw_y, $scale);
+                console.log("Moving");
+            }, 100);
+
+            return false;
+        });
+
+        $('#pan_left').bind('mousedown touchstart', function(ev) {
+            $timeout = setInterval(function() {
+                $draw_x -= 10;
+                $DrawImage($draw_x, $draw_y, $scale);
+                console.log("Moving");
+            }, 100);
+
+            return false;
+        });
+
+        $('#pan_right').bind('mousedown touchstart', function(ev) {
+            $timeout = setInterval(function() {
+                $draw_x += 10;
+                $DrawImage($draw_x, $draw_y, $scale);
+                console.log("Moving");
+            }, 100);
+
+            return false;
+        });
+
+        $('#zoom_in').bind('mousedown touchstart', function(ev) {
+            $x_t = $draw_x;
+            $y_t = $draw_y;
+            $timeout = setInterval(function() {
+                console.log("#########################################");
+                console.log($x_t + (0.5 * $current_level[0] * $scale) + "-->" + ($canvas_w * 0.5));
+                $scale += 0.1;
+
+                if($scale > 2) {
+                    $l_temp = parseInt($current_label.split("_")[1]);
+                    $l_temp += 1;
+                    if ($l_temp >= $count) {
+                        $scale = 2;
+                        $DrawImage($x_t, $y_t, $scale);
+                        return;
+                    }
+                }
+
+                $mid_x_t = $canvas_w * 0.5;// - (($x_t + (0.5 * $current_level[0] * $scale)) - ($canvas_w * 0.5));
+                $mid_y_t = $canvas_h * 0.5;// - (($y_t + (0.5 * $current_level[1] * $scale)) - ($canvas_h * 0.5));
+                //console.log($mid_x_t + ", " + $canvas_w);
+
+                $x_t = (($scale / ($scale - 0.1)) * ($x_t - $mid_x_t)) + $mid_x_t;
+                $y_t = (($scale / ($scale - 0.1)) * ($y_t - $mid_y_t)) + $mid_y_t;
+                console.log($x_t + (0.5 * $current_level[0] * $scale) + "-->" + ($canvas_w * 0.5));
+                //$x_t += $mid_x_t - ($x_t + ($scale * $current_level[0] * 0.5));
+                //$y_t += $mid_y_t - ($y_t + ($scale * $current_level[1] * 0.5));
+                $draw_x = $x_t;
+                $draw_y = $y_t;
+                //console.log("(" + $x_t + ", " + $y_t + ")");
+                if($scale >= 2) {
+                    $IncreaseLevel();
+                }
+                $DrawImage($x_t, $y_t, $scale);
+                //console.log("Moving");
+            }, 100);
+
+            return false;
+        });
+
+        $('#zoom_out').bind('mousedown touchstart', function(ev) {
+            $x_t = $draw_x;
+            $y_t = $draw_y;
+            $timeout = setInterval(function() {
+                console.log("#########################################");
+                console.log($x_t + (0.5 * $current_level[0] * $scale) + "-->" + ($canvas_w * 0.5));
+                $scale -= 0.1;
+                $mid_x_t = $canvas_w * 0.5;// - (($x_t + (0.5 * $current_level[0] * $scale)) - ($canvas_w * 0.5));
+                $mid_y_t = $canvas_h * 0.5;// - (($y_t + (0.5 * $current_level[1] * $scale)) - ($canvas_h * 0.5));
+                //console.log($mid_x_t + ", " + $canvas_w);
+
+                $x_t = (($scale / ($scale + 0.1)) * ($x_t - $mid_x_t)) + $mid_x_t;
+                $y_t = (($scale / ($scale + 0.1)) * ($y_t - $mid_y_t)) + $mid_y_t;
+                console.log($x_t + (0.5 * $current_level[0] * $scale) + "-->" + ($canvas_w * 0.5));
+                //$x_t += $mid_x_t - ($x_t + ($scale * $current_level[0] * 0.5));
+                //$y_t += $mid_y_t - ($y_t + ($scale * $current_level[1] * 0.5));
+                $draw_x = $x_t;
+                $draw_y = $y_t;
+                //console.log("(" + $x_t + ", " + $y_t + ")");
+                $temp_x = $x_t;
+                $temp_y = $y_t;
+                if($scale < 0.6) {
+                    $DecreaseLevel();
+                }
+                $DrawImage($x_t, $y_t, $scale);
+                //console.log("Moving");
+            }, 100);
+
+            return false;
+        });
+
+        $.each($nav_buttons, function() {
+            this.bind('mouseup touchend', function() {
+                console.log("button released");
+                clearInterval($timeout);
+                $timeout = null;
+                return false;
+            });
+        });
+
+        $recenter = $('#recenter');
+
+        $recenter.on('tap', function(ev) {
+            ev.preventDefault();
+            $current_label = $default_details[0];
+            $current_level = $default_details[1];
+            $current_dims = $default_details[2];
+            $draw_x = $default_details[3];
+            $draw_y = $default_details[4];
+            $scale = $default_details[5];
+            $DrawImage($draw_x, $draw_y, $scale);
+        })
     })
 </script>

@@ -173,6 +173,15 @@
             $('#bs_link').attr('href', '{{ url_for("viewimg", imgid='') }}' + $object.slide_id);
             $('#bs_review').attr('href', '{{ url_for("reviewimg", imgid='') }}' + $object.slide_id);
             $('#bs_uploader').empty().append("Uploader: " + $object.uploader);
+            $('#bs_num_anno').empty().append("Annotations: " + $object.num_anno);
+            if($object.is_uploader) {
+                $('#bs_review_permissions').show();
+                $('#bs_review_permissions a').attr('href', '{{ url_for("manage_permissions", slideid='') }}' + $object.slide_id);
+            } else {
+                $('#bs_review_permissions').hide();
+                $('#bs_review_permissions a').attr('href', '#');
+            }
+
             $('#slide_thumbnail').attr('src', $object.location);
         });
 

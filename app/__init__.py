@@ -12,6 +12,7 @@ import base64
 from openslide import deepzoom
 from PIL import Image, ImageDraw
 from json import dumps
+import io
 
 from app import database_connector, SlideInfo, GenerateReport
 
@@ -318,9 +319,6 @@ def save_annotation():
     user_id = None
     if(current_user.is_authenticated):
         user_id = current_user.user_id
-    print(data['image'])
-    with open("test_image.png", "wb") as fh:
-        fh.write(base64.b64decode(base64.b64encode(bytes(data["image"], 'utf-8'))))
 
     db_lock.acquire()
     success = db.add_new_annotation(data, user_id)
@@ -335,9 +333,12 @@ def generate_report():
     data = request.get_json()
     print(data['slide_data'])
     print(data['anno_data'])
+    if(current_user.is_authenticated):
+        user_id = current_user.user_id
+
     db_lock.acquire()
     print("Slide id is " + str(data['slide_data'][-1]))
-    slide_info = db.get_slide_data_by_id(data['slide_data'][-1])
+    slide_info = db.get_slide_data_by_id(data['slide_data'][-1], user_id)
     anno_info = db.get_annotations(data['slide_data'][-1])
     db_lock.release()
     print(slide_info)
@@ -346,7 +347,7 @@ def generate_report():
         if(a[-1] in data['anno_data']):
             annotations.append(a)
 
-    print(annotations)
+    #print(annotations)
 
     report = gp.create_and_save_report(str(slide_info[1]), slide_info, annotations)
     return jsonify({"success": True, "location": report})
@@ -365,6 +366,34 @@ def update_slide_info():
 
     db_lock.release()
     return info
+
+@app.route('/add_new_permission', methods=['POST'])
+@login_required
+def add_new_permission():
+    global db, db_lock
+    data = request.get_json()
+    email = data['email']
+    slide_id = data['slide_id']
+    if(current_user.is_authenticated):
+        user_id = current_user.user_id
+
+    db_lock.acquire()
+    result = db.add_new_permissions(email, user_id, slide_id)
+    db_lock.release()
+    return jsonify(result)
+
+@app.route('/remove_permission', methods=['POST'])
+@login_required
+def remove_permission():
+    global db, db_lock
+    data = request.get_json()
+    if (current_user.is_authenticated):
+        user_id = current_user.user_id
+    db_lock.acquire()
+    result = db.remove_permissions(user_id, data['id'], data['slide_id'])
+    db_lock.release()
+    return jsonify(result)
+
 
 
 

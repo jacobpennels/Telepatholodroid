@@ -6,6 +6,53 @@
         body {
             background-color: white;
         }
+
+        .list li {
+            background: url("https://bradfrost.github.com/this-is-responsive/patterns/images/icon_arrow_right.png") no-repeat 97% 50%;
+            border-bottom: 1px solid #ccc;
+            display: table;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .inner {
+            display: table-row;
+            overflow: hidden;
+        }
+        .li-img {
+            display: table-cell;
+            vertical-align: middle;
+            width: 30%;
+            padding-right: 1em;
+        }
+        .li-img img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .li-text {
+            display: table-cell;
+            vertical-align: middle;
+            width: 70%;
+        }
+        .li-head {
+            margin: 0;
+        }
+        .li-sub {
+            margin: 0;
+        }
+
+        @media all and (min-width: 45em) {
+            .list li {
+                float: left;
+                width: 50%;
+            }
+        }
+
+        @media all and (min-width: 75em) {
+            .list li {
+                width: 33.33333%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -16,21 +63,19 @@
     <p>Provisional Diagnosis: {{ slide_info[6] }}</p>
 
     <h3>MICROSCOPIC FEATURES</h3>
-        {% for a in annotations %}
-            <p><b>{{ a[0] }}</b></p>
-            <p>Description: {{ a[1] }}</p>
-            <br>
-        {% endfor %}
-
-    <!--
-     <ul>
-        <li id="slide_category">{{ slide_info[2] }}</li>
-        <li id="slide_casenum">{{ slide_info[3] }}</li>
-        <li id="slide_consultant">{{ slide_info[4] }}</li>
-        <li id="slide_clinical">{{ slide_info[5] }}</li>
-        <li id="prov_diag">{{ slide_info[6] }}</li>
-        <li id="slide_date">{{ slide_info[7] }}</li>
-    </ul
-    -->
+    <ul class="list img-list">
+    {% for a in annotations %}
+        <li>
+            <div class="li-img">
+                <img src="{{ a[4] }}" />
+            </div>
+            <div class="li-text">
+                <h4 class="li-head">{{ a[0] }}</h4>
+                <p class="li-sub">Description: {{ a[1] }}</p>
+            </div>
+        </li>
+        <br>
+    {% endfor %}
+    </ul>
 </body>
 </html>
