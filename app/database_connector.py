@@ -78,8 +78,16 @@ class DatabaseConnector:
                 else:
                     self.delete_slide(row)
                     continue
+            print(row[10])
+            query = self.execute_query('SELECT user_id FROM permissions WHERE slide_id=?', row[10])
+            print(query)
+            if(not usr_id in [x[0] for x in query]):
+                print("PERMISSION DENIED")
+                continue
+            anno = self.execute_query('SELECT * FROM annotations WHERE slide_id=?', row[10])
+            num_annotations = len(anno)
             # name0 | location1 | type2 | case_num3 | consultant4 | clinic_details5 | prov_diag6 | dateuploaded7 | viewable8 | uploader_id9 | id10 | title11 | fname12 | lname13 | email14 | date_joined15 | institute16 | country17 | password18 | id19
-            r = {"name": row[0], "type": row[2], "date_uploaded": row[7], "is_uploader": row[9] == usr_id, "has_edited": row[10] in slide_id, "uploader": row[11] + " " + row[12] + " " + row[13], "location": loc, "viewable": row[8], "slide_id" : row[10]}
+            r = {"name": row[0], "type": row[2], "date_uploaded": row[7], "is_uploader": row[9] == usr_id, "has_edited": row[10] in slide_id, "uploader": row[11] + " " + row[12] + " " + row[13], "location": loc, "viewable": row[8], "slide_id" : row[10], "num_anno" : num_annotations}
             results.append(r)
         return results
 
@@ -147,17 +155,31 @@ class DatabaseConnector:
         file.save(os.path.join(os.path.join(folder, folder_name), filename + "." + ext))
         data = form.data
         self.execute_statement('INSERT INTO slides VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)', s_name, folder_name, data['type'], data['case_num'], data['consultant'], "", "", now_date, 0, user_id)
+        slide_id = self.c.lastrowid
+        self.execute_statement('INSERT INTO permissions VALUES (?, ?)', slide_id, user_id)
         return [{"success": True, "s_name": s_name}, SlideInfo.SlideInfo(os.path.join(folder, folder_name), file.filename, s_name)]
 
     def delete_slide(self, r):
         print("Couldn't find folder, therefore deleting slide " + r[0] + ", in location " + r[1])
         self.execute_statement('DELETE FROM slides WHERE name=? and location=?', r[0], r[1])
 
-    def get_slide_data(self, name):
-        return self.execute_query('SELECT * FROM slides WHERE name=?', name)[0] # Should be only one result
+    def get_slide_data(self, name, user_id):
+        query = self.execute_query('SELECT * FROM slides WHERE name=?', name)[0] # Should be only one result
+        permission = self.execute_query('SELECT user_id FROM permissions WHERE  slide_id=?', query[-1])
+        if (user_id in [x[0] for x in permission]):
+            print("PERMISSION DENIED")
+            return query
+        else:
+            return None
 
-    def get_slide_data_by_id(self, slide_id):
-        return self.execute_query('SELECT * FROM slides WHERE id=?', slide_id)[0]
+    def get_slide_data_by_id(self, slide_id, user_id):
+        query = self.execute_query('SELECT * FROM slides WHERE id=?', slide_id)[0]
+        permission = self.execute_query('SELECT user_id FROM permissions WHERE  slide_id=?', slide_id)
+        if (user_id in [x[0] for x in permission]):
+            print("PERMISSION DENIED")
+            return query
+        else:
+            return None
 
     def add_new_annotation(self, data, user_id):
         temp = [] # Turn the points into a list of points
@@ -167,7 +189,7 @@ class DatabaseConnector:
 
         points = ",".join(temp)
         print(points)
-        self.execute_statement('INSERT INTO annotations VALUES(?, ?, ?, ?, ?, ?, NULL)', data['name'], data['anno_description'], data['colour'], points, user_id, data['slide_id'])
+        self.execute_statement('INSERT INTO annotations VALUES(?, ?, ?, ?, ?, ?, ?, NULL)', data['name'], data['anno_description'], data['colour'], points, data['image'], user_id, data['slide_id'])
         return {"success": True}
 
     def get_annotations(self, slide_id):
@@ -184,3 +206,45 @@ class DatabaseConnector:
         self.execute_statement('UPDATE slides SET clinic_details=? WHERE id=?', info, slide_id)
         return {"success" : True}
 
+    def record_slide_access(self, slide_id, user_id):
+        has_accessed = self.execute_query('SELECT * FROM user_to_slides WHERE (user_id=? AND slide_id=?)', user_id, slide_id)
+        if(len(has_accessed) > 0): # this user has accessed this slide before
+            self.execute_statement('UPDATE user_to_slides SET accessed=? WHERE (user_id=? AND slide_id=?)', datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), user_id, slide_id)
+        else:
+            self.execute_statement('INSERT INTO user_to_slides VALUES(?, ?, ?)', user_id, slide_id, datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+
+    def get_permitted_users(self, slideid, user_id):
+        query = self.execute_query('SELECT u.title, u.fname, u.lname, u.id, u.email from (permissions p join users u on u.id=p.user_id) where p.slide_id=?', slideid)
+        users = []
+        for row in query:
+            if(user_id != row[3]):
+                result = {"name" : str(row[0]) + " " + str(row[1]) + " " + str(row[2]), "email" : row[4], "id": row[3]}
+                users.append(result)
+
+        return users
+
+    def add_new_permissions(self, email, user_id, slide_id):
+        slide = [x[0] for x in self.execute_query('SELECT uploader_id FROM slides WHERE id=?', slide_id)]
+        if(not user_id in slide):
+            return {"success" : 0}
+
+        user = self.execute_query('SELECT title, fname, lname, id FROM users WHERE email=?', email)
+        print(user)
+        if(len(user) > 0): # the user exists
+            user = user[0]
+            if(len(self.execute_query('SELECT * FROM permissions WHERE (user_id=? AND slide_id=?)', user[-1], slide_id)) == 0):
+                self.execute_statement('INSERT INTO permissions VALUES(?, ?)', slide_id, user[-1])
+                return {"name" : str(user[0]) + " " + str(user[1]) + " " + str(user[2]), "email" : email, "id" : user[-1], "success" : 1}
+            else: # User already added
+                return {"success" : 2}
+
+        return {"success" : 0}
+
+    def remove_permissions(self, user_id, p_id, slide_id):
+        slide = [x[0] for x in self.execute_query('SELECT uploader_id FROM slides WHERE id=?', slide_id)]
+        if (not user_id in slide): # User doesn't have permission to be changing these permissions
+            print("This user doesn't have permission to edit this")
+            return {"success": False}
+
+        self.execute_statement('DELETE FROM permissions WHERE user_id=? AND slide_id=?', p_id, slide_id)
+        return {"success": True}

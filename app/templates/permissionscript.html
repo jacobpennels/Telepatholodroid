@@ -1,0 +1,66 @@
+<script>
+    $(document).ready(function () {
+        console.log("Get ready for some scripting");
+        $users = {{ pu | safe }};
+        $slide_id = {{ slide_id }};
+        console.log($slide_id);
+        console.log($users);
+
+        $('#user_data a').on('mousedown', function() {
+            console.log("Button pressed");
+            $b_id = (this.id).split("_")[2];
+            console.log($b_id);
+            $info = {"id" : $users[$b_id]['id'], "slide_id" : $slide_id};
+            $users[$b_id] = null;
+            console.log($users);
+            $('#user_row_' + $b_id).remove();
+            console.log($info);
+            $.ajax({url: "{{ url_for('remove_permission') }}",
+                    type: 'post',
+                    data: JSON.stringify($info),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        new $.nd2Toast({
+                            message: "User has been removed",
+                            ttl: 5000
+                        });
+                    }
+            });
+        });
+
+        $('#add_new_user').on('tap', function () {
+            console.log("Adding new user");
+            $info = {"email" : $('#new_user_box').val(), "slide_id" : $slide_id};
+            console.log($info);
+            $.ajax({url: "{{ url_for('add_new_permission') }}",
+                    type: 'post',
+                    data: JSON.stringify($info),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        if(result['success'] == 1) {
+                            $('#new_user_box').parent().removeClass('changed');
+                            $users.push(result);
+                            console.log($users);
+                            $index = $users.length - 1;
+                            $('#new_user_box').val("");
+                            $('#user_data').append('<li id="user_row_' + $index + '"><div class="row"><div class="col-xs-8"><h5>' + result['name'] + '</h5><p>' + result['email'] + '</p></div><div class="col-xs-4"><a id="remove_user_' + $index + '" href="#" class="ui-btn ui-btn-raised">Remove permissions</a></div></div></li>');
+                            $('#user_data').listview("refresh");
+                            new $.nd2Toast({
+                                message: "User has been added",
+                                ttl: 5000
+                            });
+                        } else if(result['success'] == 0) {
+                            console.log(result);
+                            $('#new_user_box').parent().addClass('changed');
+                        } else {
+                            $('#new_user_box').val("");
+                            new $.nd2Toast({
+                                message: "This user already has permission",
+                                ttl: 5000
+                            });
+                        }
+                    }
+            });
+        })
+    });
+</script>

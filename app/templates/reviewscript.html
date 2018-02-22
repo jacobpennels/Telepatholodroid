@@ -19,7 +19,7 @@
             $('#annotation_data li select option:selected').each(function(i) {
                 console.log(this.value);
                 if(this.value == "yes"){
-                    $result.push($anno[i][6]);
+                    $result.push($anno[i][7]);
                 }
                 //console.log(this.find(":selected").text());
             });
@@ -29,7 +29,7 @@
         $('#generate_report').on('tap', function(e) {
             e.preventDefault();
             $annotations = $GetAnnotations();
-            console.log($annotations);
+            console.log("Annotations are  " + $annotations);
             $info = {"slide_data" : $data, "anno_data" : $annotations};
             $.ajax({url: "{{ url_for('generate_report') }}",
                     type: 'post',

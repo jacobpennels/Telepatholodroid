@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="88584f91-11ee-4451-aecc-5b4c8c893e17" name="Default" comment="Report creation is almost complete, several changes have been made to back end and addressing of slides to create better consistency">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/fonts/Material-Design-Iconic-Font.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/fonts/Material-Design-Iconic-Font.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/fonts/Material-Design-Iconic-Font.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/fonts/Material-Design-Iconic-Font.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/css/material-design-iconic-font.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/css/material-design-iconic-font.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/fonts/Material-Design-Iconic-Font.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/test.html" />
+    <list default="true" id="88584f91-11ee-4451-aecc-5b4c8c893e17" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/manage_permissions.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/permissionscript.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/database.db" afterPath="$PROJECT_DIR$/app/database.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/GenerateReport.py" afterPath="$PROJECT_DIR$/app/GenerateReport.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/__init__.py" afterPath="$PROJECT_DIR$/app/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/javascript/jcanvas.min.js" afterPath="$PROJECT_DIR$/app/static/javascript/jcanvas.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/layout.html" afterPath="$PROJECT_DIR$/app/templates/layout.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/uploadscript.html" afterPath="$PROJECT_DIR$/app/templates/uploadscript.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/database_connector.py" afterPath="$PROJECT_DIR$/app/database_connector.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/schema.sql" afterPath="$PROJECT_DIR$/app/schema.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/css/material-design-iconic-font.css" afterPath="$PROJECT_DIR$/app/static/css/material-design-iconic-font.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/fonts/Material-Design-Iconic-Font.svg" afterPath="$PROJECT_DIR$/app/static/fonts/Material-Design-Iconic-Font.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/bottomsheet.html" afterPath="$PROJECT_DIR$/app/templates/bottomsheet.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/homescript.html" afterPath="$PROJECT_DIR$/app/templates/homescript.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/report.html" afterPath="$PROJECT_DIR$/app/templates/report.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/reviewimg.html" afterPath="$PROJECT_DIR$/app/templates/reviewimg.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/reviewscript.html" afterPath="$PROJECT_DIR$/app/templates/reviewscript.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/viewimg.html" afterPath="$PROJECT_DIR$/app/templates/viewimg.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/viewscript.html" afterPath="$PROJECT_DIR$/app/templates/viewscript.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views.py" afterPath="$PROJECT_DIR$/app/views.py" />
@@ -31,10 +32,10 @@
     <SUITE FILE_PATH="coverage/Telepatholodroid$Unittests_in_unit_tester_py__1_.coverage" NAME="Unittests in unit_tester.py (1) Coverage Results" MODIFIED="1509106057686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
     <SUITE FILE_PATH="coverage/Telepatholodroid$Unittests_in_unit_tester_py.coverage" NAME="Unittests in unit_tester.py Coverage Results" MODIFIED="1509105903271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
     <SUITE FILE_PATH="coverage/Telepatholodroid$Unittests_for_unit_tester_DatabaseTest_test_execute.coverage" NAME="Unittests for unit_tester.DatabaseTest.test_execute Coverage Results" MODIFIED="1509038295188" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
-    <SUITE FILE_PATH="coverage/Telepatholodroid$skeleton.coverage" NAME="skeleton Coverage Results" MODIFIED="1518721895707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Telepatholodroid$skeleton.coverage" NAME="skeleton Coverage Results" MODIFIED="1519329061290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Telepatholodroid$test.coverage" NAME="test Coverage Results" MODIFIED="1507827356917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Telepatholodroid$test_image_loader.coverage" NAME="test_image_loader Coverage Results" MODIFIED="1511463152259" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/static/uploads" />
-    <SUITE FILE_PATH="coverage/Telepatholodroid$image_save.coverage" NAME="image_save Coverage Results" MODIFIED="1518722854603" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/Telepatholodroid$image_save.coverage" NAME="image_save Coverage Results" MODIFIED="1519130524728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
     <SUITE FILE_PATH="coverage/Telepatholodroid$generate_countries.coverage" NAME="generate_countries Coverage Results" MODIFIED="1509371765518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
     <SUITE FILE_PATH="coverage/Telepatholodroid$ThreadingTest.coverage" NAME="ThreadingTest Coverage Results" MODIFIED="1507828085104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -51,31 +52,65 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="viewimg.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/viewimg.html">
+      <file leaf-file-name="database_connector.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/database_connector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-              <folding />
+            <state relative-caret-position="319">
+              <caret line="231" column="19" lean-forward="false" selection-start-line="231" selection-start-column="19" selection-end-line="231" selection-end-column="19" />
+              <folding>
+                <marker date="1519329061231" expanded="true" signature="1148:1178" ph="select * fro... users" />
+                <marker date="1519329061231" expanded="true" signature="1310:1343" ph="select * fro... users" />
+                <marker date="1519329061231" expanded="true" signature="1530:1570" ph="select passw... users" />
+                <marker date="1519329061231" expanded="true" signature="1868:1924" ph="insert into users... " />
+                <marker date="1519329061231" expanded="true" signature="2296:2370" ph="select * fro... slides" />
+                <marker date="1519329061231" expanded="true" signature="2429:2480" ph="select slide... user_to_slides" />
+                <marker date="1519329061231" expanded="true" signature="3237:3268" ph="SELECT * FRO... permissions" />
+                <marker date="1519329061231" expanded="true" signature="3237:3285" ph="SELECT * FRO... permissions" />
+                <marker date="1519329061231" expanded="true" signature="3482:3524" ph="SELECT * FRO... annotations" />
+                <marker date="1519329061231" expanded="true" signature="4478:4531" ph="UPDATE users... " />
+                <marker date="1519329061231" expanded="true" signature="4639:4678" ph="UPDATE users... " />
+                <marker date="1519329061231" expanded="true" signature="4766:4803" ph="UPDATE users... " />
+                <marker date="1519329061231" expanded="true" signature="4889:4924" ph="UPDATE users... " />
+                <marker date="1519329061231" expanded="true" signature="5111:5148" ph="select passw... users" />
+                <marker date="1519329061231" expanded="true" signature="5304:5342" ph="UPDATE users... " />
+                <marker date="1519329061231" expanded="true" signature="5902:5925" ph="select name slides" />
+                <marker date="1519329061231" expanded="true" signature="6779:6841" ph="INSERT INTO slides... " />
+                <marker date="1519329061231" expanded="true" signature="7015:7052" ph="INSERT INTO permissions... " />
+                <marker date="1519329061231" expanded="true" signature="7368:7414" ph="DELETE FROM " />
+                <marker date="1519329061231" expanded="true" signature="7511:7544" ph="SELECT * FRO... slides" />
+                <marker date="1519329061231" expanded="true" signature="7625:7674" ph="SELECT user_... permissions" />
+                <marker date="1519329061231" expanded="true" signature="7934:7965" ph="SELECT * FRO... slides" />
+                <marker date="1519329061231" expanded="true" signature="8022:8071" ph="SELECT user_... permissions" />
+                <marker date="1519329061231" expanded="true" signature="8526:8583" ph="INSERT INTO annotations... " />
+                <marker date="1519329061231" expanded="true" signature="8802:8844" ph="SELECT * FRO... annotations" />
+                <marker date="1519329061231" expanded="true" signature="8928:8969" ph="UPDATE slide... " />
+                <marker date="1519329061231" expanded="true" signature="9061:9101" ph="UPDATE slide... " />
+                <marker date="1519329061231" expanded="true" signature="9238:9283" ph="UPDATE slide... " />
+                <marker date="1519329061231" expanded="true" signature="9434:9495" ph="SELECT * FRO... user_to_slides" />
+                <marker date="1519329061231" expanded="true" signature="9631:9700" ph="UPDATE user_... " />
+                <marker date="1519329061231" expanded="true" signature="9827:9860" ph="INSERT INTO user_to_slides... " />
+                <marker date="1519329061231" expanded="true" signature="9827:9869" ph="INSERT INTO user_to_slides... " />
+                <marker date="1519329061231" expanded="true" signature="9827:9945" ph="INSERT INTO user_to_slides... " />
+                <marker date="1519329061231" expanded="true" signature="10036:10154" ph="SELECT u.tit... permissions" />
+                <marker date="1519329061231" expanded="true" signature="10538:10579" ph="SELECT * FRO... slides" />
+                <marker date="1519329061231" expanded="true" signature="10698:10753" ph="SELECT title... users" />
+                <marker date="1519329061231" expanded="true" signature="10894:10952" ph="SELECT * FRO... permissions" />
+                <marker date="1519329061231" expanded="true" signature="11023:11030" ph="INSERT into PERMISSIONS... " />
+                <marker date="1519329061231" expanded="true" signature="11023:11059" ph="INSERT INTO permissions... " />
+                <marker date="1519329061231" expanded="true" signature="11441:11482" ph="SELECT uploa... slides" />
+                <marker date="1519329061231" expanded="true" signature="11734:11764" ph="DELETE FROM " />
+                <marker date="1519329061231" expanded="true" signature="11734:11777" ph="DELETE FROM " />
+                <marker date="1519329061231" expanded="true" signature="11734:11788" ph="DELETE FROM " />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/layout.html">
+      <file leaf-file-name="schema.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/schema.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="142" lean-forward="true" selection-start-line="8" selection-start-column="142" selection-end-line="8" selection-end-column="142" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="viewscript.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/templates/viewscript.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="363" column="50" lean-forward="true" selection-start-line="363" selection-start-column="50" selection-end-line="363" selection-end-column="50" />
+            <state relative-caret-position="90">
+              <caret line="5" column="204" lean-forward="true" selection-start-line="5" selection-start-column="204" selection-end-line="5" selection-end-column="204" />
               <folding />
             </state>
           </provider>
@@ -84,11 +119,63 @@
       <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
-              <caret line="328" column="27" lean-forward="false" selection-start-line="328" selection-start-column="27" selection-end-line="328" selection-end-column="27" />
+            <state relative-caret-position="603">
+              <caret line="394" column="25" lean-forward="false" selection-start-line="394" selection-start-column="25" selection-end-line="394" selection-end-column="25" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="589">
+              <caret line="70" column="13" lean-forward="false" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#52#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reviewscript.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/reviewscript.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="648">
+              <caret line="43" column="15" lean-forward="true" selection-start-line="33" selection-start-column="12" selection-end-line="43" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manage_permissions.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/manage_permissions.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="458">
+              <caret line="41" column="25" lean-forward="true" selection-start-line="31" selection-start-column="20" selection-end-line="41" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="permissionscript.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/templates/permissionscript.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="972">
+              <caret line="54" column="32" lean-forward="false" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1404">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -119,6 +206,9 @@
       <find>pword2</find>
       <find>ui-btn</find>
       <find>slide_2.folder</find>
+      <find>get_slide_data</find>
+      <find>get_slide</find>
+      <find>current_user</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -158,32 +248,36 @@
         <option value="$PROJECT_DIR$/app/templates/accountsettings.html" />
         <option value="$PROJECT_DIR$/app/static/javascript/nativeDroid2/css/nativedroid2.css" />
         <option value="$PROJECT_DIR$/app/static/javascript/jquery-ui-1.12.1.custom/jquery-ui.css" />
-        <option value="$PROJECT_DIR$/app/templates/bottomsheet.html" />
         <option value="$PROJECT_DIR$/app/static/javascript/PreventGhostClick.js" />
         <option value="$PROJECT_DIR$/app/static/uploads/test_image_loader.py" />
         <option value="$PROJECT_DIR$/app/static/javascript/touch-emulator.js" />
-        <option value="$PROJECT_DIR$/app/schema.sql" />
         <option value="$PROJECT_DIR$/app/populate_database.sql" />
         <option value="$PROJECT_DIR$/app/templates/home.html" />
         <option value="$PROJECT_DIR$/app/static/css/style.css" />
         <option value="$PROJECT_DIR$/app/SlideInfo.py" />
         <option value="$PROJECT_DIR$/app/forms.py" />
         <option value="$PROJECT_DIR$/app/templates/uploadimage.html" />
+        <option value="$PROJECT_DIR$/app/templates/uploadscript.html" />
+        <option value="$PROJECT_DIR$/app/test.html" />
+        <option value="$PROJECT_DIR$/app/static/javascript/jcanvas.min.js" />
+        <option value="$PROJECT_DIR$/app/templates/layout.html" />
+        <option value="$PROJECT_DIR$/app/templates/testcanvascript.html" />
+        <option value="$PROJECT_DIR$/app/templates/testcanvas.html" />
+        <option value="$PROJECT_DIR$/app/image_save.py" />
         <option value="$PROJECT_DIR$/app/templates/reviewimg.html" />
-        <option value="$PROJECT_DIR$/app/database_connector.py" />
-        <option value="$PROJECT_DIR$/app/templates/homescript.html" />
         <option value="$PROJECT_DIR$/app/GenerateReport.py" />
         <option value="$PROJECT_DIR$/app/templates/reviewscript.html" />
         <option value="$PROJECT_DIR$/app/templates/report.html" />
-        <option value="$PROJECT_DIR$/app/templates/uploadscript.html" />
-        <option value="$PROJECT_DIR$/app/views.py" />
-        <option value="$PROJECT_DIR$/app/__init__.py" />
-        <option value="$PROJECT_DIR$/app/test.html" />
-        <option value="$PROJECT_DIR$/app/static/javascript/jcanvas.min.js" />
-        <option value="$PROJECT_DIR$/app/image_save.py" />
-        <option value="$PROJECT_DIR$/app/templates/layout.html" />
+        <option value="$PROJECT_DIR$/app/schema.sql" />
         <option value="$PROJECT_DIR$/app/templates/viewimg.html" />
         <option value="$PROJECT_DIR$/app/templates/viewscript.html" />
+        <option value="$PROJECT_DIR$/app/templates/bottomsheet.html" />
+        <option value="$PROJECT_DIR$/app/templates/homescript.html" />
+        <option value="$PROJECT_DIR$/app/templates/manage_permissions.html" />
+        <option value="$PROJECT_DIR$/app/views.py" />
+        <option value="$PROJECT_DIR$/app/__init__.py" />
+        <option value="$PROJECT_DIR$/app/database_connector.py" />
+        <option value="$PROJECT_DIR$/app/templates/permissionscript.html" />
       </list>
     </option>
   </component>
@@ -214,8 +308,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -238,10 +330,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/cs342/ass2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -372,8 +466,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.image_save" />
-        <item index="1" class="java.lang.String" itemvalue="Python.skeleton" />
+        <item index="0" class="java.lang.String" itemvalue="Python.skeleton" />
+        <item index="1" class="java.lang.String" itemvalue="Python.image_save" />
         <item index="2" class="java.lang.String" itemvalue="Python.test_image_loader" />
         <item index="3" class="java.lang.String" itemvalue="Python.generate_countries" />
         <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in unit_tester.py (1)" />
@@ -559,7 +653,14 @@
       <option name="project" value="LOCAL" />
       <updated>1518128240652</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Made some progress on reporting but have struggled with getting image data across">
+      <created>1518731580929</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1518731580930</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -598,17 +699,18 @@
     <frame x="2105" y="-4" width="1857" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.107277624" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2014315" sideWeight="0.5881402" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2014315" sideWeight="0.5994609" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2014315" sideWeight="0.40053907" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08384458" sideWeight="0.49380055" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2014315" sideWeight="0.41185984" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.107277624" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.4916442" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.398773" sideWeight="0.48948786" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.398773" sideWeight="0.49380055" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -617,8 +719,29 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.48948786" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.49380055" order="11" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2014315" sideWeight="0.5994609" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2014315" sideWeight="0.40053907" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08384458" sideWeight="0.49380055" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.107277624" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.48948786" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.4916442" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.398773" sideWeight="0.48948786" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -647,29 +770,14 @@
     <MESSAGE value="Can now create, save and view annotations" />
     <MESSAGE value="Begun work on report creating" />
     <MESSAGE value="Report creation is almost complete, several changes have been made to back end and addressing of slides to create better consistency" />
-    <option name="LAST_COMMIT_MESSAGE" value="Report creation is almost complete, several changes have been made to back end and addressing of slides to create better consistency" />
+    <MESSAGE value="Made some progress on reporting but have struggled with getting image data across" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made some progress on reporting but have struggled with getting image data across" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/static/uploads/9d0ed00b1d/thumb.png" />
-    <entry file="file://$PROJECT_DIR$/app/static/uploads/276b4750c9/thumb.png" />
-    <entry file="file://$PROJECT_DIR$/app/templates/countries.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/javascript/PreventGhostClick.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/javascript/jquery.hammer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -702,13 +810,6 @@
     <entry file="file://$PROJECT_DIR$/app/static/uploads/8b9d429d2e/level_4/dim.json" />
     <entry file="file://$PROJECT_DIR$/app/static/uploads/8b9d429d2e/level_9/dim.json" />
     <entry file="file://$PROJECT_DIR$/app/static/uploads/8b9d429d2e/dimensions.json" />
-    <entry file="file://$PROJECT_DIR$/app/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/panel.left.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-54">
@@ -734,7 +835,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="29" lean-forward="false" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -742,7 +842,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="441">
           <caret line="85" column="40" lean-forward="false" selection-start-line="85" selection-start-column="40" selection-end-line="85" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -762,113 +861,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/schema.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="92" lean-forward="true" selection-start-line="7" selection-start-column="92" selection-end-line="7" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="718">
-          <caret line="50" column="37" lean-forward="false" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/bottomsheet.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="242" lean-forward="false" selection-start-line="16" selection-start-column="242" selection-end-line="16" selection-end-column="242" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/homescript.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="172" column="96" lean-forward="true" selection-start-line="172" selection-start-column="96" selection-end-line="172" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database_connector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1107">
-          <caret line="69" column="33" lean-forward="true" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
-          <folding>
-            <marker date="1518125034236" expanded="true" signature="1148:1178" ph="select * fro... users" />
-            <marker date="1518125034236" expanded="true" signature="1310:1343" ph="select * fro... users" />
-            <marker date="1518125034236" expanded="true" signature="1530:1570" ph="select passw... users" />
-            <marker date="1518125034236" expanded="true" signature="1868:1924" ph="insert into users... " />
-            <marker date="1518125034236" expanded="true" signature="2296:2370" ph="select * fro... slides" />
-            <marker date="1518125034236" expanded="true" signature="2429:2480" ph="select slide... user_to_slides" />
-            <marker date="1518125034236" expanded="true" signature="4042:4095" ph="UPDATE users... " />
-            <marker date="1518125034236" expanded="true" signature="4203:4242" ph="UPDATE users... " />
-            <marker date="1518125034236" expanded="true" signature="4330:4367" ph="UPDATE users... " />
-            <marker date="1518125034236" expanded="true" signature="4453:4488" ph="UPDATE users... " />
-            <marker date="1518125034236" expanded="true" signature="4675:4712" ph="select passw... users" />
-            <marker date="1518125034236" expanded="true" signature="4868:4906" ph="UPDATE users... " />
-            <marker date="1518125034236" expanded="true" signature="5466:5489" ph="select name slides" />
-            <marker date="1518125034236" expanded="true" signature="6343:6405" ph="INSERT INTO slides... " />
-            <marker date="1518125034236" expanded="true" signature="6805:6851" ph="DELETE FROM " />
-            <marker date="1518125034236" expanded="true" signature="6938:6971" ph="SELECT * FRO... slides" />
-            <marker date="1518125034236" expanded="true" signature="7093:7124" ph="SELECT * FRO... slides" />
-            <marker date="1518125034236" expanded="true" signature="7428:7482" ph="INSERT INTO annotations... " />
-            <marker date="1518125034236" expanded="true" signature="7686:7728" ph="SELECT * FRO... annotations" />
-            <marker date="1518125034236" expanded="true" signature="7812:7853" ph="UPDATE slide... " />
-            <marker date="1518125034236" expanded="true" signature="7945:7985" ph="UPDATE slide... " />
-            <marker date="1518125034236" expanded="true" signature="8122:8167" ph="UPDATE slide... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/reviewimg.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="80" column="103" lean-forward="false" selection-start-line="80" selection-start-column="103" selection-end-line="80" selection-end-column="103" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/GenerateReport.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="14" column="9" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#13#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/report.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="36" lean-forward="false" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/uploadscript.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="29" column="23" lean-forward="false" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/reviewscript.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="40" column="49" lean-forward="false" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/countries.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -881,7 +877,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -889,7 +884,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3870">
           <caret line="6" column="2604" lean-forward="false" selection-start-line="6" selection-start-column="2604" selection-end-line="6" selection-end-column="2604" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -898,60 +892,15 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/image_save.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/test_image.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="32" column="28" lean-forward="false" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="328" column="27" lean-forward="false" selection-start-line="328" selection-start-column="27" selection-end-line="328" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/viewimg.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="142" lean-forward="true" selection-start-line="8" selection-start-column="142" selection-end-line="8" selection-end-column="142" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="20" column="16" lean-forward="false" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -959,7 +908,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="32" lean-forward="true" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -971,10 +919,221 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/testcanvascript.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="8" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="24" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/testcanvas.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="43" lean-forward="true" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/image_save.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="11" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/GenerateReport.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/viewimg.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="155" lean-forward="false" selection-start-line="18" selection-start-column="155" selection-end-line="18" selection-end-column="155" />
+          <folding>
+            <element signature="e#985#991#1#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/viewscript.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="363" column="50" lean-forward="true" selection-start-line="363" selection-start-column="50" selection-end-line="363" selection-end-column="50" />
+        <state relative-caret-position="-9446">
+          <caret line="108" column="65" lean-forward="false" selection-start-line="108" selection-start-column="65" selection-end-line="108" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/report.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1368">
+          <caret line="76" column="12" lean-forward="false" selection-start-line="76" selection-start-column="12" selection-end-line="76" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/bottomsheet.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="33" selection-end-column="6" />
+          <folding>
+            <element signature="n#style#0;n#div#3;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#a#0;n#div#3;n#div#1;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="71" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/homescript.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="175" column="63" lean-forward="false" selection-start-line="175" selection-start-column="63" selection-end-line="175" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/reviewimg.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="693">
+          <caret line="84" column="48" lean-forward="false" selection-start-line="84" selection-start-column="48" selection-end-line="84" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/schema.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="204" lean-forward="true" selection-start-line="5" selection-start-column="204" selection-end-line="5" selection-end-column="204" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/reviewscript.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="43" column="15" lean-forward="true" selection-start-line="33" selection-start-column="12" selection-end-line="43" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="70" column="13" lean-forward="false" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="603">
+          <caret line="394" column="25" lean-forward="false" selection-start-line="394" selection-start-column="25" selection-end-line="394" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/uploadscript.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="24" column="34" lean-forward="false" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database_connector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="231" column="19" lean-forward="false" selection-start-line="231" selection-start-column="19" selection-end-line="231" selection-end-column="19" />
+          <folding>
+            <marker date="1519329061231" expanded="true" signature="1148:1178" ph="select * fro... users" />
+            <marker date="1519329061231" expanded="true" signature="1310:1343" ph="select * fro... users" />
+            <marker date="1519329061231" expanded="true" signature="1530:1570" ph="select passw... users" />
+            <marker date="1519329061231" expanded="true" signature="1868:1924" ph="insert into users... " />
+            <marker date="1519329061231" expanded="true" signature="2296:2370" ph="select * fro... slides" />
+            <marker date="1519329061231" expanded="true" signature="2429:2480" ph="select slide... user_to_slides" />
+            <marker date="1519329061231" expanded="true" signature="3237:3268" ph="SELECT * FRO... permissions" />
+            <marker date="1519329061231" expanded="true" signature="3237:3285" ph="SELECT * FRO... permissions" />
+            <marker date="1519329061231" expanded="true" signature="3482:3524" ph="SELECT * FRO... annotations" />
+            <marker date="1519329061231" expanded="true" signature="4478:4531" ph="UPDATE users... " />
+            <marker date="1519329061231" expanded="true" signature="4639:4678" ph="UPDATE users... " />
+            <marker date="1519329061231" expanded="true" signature="4766:4803" ph="UPDATE users... " />
+            <marker date="1519329061231" expanded="true" signature="4889:4924" ph="UPDATE users... " />
+            <marker date="1519329061231" expanded="true" signature="5111:5148" ph="select passw... users" />
+            <marker date="1519329061231" expanded="true" signature="5304:5342" ph="UPDATE users... " />
+            <marker date="1519329061231" expanded="true" signature="5902:5925" ph="select name slides" />
+            <marker date="1519329061231" expanded="true" signature="6779:6841" ph="INSERT INTO slides... " />
+            <marker date="1519329061231" expanded="true" signature="7015:7052" ph="INSERT INTO permissions... " />
+            <marker date="1519329061231" expanded="true" signature="7368:7414" ph="DELETE FROM " />
+            <marker date="1519329061231" expanded="true" signature="7511:7544" ph="SELECT * FRO... slides" />
+            <marker date="1519329061231" expanded="true" signature="7625:7674" ph="SELECT user_... permissions" />
+            <marker date="1519329061231" expanded="true" signature="7934:7965" ph="SELECT * FRO... slides" />
+            <marker date="1519329061231" expanded="true" signature="8022:8071" ph="SELECT user_... permissions" />
+            <marker date="1519329061231" expanded="true" signature="8526:8583" ph="INSERT INTO annotations... " />
+            <marker date="1519329061231" expanded="true" signature="8802:8844" ph="SELECT * FRO... annotations" />
+            <marker date="1519329061231" expanded="true" signature="8928:8969" ph="UPDATE slide... " />
+            <marker date="1519329061231" expanded="true" signature="9061:9101" ph="UPDATE slide... " />
+            <marker date="1519329061231" expanded="true" signature="9238:9283" ph="UPDATE slide... " />
+            <marker date="1519329061231" expanded="true" signature="9434:9495" ph="SELECT * FRO... user_to_slides" />
+            <marker date="1519329061231" expanded="true" signature="9631:9700" ph="UPDATE user_... " />
+            <marker date="1519329061231" expanded="true" signature="9827:9860" ph="INSERT INTO user_to_slides... " />
+            <marker date="1519329061231" expanded="true" signature="9827:9869" ph="INSERT INTO user_to_slides... " />
+            <marker date="1519329061231" expanded="true" signature="9827:9945" ph="INSERT INTO user_to_slides... " />
+            <marker date="1519329061231" expanded="true" signature="10036:10154" ph="SELECT u.tit... permissions" />
+            <marker date="1519329061231" expanded="true" signature="10538:10579" ph="SELECT * FRO... slides" />
+            <marker date="1519329061231" expanded="true" signature="10698:10753" ph="SELECT title... users" />
+            <marker date="1519329061231" expanded="true" signature="10894:10952" ph="SELECT * FRO... permissions" />
+            <marker date="1519329061231" expanded="true" signature="11023:11030" ph="INSERT into PERMISSIONS... " />
+            <marker date="1519329061231" expanded="true" signature="11023:11059" ph="INSERT INTO permissions... " />
+            <marker date="1519329061231" expanded="true" signature="11441:11482" ph="SELECT uploa... slides" />
+            <marker date="1519329061231" expanded="true" signature="11734:11764" ph="DELETE FROM " />
+            <marker date="1519329061231" expanded="true" signature="11734:11777" ph="DELETE FROM " />
+            <marker date="1519329061231" expanded="true" signature="11734:11788" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1404">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/manage_permissions.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="41" column="25" lean-forward="true" selection-start-line="31" selection-start-column="20" selection-end-line="41" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/permissionscript.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="972">
+          <caret line="54" column="32" lean-forward="false" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
           <folding />
         </state>
       </provider>
