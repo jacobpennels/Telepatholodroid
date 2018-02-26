@@ -155,7 +155,7 @@ app = init_app()
 app.secret_key = binascii.hexlify(os.urandom(24))
 
 from app import views, user, forms
-from app.forms import LoginForm, RegistrationForm, UploadForm
+from app.forms import LoginForm, RegistrationForm, UploadForm, FeedbackForm
 
 login_manager.login_view = 'index'
 
@@ -393,6 +393,19 @@ def remove_permission():
     result = db.remove_permissions(user_id, data['id'], data['slide_id'])
     db_lock.release()
     return jsonify(result)
+
+@app.route('/save_feedback', methods=['POST'])
+@login_required
+def save_feedback():
+    form = FeedbackForm(request.form)
+    if(current_user.is_authenticated):
+        user_id = current_user.user_id
+
+    db_lock.acquire()
+    db.save_feedback(request.form['bug_title'], request.form['bug_description'], user_id)
+    db_lock.release()
+
+    return redirect(url_for('feedback'))
 
 
 

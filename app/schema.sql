@@ -7,3 +7,4 @@ CREATE TABLE slides (name VARCHAR(50), location VARCHAR(50), type VARCHAR(25), c
 CREATE TABLE user_to_slides (user_id INTEGER, slide_id INTEGER, accessed DATETIME, FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN KEY (slide_id) REFERENCES slides(id));
 CREATE TABLE annotations (name VARCHAR(50), description TEXT, colour TEXT, points TEXT, thumbnail TEXT, annotator_id INTEGER, slide_id INTEGER, id INTEGER PRIMARY KEY , FOREIGN KEY (annotator_id) REFERENCES users(id), FOREIGN KEY (slide_id) REFERENCES slides(id));
 CREATE TABLE permissions (slide_id INTEGER, user_id INTEGER, FOREIGN KEY (slide_id) REFERENCES slides(id), FOREIGN KEY (user_id) REFERENCES users(id));
+CREATE TABLE feedback (title TEXT, description TEXT, user_id INTEGER, FOREIGN KEY (user_id) REFERENCES users(id));

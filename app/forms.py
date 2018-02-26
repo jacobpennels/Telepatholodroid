@@ -94,3 +94,7 @@ class AnnotationForm(RedirectForm):
                                 render_kw={'data-clear-btn': 'true', 'placeholder': '...', 'rows': 5})
     colour = StringField(u'Annotation colour', validators=[validators.DataRequired(), validators.length(max=50)],
                          render_kw={'data-clear-btn': 'true', 'placeholder':'...'})
+
+class FeedbackForm(RedirectForm):
+    bug_title = StringField(u'Issue title', validators=[validators.DataRequired()], render_kw={'data-clear-btn' : 'true', 'placeholder' : '...'})
+    bug_description = TextAreaField(u'Description of issue', validators=[validators.DataRequired()], render_kw={'data-clear-btn' : 'true', 'placeholder' : '...', 'rows' : 5})

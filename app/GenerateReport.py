@@ -13,7 +13,7 @@ class GenerateReport:
         print(len(annotations))
         report_render = render_template("report.html", slide_info=slide_info, annotations=annotations)
         soup = BeautifulSoup(report_render, 'html.parser')
-        print(soup.prettify())
+        #print(soup.prettify())
         options = {
             'no-outline': None
         }
