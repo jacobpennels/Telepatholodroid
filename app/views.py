@@ -16,11 +16,25 @@ def index():
     return render_template("index.html", loginform = login_form, regform = registration_form)
 
 @app.route('/home')
+@app.route('/home/<imgid>')
 @login_required
-def home():
-    print(current_user.user_id)
-    slide_list = [1,2,3,4,5,6,7,8,9,10]
-    return render_template('home.html', slide_list = slide_list)
+def home(imgid = None):
+    if(imgid == None):
+        print(current_user.user_id)
+        return render_template('home.html')
+    else:
+        if(current_user.is_authenticated):
+            user_id = current_user.user_id
+        else:
+            return redirect('index')
+
+        db_lock.acquire()
+        data = db.get_current_slide(imgid, user_id)
+        db_lock.release()
+        if(data['success'] == False):
+            return render_template('home.html')
+        print("Got slide id, focusing on it")
+        return render_template('home.html', data=data)
 
 @app.route('/viewimg/<imgid>')
 @app.route('/viewimg/<imgid>/<annotation>')
@@ -126,6 +140,14 @@ def manage_permissions(slideid):
         return redirect('home')
 
     return render_template('manage_permissions.html', slide=slide, pu=permitted_users, pujs=json.dumps(permitted_users))
+
+@app.route('/feedback')
+@login_required
+def feedback():
+    form = forms.FeedbackForm()
+    return render_template('feedback.html', feedback = form)
+
+
 
 
 

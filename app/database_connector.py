@@ -58,6 +58,11 @@ class DatabaseConnector:
         # Sort through data into suitable order and then add the user to the database
         self.execute_statement('insert into users values (?, ?, ?, ?, ?, ?, ?, ?, NULL )',\
                                u['title'], u['fname'], u['lname'], u['email1'], datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), u['institute'], u['country'], sha256_crypt.encrypt(u['pword1']))
+        user_id = self.c.lastrowid
+        slide_ids = [x[0] for x in self.execute_query('SELECT id FROM slides')]
+        for s in slide_ids:
+            self.execute_statement('INSERT INTO permissions VALUES (?, ?)', s, user_id)
+
         return self.get_user_by_email(u['email1'])
 
     def get_slide_info_by_category(self, category, usr_id):
@@ -248,3 +253,19 @@ class DatabaseConnector:
 
         self.execute_statement('DELETE FROM permissions WHERE user_id=? AND slide_id=?', p_id, slide_id)
         return {"success": True}
+
+    def get_current_slide(self, slide_id, user_id):
+        permission = self.execute_query('SELECT user_id FROM permissions WHERE  slide_id=?', slide_id)
+        if (not user_id in [x[0] for x in permission]):
+            print("PERMISSION DENIED")
+            return {"success" : False}
+
+        slide = self.execute_query('SELECT type FROM slides WHERE id=?', slide_id)
+        if(len(slide) <= 0): # the slide doesn't exist
+            print("Slide doesn't exist")
+            return {"success" : False}
+        print(slide)
+        return {"category": slide[0][0], "success" : True}
+
+    def save_feedback(self, name, description, user_id):
+        self.execute_statement('INSERT INTO feedback VALUES (?, ?, ?)', name, description, user_id)

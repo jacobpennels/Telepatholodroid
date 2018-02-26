@@ -7,6 +7,17 @@
         $switch_val = $('#prev_img').val();
         $method = $('#list_sort').val();
         $view = $('#view_type').val();
+
+        {% if data is defined %}
+            console.log("Data is defined");
+            $category = "{{ data['category'] }}";
+            $('#cancer_type').val($category);
+            // FIND WAY TO SELECT THE DEFAULT
+        {% else %}
+            $category = null;
+        {% endif %}
+
+        console.log($category);
         // -- End of global variables --
 
         // -- Sets up scrollable list --

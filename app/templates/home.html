@@ -67,6 +67,14 @@
         </div>
     </div>
     {% block script_section %}
-    {% include 'homescript.html' %}
+        {% if data is defined %}
+            <p>DATA IS DEFINED</p>
+            {% with data=data %}
+                {% include 'homescript.html' %}
+            {%  endwith %}
+        {% else %}
+            <p>DATA IS NOT DEFINED</p>
+            {% include 'homescript.html' %}
+        {% endif %}
     {% endblock %}
 {% endblock %}

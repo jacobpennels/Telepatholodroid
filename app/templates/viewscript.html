@@ -509,20 +509,21 @@
 
         //TODO This is the area of interest right now
         $add_button.on('tap', function(e) {
-            //console.log("add button pressed");
+            console.log("add button pressed");
             $annotation_drawing = !$annotation_drawing;
             if($annotation_drawing) {
                 e.preventDefault();
                 $annotation_points = [];
-                //console.log("Beginning drawing");
+                console.log("Beginning drawing");
                 $add_button.empty();
                 $add_button.append("<i class='zmdi zmdi-check'></i> finish");
                 $submitting_form = false;
             } else {
-                //console.log("Ending drawing");
+                console.log("Ending drawing");
                 if($annotation_points.length == 0)
                     e.preventDefault();
-
+                else
+                    $('#bottomsheetoptions').panel("open");
                 $add_button.empty();
                 $add_button.append("<i class='zmdi zmdi-plus'></i> add");
                 $submitting_form = true;
