@@ -27,22 +27,17 @@
             </div>
 
             <div id="toolbar" class="row center-xs">
-                <div class="col-xs-3">
+                <div class="col-xs-4">
                     <div class="box">
-                        <a id="back_button" href="#" class="ui-btn ui-btn-raised clr-primary nd2-btn-icon-block"><i class='zmdi zmdi-long-arrow-return'></i> back</a>
+                        <a id="back_button" href="{{ url_for('home', imgid=slide_id) }}" class="ui-btn ui-btn-raised clr-primary nd2-btn-icon-block" data-ajax="false"><i class='zmdi zmdi-long-arrow-return'></i> back</a>
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-4">
                     <div class="box">
                         <a id="add_button" href="#" class="ui-btn ui-btn-raised clr-primary nd2-btn-icon-block"><i class='zmdi zmdi-plus'></i> add</a>
                     </div>
                 </div>
-                <div class="col-xs-3">
-                    <div class="box">
-                        <a id="remove_button" href="#" class="ui-btn ui-btn-raised clr-primary nd2-btn-icon-block"><i class='zmdi zmdi-minus'></i> delete</a>
-                    </div>
-                </div>
-                <div class="col-xs-3">
+                <div class="col-xs-4">
                     <div class="box">
                         <a id="show_annotations" href="#" class="ui-btn ui-btn-raised clr-primary nd2-btn-icon-block"><i class="zmdi zmdi-eye"></i> show annotations</a>
                     </div>
@@ -53,20 +48,43 @@
         <div data-role="panel" id="bottomsheetoptions" data-position-fixed="true" data-display="overlay">
             <h3>Save annotation</h3>
             <form method="post" action="{{ url_for('save_annotation') }}" id="new_annotation">
-                {{ form.name.label }}
-                {{ form.name }}
-                {{ form.anno_description.label }}
-                {{ form.anno_description }}
-                {{ form.colour.label }}
-                {{ form.colour }}
+                <label for="name">Annotation name</label>
+                <input type="text" name="name" id="name" placeholder="..." />
+                <label for="anno_description">Annotation Description</label>
+                <textarea data-clear-btn="true" id="anno_description" name="anno_description"></textarea>
+                <label for="colour">Colour</label>
+                <div id="colour_preview" style="background-color: #ff0000;">
+                    <a href="#" style="display: block; height: 25px; width: 100%;"></a>
+                </div>
+                <select id="colour">
+                    <option value="#ff0000">Red</option>
+                    <option value="#00ff00">Lime</option>
+                    <option value="#0000ff">Blue</option>
+                    <option value="#000000">Black</option>
+                    <option value="#ffffff">White</option>
+                    <option value="#c0c0c0">Silver</option>
+                    <option value="#008000">Green</option>
+                    <option value="#ff00ff">Pink</option>
+                    <option value="#800080">Purple</option>
+                </select>
                 <input type="submit" value="SAVE" data-rel="close">
             </form>
+        </div>
+        <div data-role="panel" id="annotation_panel" data-position-fixed="true" data-display="overlay">
+                <img src="" id="annotation_panel_img" class="profile-background" style="width: 100%">
+                <h3 id="annotation_panel_name"></h3>
+                <p id="annotation_panel_description"></p>
+                <br>
+                <a id="annotation_panel_delete" href="#" class="ui-btn ui-btn-raised" data-rel="close" style="display: none">Delete</a>
+                <br>
+                <a id="annotation_panel_close" href="#" class="ui-btn ui-btn-raised" data-rel="close">Close</a>
+            </div>
         </div>
     </div>
 {% endblock %}
 
 {% block script_section %}
-    {% with l=loc, d=dimensions, id=slide_id, anno=anno, sa=sa %}
+    {% with l=loc, d=dimensions, id=slide_id, anno=anno, sa=sa, user_id=user_id %}
     {% include 'viewscript.html' %}
     {% endwith %}
 {%  endblock %}

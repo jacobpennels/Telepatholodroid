@@ -8,16 +8,6 @@
         $method = $('#list_sort').val();
         $view = $('#view_type').val();
 
-        {% if data is defined %}
-            console.log("Data is defined");
-            $category = "{{ data['category'] }}";
-            $('#cancer_type').val($category);
-            // FIND WAY TO SELECT THE DEFAULT
-        {% else %}
-            $category = null;
-        {% endif %}
-
-        console.log($category);
         // -- End of global variables --
 
         // -- Sets up scrollable list --
@@ -27,7 +17,7 @@
         const $body_height = ($window_height - $header_height - $add_button_height);
         //console.log($window_height);
         //console.log($header_height);
-        console.log($body_height);
+        //console.log($body_height);
         $('#slide_content').css({
             height: $body_height,
             marginTop: '0'
@@ -142,9 +132,62 @@
         // -- End of functions --
 
         // -- Event functions --
+        $ChangeCancerType = function () {
+            $info = {"cancer_type": $('#cancer_type').val()};
+            console.log($info);
+            $.ajax({url: "{{ url_for('get_slides') }}",
+                    type: 'post',
+                    data: JSON.stringify($info),
+                    contentType: "application/json; charset=utf-8",
+                    async: false,
+                    success: function (result) {
+                        $slide_list = result;
+                        console.log(result);
+                        $Draw_List(result);
+                    }
+            });
+        };
+
+
+        {% if data is defined %}
+            console.log("Data is defined");
+            $category = "{{ data['category'] }}";
+            $slide_id = {{ data['slide_id'] }};
+
+            $('#cancer_type').val($category);
+            $('#cancer_type').change();
+            $ChangeCancerType();
+
+            $object = $.grep($slide_list, function (e) {
+                return e.slide_id == $slide_id;
+            })[0];
+
+            $t = $object.date_uploaded.split(/[- :]/);
+            $('#bs_name').empty().append($object.name);
+            $('#bs_dateuploaded').empty().append("Date uploaded: " + $t[2] + "-" + $t[1] + "-" + $t[0]);
+            $('#bs_link').attr('href', '{{ url_for("viewimg", imgid='') }}' + $object.slide_id);
+            $('#bs_review').attr('href', '{{ url_for("reviewimg", imgid='') }}' + $object.slide_id);
+            $('#bs_uploader').empty().append("Uploader: " + $object.uploader);
+            $('#bs_num_anno').empty().append("Annotations: " + $object.num_anno);
+            if($object.is_uploader) {
+                $('#bs_review_permissions').show();
+                $('#bs_review_permissions a').attr('href', '{{ url_for("manage_permissions", slideid='') }}' + $object.slide_id);
+            } else {
+                $('#bs_review_permissions').hide();
+                $('#bs_review_permissions a').attr('href', '#');
+            }
+
+            $('#slide_thumbnail').attr('src', $object.location);
+            $('#bottomsheet_opt').panel("open");
+        {% else %}
+            $category = null;
+        {% endif %}
+
+        console.log($category);
+
         $('#cancer_type').change(function () {
             $info = {"cancer_type": $('#cancer_type').val()};
-            //console.log($info);
+            console.log($info);
             $.ajax({url: "{{ url_for('get_slides') }}",
                     type: 'post',
                     data: JSON.stringify($info),

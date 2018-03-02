@@ -67,16 +67,19 @@ def viewimg(imgid=None, annotation = None):
     for a in annotations:
         points = a[3]
         p_array = []
+        for p in points.split("|"):
+            sub = []
+            temp = []
+            for c in p.split(","):
+                if(len(temp) < 2):
+                    temp.append(float(c))
+                else:
+                    sub.append(temp)
+                    temp = [float(c)]
+            p_array.append(sub)
 
-        temp = []
-        print(points.split(","))
-        for p in points.split(","):
-            if(len(temp) < 2):
-                temp.append(float(p))
-            else:
-                p_array.append(temp)
-                temp = [float(p)]
-        p_array.append(temp)
+        print(len(p_array))
+
         a[3] = p_array
 
     print(annotations)
@@ -94,7 +97,7 @@ def viewimg(imgid=None, annotation = None):
     db_lock.acquire()
     db.record_slide_access(slide_id, current_user.user_id)
     db_lock.release()
-    return render_template('viewimg.html', imgid=imgid, slide_id = slide_id, loc=str(url_for('static', filename="uploads") + "/" + data), dimensions=dimensions, form = annotation_form, anno=json.dumps(annotations), sa = show_annotation, is_uploader=is_uploader)
+    return render_template('viewimg.html', user_id=user_id, imgid=imgid, slide_id = slide_id, loc=str(url_for('static', filename="uploads") + "/" + data), dimensions=dimensions, form = annotation_form, anno=json.dumps(annotations), sa = show_annotation, is_uploader=is_uploader)
 
 @app.route('/accountsettings')
 @login_required

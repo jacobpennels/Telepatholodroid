@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileRequired
 from wtforms.fields.html5 import EmailField
 from wtforms.fields import PasswordField, StringField, HiddenField, SelectField, TextField, FileField, TextAreaField
+from wtforms_components import ColorField
 from wtforms import validators
 from urllib.parse import urlparse, urljoin
 from flask import request, url_for, redirect
@@ -92,8 +93,8 @@ class AnnotationForm(RedirectForm):
                        render_kw={'data-clear-btn': 'true', 'placeholder':'...'})
     anno_description = TextAreaField(u'Annotation description', validators=[validators.DataRequired()],
                                 render_kw={'data-clear-btn': 'true', 'placeholder': '...', 'rows': 5})
-    colour = StringField(u'Annotation colour', validators=[validators.DataRequired(), validators.length(max=50)],
-                         render_kw={'data-clear-btn': 'true', 'placeholder':'...'})
+    colour = StringField(u'Annotation colour', validators=[validators.DataRequired()],
+                         render_kw={'data-clear-btn': 'true', 'placeholder':'...', 'type': 'color'})
 
 class FeedbackForm(RedirectForm):
     bug_title = StringField(u'Issue title', validators=[validators.DataRequired()], render_kw={'data-clear-btn' : 'true', 'placeholder' : '...'})

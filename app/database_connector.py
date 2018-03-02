@@ -181,21 +181,26 @@ class DatabaseConnector:
         query = self.execute_query('SELECT * FROM slides WHERE id=?', slide_id)[0]
         permission = self.execute_query('SELECT user_id FROM permissions WHERE  slide_id=?', slide_id)
         if (user_id in [x[0] for x in permission]):
-            print("PERMISSION DENIED")
+            #print("PERMISSION DENIED")
             return query
         else:
             return None
 
     def add_new_annotation(self, data, user_id):
         temp = [] # Turn the points into a list of points
+        temp = ""
         for a in data['points']:
+            sub = ""
             for b in a:
-                temp.append(str(b))
+                for c in b:
+                    sub += (str(c)) + ","
+            temp += sub[:-1]
+            temp += "|"
 
-        points = ",".join(temp)
+        points = temp[:-1]
         print(points)
         self.execute_statement('INSERT INTO annotations VALUES(?, ?, ?, ?, ?, ?, ?, NULL)', data['name'], data['anno_description'], data['colour'], points, data['image'], user_id, data['slide_id'])
-        return {"success": True}
+        return {"success": True, 'id' : self.c.lastrowid}
 
     def get_annotations(self, slide_id):
         return self.execute_query('SELECT * FROM annotations WHERE slide_id=?', slide_id)
@@ -265,7 +270,15 @@ class DatabaseConnector:
             print("Slide doesn't exist")
             return {"success" : False}
         print(slide)
-        return {"category": slide[0][0], "success" : True}
+        return {"category": slide[0][0], "success" : True, "slide_id" : slide_id}
 
     def save_feedback(self, name, description, user_id):
         self.execute_statement('INSERT INTO feedback VALUES (?, ?, ?)', name, description, user_id)
+
+    def delete_annotation(self, anno_id, user_id):
+        annotation = self.execute_query('SELECT * FROM annotations WHERE annotator_id=? AND id=?', user_id, anno_id)
+        if(len(annotation) == 0):
+            return {"success": False}
+
+        self.execute_statement('DELETE FROM annotations WHERE id=?', anno_id)
+        return {"success" : True}

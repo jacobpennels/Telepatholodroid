@@ -2,15 +2,18 @@
     var image_string = "";
     $(document).ready(function () {
         $image_string = "";
+        $user_id = {{ user_id }};
+        console.log($user_id);
         $location = "{{ l }}";
         console.log("{{ id }}");
         //console.log($location);
         $dimensions = $.parseJSON({{ d | tojson | safe  }});
         $annotations = {{ anno | safe  }};
+        console.log($annotations);
         $.each($annotations, function() {
             console.log(this[0]);
             $.each(this[3], function() {
-                console.log(this)
+                console.log(this.length)
             });
         });
         $tile_info = null;
@@ -37,20 +40,24 @@
         $w = 0;
         $buttons = [];
         $button_pressed = false;
-
+        /*
         $('#colour').spectrum({ // Set up colour picker
-            flat: true,
-            showInput: true,
-            showButtons: false,
-            preferredFormat: "hex",
-            showInput: false,
-            palette: [["red", "rgba(0, 255, 0, .5)", "rgb(0, 0, 255)"]]
+            preferredFormat: 'hex3',
+            showPaletteOnly: true,
+            showPalette: true,
+            hideAfterPaletteSelect: true,
+            color: 'red',
+            palette: [
+                ['black', 'white', 'red', 'yellow'],
+                ['green', 'blue', 'pink', 'purple']
+            ]
         });
-
+        */
         $current_dims = null;
 
         $annotation_drawing = false;
         $annotation_points = [];
+        $sub_annotation = [];
         $annotation_show = false;
         $submitting_form = false;
 
@@ -119,22 +126,25 @@
             $max_y = 0;
             $min_y = 1;
             $.each(ann[3], function() {
-                console.log(this);
-                if(parseFloat(this[0]) > $max_x) {
-                    $max_x = this[0];
-                }
+                $this = $(this);
+                $.each($this, function () {
+                    //console.log(this);
+                    if (parseFloat(this[0]) > $max_x) {
+                        $max_x = this[0];
+                    }
 
-                if(parseFloat(this[0]) < $min_x) {
-                    $min_x = this[0];
-                }
+                    if (parseFloat(this[0]) < $min_x) {
+                        $min_x = this[0];
+                    }
 
-                if(parseFloat(this[1]) > $max_y) {
-                    $max_y = this[1];
-                }
+                    if (parseFloat(this[1]) > $max_y) {
+                        $max_y = this[1];
+                    }
 
-                if(parseFloat(this[1]) < $min_y) {
-                    $min_y = this[1];
-                }
+                    if (parseFloat(this[1]) < $min_y) {
+                        $min_y = this[1];
+                    }
+                })
             });
             console.log("Max x: " + $max_x + ", min x: " + $min_x + ", Max y: " + $max_y + ", min y: " + $min_y);
             $previous_level = "level_0";
@@ -197,49 +207,60 @@
 
         $DrawAnnotation = function(ann, sx, sy, sc) {
             if($annotation_drawing || $submitting_form) {
-                $obj = {
-                    type: 'line',
-                    strokeStyle: '#000',
-                    strokeWidth: 5,
-                    rounded: true,
-                    closed: true
-                };
 
                 $.each(ann, function (i) {
-                    console.log("Point " + this[0] + ", " + this[1]);
-                    $canvas.addLayer({
-                        type: 'ellipse',
-                        fillStyle: '#000',
-                        width: 10, height: 10,
-                        x: this[0] - 5,
-                        y: this[1] - 5
+                    $obj = {
+                        type: 'line',
+                        strokeStyle: '#000',
+                        strokeWidth: 5,
+                        rounded: true,
+                        closed: false
+                    };
+                    $.each(this, function (j) {
+                        console.log("Point " + this[0] + ", " + this[1]);
+                        /*
+                        $canvas.addLayer({
+                            type: 'ellipse',
+                            fillStyle: '#000',
+                            width: 10, height: 10,
+                            x: this[0] - 5,
+                            y: this[1] - 5
+                        });
+                        */
+                        $obj['x' + (j + 1)] = this[0];
+                        $obj['y' + (j + 1)] = this[1];
                     });
-                    $obj['x' + (i + 1)] = this[0];
-                    $obj['y' + (i + 1)] = this[1];
+                    console.log($obj);
+                    $canvas.addLayer($obj);
                 });
-                console.log($obj);
-                $canvas.addLayer($obj);
             }
 
             if($annotation_show) {
                 //console.log("SHOWING ANNOTATIONS");
                 $.each($annotations, function() {
-                    $obj_temp = {
-                        type: 'line',
-                        group: ['annotation'],
-                        strokeStyle: this[2],
-                        strokeWidth: 5,
-                        rounded: true,
-                        closed: true
-                    };
-
-                    $.each(this[3], function(i) {
-                        $obj_temp['x' + (i + 1)] = (this[0] * sc * $current_level[0]) + sx;
-                        $obj_temp['y' + (i + 1)] = (this[1] * sc * $current_level[1]) + sy;
-                    });
-                    //console.log($obj_temp);
-                    $canvas.addLayer($obj_temp);
-                })
+                    $this = $(this);
+                    $colour = this[2];
+                    //console.log($this);
+                    $.each($this[3], function (i) {
+                        //console.log(i);
+                        $obj_temp = {
+                            type: 'line',
+                            group: ['annotation'],
+                            strokeStyle: $colour,
+                            strokeWidth: 5,
+                            rounded: true,
+                            closed: false
+                        };
+                        $points = $(this);
+                        $.each($points, function (i) {
+                            //console.log(this);
+                            $obj_temp['x' + (i + 1)] = (this[0] * sc * $current_level[0]) + sx;
+                            $obj_temp['y' + (i + 1)] = (this[1] * sc * $current_level[1]) + sy;
+                        });
+                        //console.log($obj_temp);
+                        $canvas.addLayer($obj_temp);
+                    })
+                });
             }
         };
 
@@ -279,6 +300,8 @@
                 }
             }
             $DrawAnnotation($annotation_points, sx, sy, sc);
+            if($annotation_drawing)
+                $DrawAnnotation([$sub_annotation], sx, sy, sc);
             //$DrawNavBar();
             $image_string = "";
             if(!getImage)
@@ -315,8 +338,11 @@
         }
 
         $canvas.bind('panstart', function (ev) {
-            if($annotation_drawing)
+            if($annotation_drawing) {
+                $sub_annotation.push([ev.gesture.center.x, ev.gesture.center.y]);
+                $DrawImage($draw_x, $draw_y, $scale);
                 return;
+            }
 
             $.each($buttons, function() {
                 if((this.x < ev.gesture.center.x && this.x + this.width > ev.gesture.center.x)) {
@@ -335,7 +361,13 @@
         });
 
         $canvas.bind('panmove', function(ev) {
-            if($annotation_drawing || $button_pressed)
+            if($annotation_drawing) {
+                $sub_annotation.push([ev.gesture.center.x, ev.gesture.center.y]);
+                $DrawImage($draw_x, $draw_y, $scale);
+                return;
+            }
+
+            if($button_pressed)
                 return;
 
             $diff_x = ev.gesture.center.x - $pan_start_x;
@@ -346,8 +378,15 @@
         });
 
         $canvas.bind('panend', function(ev) {
-            if($annotation_drawing)
+            if($annotation_drawing) {
+                $sub_annotation.push([ev.gesture.center.x, ev.gesture.center.y]);
+                $annotation_points.push($sub_annotation);
+                $sub_annotation = [];
+                console.log($annotation_points);
+                $DrawImage($draw_x, $draw_y, $scale);
                 return;
+            }
+
             $button_pressed = false;
             //console.log("pan ended");
             $pan_start_x = null;
@@ -472,43 +511,69 @@
             $act_y = ($scale * ($draw_y - ($draw_y + (0.5 * $current_level[1])))) + ($draw_y + (0.5 * $current_level[1]));
             $pinch_start = null;
             $prev_pinch = null;
-            //$DrawImage($draw_x, $draw_y, $scale);
-            //console.log("(" + $draw_x + ", " + $draw_y + "), at scale factor " + $scale);
-            /*
-            $canvas.drawEllipse({
-                fillStyle: '#000',
-                width: 20, height: 20,
-                x: $act_x - 10,
-                y: $act_y - 10
-            });
-
-            $canvas.drawEllipse({
-                fillStyle: '#F00',
-                width: 20, height: 20,
-                x: $draw_x - 10,
-                y: $draw_y - 10
-            });
-            */
+            $DrawImage($draw_x, $draw_y, $scale);
         });
 
-        $canvas.bind('tap', function(ev) {
-            if($annotation_drawing) {
-                console.log("tap at: " + ev.clientX + ", " + ev.clientY);
-                /*
-                $canvas.drawEllipse({
-                    fillStyle: '#000',
-                    width: 20, height: 20,
-                    x: ev.clientX - 10,
-                    y: ev.clientY - 10
+        $CheckIfInside = function inside(point, vs) {
+            // https://github.com/substack/point-in-polygon
+            // ray-casting algorithm based on
+            // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
+
+            var x = point[0], y = point[1];
+
+            var inside = false;
+            //console.log(vs.length);
+            for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+                var xi = vs[i][0], yi = vs[i][1];
+                var xj = vs[j][0], yj = vs[j][1];
+                //console.log(xi + ", " + yi + ", " + xj + ", " + yj);
+
+                var intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+                if (intersect)
+                    inside = !inside;
+                //console.log(inside);
+            }
+
+            return inside;
+        };
+
+        $canvas.bind('mousedown', function(ev) {
+            if($annotation_show) {
+                //console.log(ev);
+                //console.log("Tap at (" + ev.clientX + ", " + ev.clientY + ")");
+                $x = (ev.clientX - $draw_x) / ($scale * $current_level[0]);
+                $y = (ev.clientY - $draw_y) / ($scale * $current_level[1]);
+                //console.log($x + ", " + $y);
+                $selected_anno = "";
+                $selected_anno_index = null;
+                $.each($annotations, function(i) {
+                    $this = this;
+                    $points = this[3];
+                    $.each($points, function () {
+                        $result = $CheckIfInside([$x, $y], this);
+                        //console.log($result);
+                        if ($result) {
+                            console.log("Inside " + $this[0]);
+                            $selected_anno = $this;
+                            $selected_anno_index = i;
+                        }
+                    });
                 });
-                */
-                $annotation_points.push([ev.clientX, ev.clientY]);
-                $DrawImage($draw_x, $draw_y, $scale);
+                if($selected_anno_index != null) {
+                    $('#annotation_panel_name').empty().append($selected_anno[0]);
+                    $('#annotation_panel_description').empty().append($selected_anno[1]);
+                    $('#annotation_panel_img').attr("src", $selected_anno[4]);
+                    if ($user_id == $selected_anno[5])
+                        $('#annotation_panel_delete').show();
+                    else
+                        $('#annotation_panel_delete').hide();
+                    $('#annotation_panel').panel("open");
+                }
             }
         });
 
         //TODO This is the area of interest right now
-        $add_button.on('tap', function(e) {
+        $add_button.on('mousedown', function(e) {
             console.log("add button pressed");
             $annotation_drawing = !$annotation_drawing;
             if($annotation_drawing) {
@@ -520,10 +585,11 @@
                 $submitting_form = false;
             } else {
                 console.log("Ending drawing");
-                if($annotation_points.length == 0)
+                if($annotation_points.length == 0) {
                     e.preventDefault();
-                else
+                } else {
                     $('#bottomsheetoptions').panel("open");
+                }
                 $add_button.empty();
                 $add_button.append("<i class='zmdi zmdi-plus'></i> add");
                 $submitting_form = true;
@@ -539,33 +605,50 @@
             //console.log($annotation_points);
             $scaled_points = [];
             $.each($annotation_points, function(i) {
-                // If have points of annotation as proportion of image size, makes drawing it at any size easy
-                this[0] = (this[0] - $draw_x) / ($current_level[0] * $scale);
-                this[1] = (this[1] - $draw_y) / ($current_level[1] * $scale);
+                $this = $(this);
+                $.each($this, function() {
+                    // If have points of annotation as proportion of image size, makes drawing it at any size easy
+                    this[0] = (this[0] - $draw_x) / ($current_level[0] * $scale);
+                    this[1] = (this[1] - $draw_y) / ($current_level[1] * $scale);
+                })
             });
             $info = {"name": $('#name').val(), "anno_description": $('#anno_description').val(), "colour": $('#colour').val(), "points": $annotation_points, "slide_id": "{{ id }}", "image": ""};
             $new_annotation = [$info["name"], $info["anno_description"], $info["colour"], $annotation_points];
 
+            $annotations.push($new_annotation);
+            $last_index = $annotations.length - 1;
             $ShowAnnotation($new_annotation, $draw_x, $draw_y, $scale, true);
             $canvas.drawLayers({
                 complete: function () {
                     $info['image'] = $canvas.getCanvasImage('png');
                     console.log($info);
+                    $annotations[$last_index].push($info['image']);
+                    $annotations[$last_index].push($user_id);
                     $.ajax({url: "{{ url_for('save_annotation') }}",
                         type: 'post',
                         data: JSON.stringify($info),
-                        contentType: "application/json; charset=utf-8"
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            $annotations[$last_index].push({{ id }});
+                            $annotations[$last_index].push(data['id']);
+                            console.log($annotations[$last_index]);
+                        }
                     });
                 }
             });
 
-            $annotations.push($new_annotation);
-
             $('#name').val("");
             $('#anno_description').val("");
+            $('#colour').val("#ff0000");
+            $('#colour').change();
+            $('#colour_preview').css('background-color', '#ff0000');
             $annotation_points = [];
             $DrawImage($draw_x, $draw_y, $scale);
             $submitting_form = false;
+        });
+
+        $('#colour').change(function() {
+            $('#colour_preview').css('background-color', $('#colour').val());
         });
 
         $view_button.on('tap', function(ev) {
@@ -578,11 +661,6 @@
                 $view_button.append("<i class='zmdi zmdi-eye'></i> show annotations");
             }
             $DrawImage($draw_x, $draw_y, $scale);
-        });
-
-        $back_button.on('tap', function(ev) {
-            ev.preventDefault();
-            history.go(-1);
         });
 
         // The following code is designed to let the user navigate around the image when they don't have access to a touch screen device
@@ -712,8 +790,7 @@
 
         $recenter = $('#recenter');
 
-        $recenter.on('tap', function(ev) {
-            ev.preventDefault();
+        $DoRecenter = function() {
             $current_label = $default_details[0];
             $current_level = $default_details[1];
             $current_dims = $default_details[2];
@@ -721,6 +798,39 @@
             $draw_y = $default_details[4];
             $scale = $default_details[5];
             $DrawImage($draw_x, $draw_y, $scale);
+        };
+
+        $recenter.on('tap', function (ev) {
+            ev.preventDefault();
+            $DoRecenter();
+        });
+        
+        $('#annotation_panel_delete').on('tap', function () {
+            console.log("Annotation " + $selected_anno_index + " deleted");
+            console.log($selected_anno);
+            $annotations.splice($selected_anno_index, 1);
+            $DoRecenter();
+            $info = {"id":$selected_anno[7]};
+            $.ajax({url: "{{ url_for('delete_annotation') }}",
+                type: 'post',
+                data: JSON.stringify($info),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    if(data['success']) {
+                        new $.nd2Toast({
+                            message: "Annotation deleted",
+                            ttl: 2000
+                        });
+                    } else {
+                        new $.nd2Toast({
+                            message: "You don't have permission to delete that annotation",
+                            ttl: 2000
+                        });
+                    }
+                }
+            });
+            $selected_anno_index = null;
+            $selected_anno = null;
         })
     })
 </script>

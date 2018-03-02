@@ -326,6 +326,20 @@ def save_annotation():
 
     return jsonify(success)
 
+@app.route('/delete_annotation', methods=['POST'])
+@login_required
+def delete_annotation():
+    data = request.get_json()
+    user_id = None
+    if(current_user.is_authenticated):
+        user_id = current_user.user_id
+
+    db_lock.acquire()
+    success = db.delete_annotation(data['id'], user_id)
+    db_lock.release()
+
+    return jsonify(success)
+
 @app.route('/generate_report', methods=['POST'])
 @login_required
 def generate_report():
