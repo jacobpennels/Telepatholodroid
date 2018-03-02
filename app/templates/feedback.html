@@ -12,6 +12,7 @@
         </div>
         <div role="main" class="ui-content">
             <h3>Feedback</h3>
+	    <p>This page allows you to leave feedback on your experiences and problems with the application, as well as just general feedback. If you have any problems, weird behaviour or glitches within the app, then detail them here. The more information you can give the better, and all feedback will be taken on board! Any comment is greatly appreciated, and don't be afraid to go into detail - it helps more!</p>
             <form method="post" action="{{ url_for('save_feedback') }}" data-ajax="false">
                 {{ feedback.csrf_token }}
                 {{ feedback.bug_title.label }}
